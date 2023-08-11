@@ -1,6 +1,6 @@
 # Best Store
 
-![Best shop](./images/app-screenshot.png)
+![Best Store](./images/app-screenshot.png)
 
 
 ## Features
@@ -32,7 +32,7 @@
 
 ## Usage
 
-1. Obtain an API key from the provider (supabase) and replace `'VITE_'` in the `.env` file with your actual API key.
+1. Obtain API keys from SUPABASE and replace `'VITE_SUPABASE_URL'` and `'VITE_SUPABASE_KEY'` in the `.env` file with your actual API keys.
 2. Start the development server.
    ```bash
    npm run dev
