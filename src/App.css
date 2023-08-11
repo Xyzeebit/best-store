@@ -2,10 +2,6 @@
     --loading-grey: #e9e7e7;
 }
 
-.rotate-15 {
-    transform: rotate(15deg);
-}
-
 .spin {
     animation: rotate 1s linear infinite both;
     -webkit-animation: rotate 1s linear infinite both;

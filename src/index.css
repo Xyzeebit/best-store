@@ -8,14 +8,6 @@
   -webkit-text-size-adjust: 100%;
 }
 
-body {
-  background-image: url(/thunderstorm.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
