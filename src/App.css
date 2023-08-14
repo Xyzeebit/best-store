@@ -14,16 +14,28 @@
     --bg-pink-50: #FBE9E7;
     
 }
-
+/* 
 body {
   background-color: var(--bg-brown-900);
-}
+} */
 
 .glass {
   background: rgba(255, 255, 255, .2);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
+}
+
+.wh-18 {
+  width: 18rem;
+  height: 2.5rem;
+}
+.wh-25 {
+  width: 25rem;
+  height: 2.5rem;
+}
+.input-transform {
+  transition: width 0.5s;
 }
 
 .spin {
