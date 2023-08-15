@@ -1,10 +1,13 @@
-import Header from "../components/core/Header";
+import { Header, Container, Carousel } from "../components/core";
 
 const Home = () => {
     
   return (
     <>
       <Header />
+      <Container>
+        <Carousel />
+      </Container>
     </>
   );
 }

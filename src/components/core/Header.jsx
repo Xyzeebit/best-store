@@ -10,7 +10,7 @@ const Header = () => {
 
     return (
       <>
-        <div className='bg-green-900 h-4'></div>
+        <div className='bg-yellow-500 h-4'></div>
         <header className="px-8 md:px-16 py-2 flex items-center justify-between flex-wrap gap-4">
           <NavBrand brand="Bestore" />
           <ProductSearch />
