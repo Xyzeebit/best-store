@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import weatherSlice from "../redux/weatherSlice";
+// import weatherSlice from "../redux/weatherSlice";
 import { Provider } from "react-redux";
 import { render } from "@testing-library/react";
 import PropTypes from 'prop-types';
@@ -10,7 +10,7 @@ export function renderWithProviders(
         preloadedState = {},
         // Automatically create a store instance if no store was passed in
         store = configureStore({
-            reducer: { weather: weatherSlice },
+            reducer: {  },
             preloadedState,
         }),
         ...renderOptions

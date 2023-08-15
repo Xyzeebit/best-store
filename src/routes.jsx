@@ -1,12 +1,15 @@
 import { createBrowserRouter } from "react-router-dom";
-//import Home from "./pages/Home";
-//import Error from "./components/Error";
+import { ErrorBoundary } from "./components/error";
+import Home from "./pages/Home";
 
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <div>Home</div>,
-        //errorElement: <Error message="Oops!!! something went wrong" />
+        element: <Home />,
+        errorElement: <ErrorBoundary
+            message="Oops!!! an error occurred while loading this page"
+            path="/"
+        />
     },
 ]);
 

@@ -1,5 +1,45 @@
 :root {
     --loading-grey: #e9e7e7;
+    --bg-green-50: #e0f2f1;
+    --bg-green-100: #B2DFD2;
+    --bg-green-200: #80CBC4;
+    --bg-green-900: #004d40;
+
+    --bg-brown-50: #EFEBE9;
+    --bg-brown-100: #BCAAAA;
+    --bg-brown-300: #A1887F;
+    --bg-brown-500: #795548;
+    --bg-brown-900: #3E2723;
+
+    --bg-pink-50: #FBE9E7;
+    
+}
+/* 
+body {
+  background-color: var(--bg-brown-900);
+} */
+
+.glass {
+  background: rgba(255, 255, 255, .2);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.wh-18 {
+  width: 18rem;
+  height: 2.5rem;
+}
+.wh-25 {
+  width: 25rem;
+  height: 2.5rem;
+}
+.input-transform {
+  transition: width 0.5s;
+}
+.text-xsm {
+  font-size: 0.75rem;
+  line-height: 1.25rem;
 }
 
 .spin {
