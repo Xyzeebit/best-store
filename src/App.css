@@ -37,6 +37,10 @@ body {
 .input-transform {
   transition: width 0.5s;
 }
+.text-xsm {
+  font-size: 0.75rem;
+  line-height: 1.25rem;
+}
 
 .spin {
     animation: rotate 1s linear infinite both;
