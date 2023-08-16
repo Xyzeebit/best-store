@@ -1,48 +1,83 @@
 
-// Import Swiper React components
-import { Swiper, SwiperSlide } from 'swiper/react';
+// // Import Swiper React components
+// import { Swiper, SwiperSlide } from 'swiper/react';
 
-// Import Swiper styles
+// // Import Swiper styles
+// import 'swiper/css';
+// import 'swiper/css/pagination';
+
+// // import required modules
+// import { Pagination } from 'swiper/modules';
+
+// import Banner from './Banner';
+
+
+// const Carousel = () => {
+//     return (
+//       <>
+//         <Swiper
+//           direction={"vertical"}
+//           pagination={{
+//             clickable: true,
+//           }}
+//           autoplay={{ delay: 3000 }}
+//           speed={500}
+//           modules={[Pagination]}
+//           className="carousel m-4 md:m-16 h-52 md:h-60 lg:h-80 rounded-lg bg-gray-200"
+//         >
+//           <SwiperSlide className="">
+//             <Banner id="electronics/computers" image={computers} />
+//           </SwiperSlide>
+//           <SwiperSlide className="bg-green-300 flex items-center justify-center font-bold">
+//             Home Appliances
+//           </SwiperSlide>
+//           <SwiperSlide className="bg-blue-300 flex items-center justify-center font-bold">
+//             Clothes
+//           </SwiperSlide>
+//           <SwiperSlide className="bg-red-300 flex items-center justify-center font-bold">
+//             Books
+//           </SwiperSlide>
+//           <SwiperSlide className="bg-gray-300 flex items-center justify-center font-bold">
+//             Cosmetics
+//           </SwiperSlide>
+//         </Swiper>
+//       </>
+//     );
+// }
+
+import electronics from '../../assets/computers.png'
+import clothes from '../../assets/clothes.jpg'
+import footwear from '../../assets/footwear.jpg'
+import makeup from '../../assets/makeup.jpg'
+
+import { register } from 'swiper/element/bundle'
 import 'swiper/css';
 import 'swiper/css/pagination';
 
-// import './styles.css';
 
-// import required modules
-import { Pagination } from 'swiper/modules';
+import Banner from './Banner';
 
+register();
 
 const Carousel = () => {
-    return (
-      <>
-        <Swiper
-          direction={"vertical"}
-          pagination={{
-            clickable: true,
-          }}
-          autoplay={{ delay: 1000 }}
-          speed={400}
-          modules={[Pagination]}
-          className="carousel m-4 md:m-16 h-52 md:h-80 rounded-lg bg-gray-200"
-        >
-          <SwiperSlide className="bg-yellow-300 flex items-center justify-center font-bold">
-            Computers
-          </SwiperSlide>
-          <SwiperSlide className="bg-green-300 flex items-center justify-center font-bold">
-            Home Appliances
-          </SwiperSlide>
-          <SwiperSlide className="bg-blue-300 flex items-center justify-center font-bold">
-            Clothes
-          </SwiperSlide>
-          <SwiperSlide className="bg-red-300 flex items-center justify-center font-bold">
-            Books
-          </SwiperSlide>
-          <SwiperSlide className="bg-gray-300 flex items-center justify-center font-bold">
-            Cosmetics
-          </SwiperSlide>
-        </Swiper>
-      </>
-    );
+  return (
+    <div className="carousel m-4 md:m-16 h-52 md:h-60 lg:h-80 rounded-lg bg-gray-200">
+      <swiper-container pagination="true" speed={400} delay={3000} autoplay="true">
+        <swiper-slide>
+          <Banner id="/electronics/computers" image={electronics} />
+        </swiper-slide>
+        <swiper-slide>
+          <Banner id="/clothes/kids" image={clothes} />
+        </swiper-slide>
+        <swiper-slide className="bg-red-500">
+          <Banner id="/shoes/footwear" image={footwear} />
+        </swiper-slide>
+        <swiper-slide>
+          <Banner id="/beauty/makeup" image={makeup} />
+        </swiper-slide>
+      </swiper-container>
+    </div>
+  );
 }
 
 export default Carousel;

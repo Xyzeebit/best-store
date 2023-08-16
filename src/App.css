@@ -46,6 +46,7 @@ body {
   margin: 0;
 }
 
+
 .spin {
     animation: rotate 1s linear infinite both;
     -webkit-animation: rotate 1s linear infinite both;

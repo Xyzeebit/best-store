@@ -23,7 +23,7 @@ const ProductSearch = () => {
     return (
         <form
             onSubmit={handleProductSearch}
-            className={`flex items-center justify-center ${bg} px-4 rounded-3xl transition-all overflow-hidden`}
+            className={`flex items-center justify-center ${bg} px-4 py-1 text-green-900 rounded-3xl transition-all overflow-hidden`}
         >
             <input
                 type="text"
