@@ -49,20 +49,26 @@ import electronics from '../../assets/computers.png'
 import clothes from '../../assets/clothes.jpg'
 import footwear from '../../assets/footwear.jpg'
 import makeup from '../../assets/makeup.jpg'
+import appliances from '../../assets/appliances.jpg'
 
 import { register } from 'swiper/element/bundle'
 import 'swiper/css';
 import 'swiper/css/pagination';
 
 
-import Banner from './Banner';
+import Banner from './Banners';
 
 register();
 
 const Carousel = () => {
   return (
     <div className="carousel m-4 md:m-16 h-52 md:h-60 lg:h-80 rounded-lg bg-gray-200">
-      <swiper-container pagination="true" speed={400} delay={3000} autoplay="true">
+      <swiper-container
+        pagination="false"
+        speed={400}
+        delay={3000}
+        autoplay="true"
+      >
         <swiper-slide>
           <Banner id="/electronics/computers" image={electronics} />
         </swiper-slide>
@@ -74,6 +80,9 @@ const Carousel = () => {
         </swiper-slide>
         <swiper-slide>
           <Banner id="/beauty/makeup" image={makeup} />
+        </swiper-slide>
+        <swiper-slide>
+          <Banner id="/electronics/home_appliances" image={appliances} />
         </swiper-slide>
       </swiper-container>
     </div>

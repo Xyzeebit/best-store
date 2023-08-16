@@ -11,7 +11,10 @@ const Banner = ({ id, image }) => {
             Upto 50% off!
           </div>
           <div className="absolute insert-y-0 right-0 w-full">
-            <img src={image} alt={id} className="m-auto" />
+            <img src={image} alt={id} className="m-auto h-52 md:h-60 lg:h-80" />
+          </div>
+          <div className="absolute bottom-10 right-10">
+            <button className="px-8 py-2 bg-green-900 rounded-lg text-white">Buy now</button>
           </div>
         </div>
       </Link>
