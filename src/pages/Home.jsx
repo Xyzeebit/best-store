@@ -1,4 +1,4 @@
-import { Header, Container, Carousel } from "../components/core";
+import { Header, Container, Carousel, TopCategories } from "../components/core";
 
 const Home = () => {
     
@@ -7,6 +7,7 @@ const Home = () => {
       <Header />
       <Container>
         <Carousel />
+        <TopCategories />
       </Container>
     </>
   );
