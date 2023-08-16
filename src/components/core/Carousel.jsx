@@ -45,7 +45,7 @@
 //     );
 // }
 
-import electronics from '../../assets/computers.png'
+import stationery from '../../assets/stationery.jpg'
 import clothes from '../../assets/clothes.jpg'
 import footwear from '../../assets/footwear.jpg'
 import makeup from '../../assets/makeup.jpg'
@@ -70,7 +70,7 @@ const Carousel = () => {
         autoplay="true"
       >
         <swiper-slide>
-          <Banner id="/electronics/computers" image={electronics} />
+          <Banner id="/book-and-stationery/stationeries" image={stationery} />
         </swiper-slide>
         <swiper-slide>
           <Banner id="/clothes/kids" image={clothes} />
