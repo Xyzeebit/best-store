@@ -62,7 +62,7 @@ register();
 
 const Carousel = () => {
   return (
-    <div className="carousel m-4 md:m-16 h-52 md:h-60 lg:h-80 rounded-lg bg-gray-200">
+    <div className="carousel m-4 md:m-16 h-52 md:h-60 lg:h-80 bg-gray-200">
       <swiper-container
         pagination="false"
         speed={400}
