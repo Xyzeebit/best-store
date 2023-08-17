@@ -1,9 +1,9 @@
-import phone from '../../assets/icon-search.svg';
-import laptop from "../../assets/icon-search.svg";
-import shirt from "../../assets/icon-search.svg";
-import shoe from '../../assets/icon-search.svg';
-import bag from "../../assets/icon-search.svg";
-import watch from "../../assets/icon-search.svg";
+import phone from '../../assets/toys.jpg';
+import laptop from "../../assets/toys.jpg";
+import shirt from "../../assets/toys.jpg";
+import shoe from "../../assets/toys.jpg";
+import bag from "../../assets/toys.jpg";
+import watch from "../../assets/toys.jpg";
 
 import ImageButton from './ImageButton';
 
@@ -46,13 +46,16 @@ const TopCategories = () => {
         },
     ];
     return (
-        <div className='flex items-center justify-center gap-12 py-4'>
-            {topCats.map(cat => (
-                <Link key={cat.id} to="/">
-                    <ImageButton text={cat.title} image={cat.image} />
-                </Link>
-            ))}
+      <div className="px-4 md:px-16 py-8 bg-gray-50">
+        <h2 className='font-bold text-green-700 text-xl pb-4'>Shop From Our Top Categories</h2>
+        <div className="flex items-center justify-center flex-wrap gap-12">
+          {topCats.map((cat) => (
+            <Link key={cat.id} to="/">
+              <ImageButton text={cat.title} image={cat.image} />
+            </Link>
+          ))}
         </div>
+      </div>
     );
 }
 
