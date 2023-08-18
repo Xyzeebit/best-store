@@ -42,6 +42,10 @@ body {
   line-height: 1.25rem;
 }
 
+.pl-34 {
+  padding-left: 10rem;
+}
+
 .swiper {
   margin: 0;
 }

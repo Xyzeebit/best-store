@@ -3,10 +3,9 @@ import laptop from "../../assets/toys.jpg";
 import shirt from "../../assets/toys.jpg";
 import shoe from "../../assets/toys.jpg";
 import bag from "../../assets/toys.jpg";
-import watch from "../../assets/toys.jpg";
 
 import CategoryItem from './CategoryItem';
-
+import { Link } from 'react-router-dom';
 
 
 
@@ -15,13 +14,25 @@ const TopCategories = () => {
     const topCats = [
       {
         id: "sjij9jnk",
-        title: "Phones and Laptops",
+        title: "Phones",
+        image: phone,
+        category: "electronics",
+      },
+      {
+        id: "sjiUj9jnk",
+        title: "Laptops",
         image: phone,
         category: "electronics",
       },
       {
         id: "s8bjij9jnk",
-        title: "Toys and Games",
+        title: "Toys",
+        image: laptop,
+        category: "toys-and-games",
+      },
+      {
+        id: "s8bBjij9jnk",
+        title: "Games",
         image: laptop,
         category: "toys-and-games",
       },
@@ -43,21 +54,21 @@ const TopCategories = () => {
         image: bag,
         category: "books",
       },
-      {
-        id: "sKjij9jnk",
-        title: "All categories",
-        image: watch,
-        category: "categories",
-      },
     ];
     return (
-      <div className="px-4 md:px-16 py-8 bg-gray-50">
-        <h2 className='font-bold text-green-700 text-xl pb-4'>Shop From Our Top Categories</h2>
-        <div className="flex items-center justify-center flex-wrap gap-12 py-4 px-8">
+      <div className="px-4 md:px-16 py-8">
+        <h2 className="font-bold text-green-700 text-lg pb-4">
+          Shop From Our Top Categories
+        </h2>
+        <div className="flex items-start justify-start overflow-auto gap-4 md:gap-12 py-4">
           {topCats.map((cat) => (
-            <div key={cat.id}>
-              <CategoryItem text={cat.title} image={cat.image} category={`/${cat.category}`} />
-            </div>
+            <Link key={cat.id} to={'/' + cat.category}>
+              <CategoryItem
+                text={cat.title}
+                image={cat.image}
+                category={cat.category}
+              />
+            </Link>
           ))}
         </div>
       </div>
