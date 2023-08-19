@@ -58,7 +58,7 @@ const TopCategories = () => {
     return (
       <div className="px-4 md:px-16 py-8">
         <h2 className="font-bold text-green-700 text-lg pb-4">
-          Shop From Our Top Categories
+          Shop Now From Our Top Categories
         </h2>
         <div className="flex items-start justify-start overflow-auto gap-4 md:gap-12 py-4">
           {topCats.map((cat) => (
