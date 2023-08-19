@@ -6,6 +6,7 @@ import bag from "../../assets/toys.jpg";
 
 import CategoryItem from './CategoryItem';
 import { Link } from 'react-router-dom';
+import TopProductsList from './TopProductsList';
 
 
 
@@ -55,13 +56,9 @@ const TopCategories = () => {
         category: "books",
       },
     ];
-    return (
-      <div className="px-4 md:px-16 py-8">
-        <h2 className="font-bold text-green-700 text-lg pb-4">
-          Shop Now From Our Top Categories
-        </h2>
-        <div className="flex items-start justify-start overflow-auto gap-4 md:gap-12 py-4">
-          {topCats.map((cat) => (
+  return (
+      <TopProductsList title={"Shop Now From Our Top Categories"}>
+        {topCats.map((cat) => (
             <Link key={cat.id} to={'/' + cat.category}>
               <CategoryItem
                 text={cat.title}
@@ -70,8 +67,7 @@ const TopCategories = () => {
               />
             </Link>
           ))}
-        </div>
-      </div>
+      </TopProductsList>
     );
 }
 
