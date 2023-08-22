@@ -1,64 +1,30 @@
-import phone from '../../assets/toys.jpg';
-import laptop from "../../assets/toys.jpg";
-import shirt from "../../assets/toys.jpg";
-import shoe from "../../assets/toys.jpg";
-import bag from "../../assets/toys.jpg";
-
 import CategoryItem from './CategoryItem';
 import { Link } from 'react-router-dom';
 import TopProductsList from './TopProductsList';
-
-
+import { fetchTopCategories } from '../../api/top-categories';
+import { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 
 const TopCategories = () => {
-    const topCats = [
-      {
-        id: "sjij9jnk",
-        title: "Phones",
-        image: phone,
-        category: "electronics",
-      },
-      {
-        id: "sjiUj9jnk",
-        title: "Laptops",
-        image: phone,
-        category: "electronics",
-      },
-      {
-        id: "s8bjij9jnk",
-        title: "Toys",
-        image: laptop,
-        category: "toys-and-games",
-      },
-      {
-        id: "s8bBjij9jnk",
-        title: "Games",
-        image: laptop,
-        category: "toys-and-games",
-      },
-      {
-        id: "sjijLJ9jnk",
-        title: "Shirts",
-        image: shirt,
-        category: "clothes",
-      },
-      {
-        id: "sjiJOj9jnk",
-        title: "Cosmetics",
-        image: shoe,
-        category: "makeup-and-cosmetics",
-      },
-      {
-        id: "sbHjij9jnk",
-        title: "Books",
-        image: bag,
-        category: "books",
-      },
-    ];
+  const [noData, setNoData] = useState(true);
+  const { topCategories } = useSelector(state => state.topCategories);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    async function getData() {
+      const resp = await fetchTopCategories(true);
+      dispatch(resp);
+      setNoData(false);
+    }
+    if (noData) {
+      getData();
+    }
+  }, [dispatch, noData])
+  
   return (
       <TopProductsList title={"Shop Now From Our Top Categories"}>
-        {topCats.map((cat) => (
+        {topCategories.map((cat) => (
             <Link key={cat.id} to={'/' + cat.category}>
               <CategoryItem
                 text={cat.title}
