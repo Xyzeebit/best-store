@@ -9,10 +9,11 @@ const initialState = {
 /**
  * topCatSlice returns the top products of the categories list
  */
-export const topCatSlice = createSlice({
+export const topCategoriesReducer = createSlice({
+    name: "topCategories",
     initialState,
     reducers: {
-        updateTopCategories: (state, { payload }) => {
+        updateTopCategories: (state, {payload}) => {
             if (payload.ok) {
                 state.loading = false;
                 state.error = null;
@@ -26,5 +27,5 @@ export const topCatSlice = createSlice({
     }
 });
 
-export const { updateTopCategories } = topCatSlice.actions;
-export default topCatSlice;
+export const { updateTopCategories } = topCategoriesReducer.actions;
+export default topCategoriesReducer.reducer;

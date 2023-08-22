@@ -1,5 +1,4 @@
 import { configureStore } from "@reduxjs/toolkit";
-// import weatherSlice from "../redux/weatherSlice";
 import { Provider } from "react-redux";
 import { render } from "@testing-library/react";
 import PropTypes from 'prop-types';

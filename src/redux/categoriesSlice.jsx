@@ -29,4 +29,4 @@ export const categoriesSlice = createSlice({
 
 export const { searchProduct } = categoriesSlice.actions;
 
-export default categoriesSlice;
+export default categoriesSlice.reducer;

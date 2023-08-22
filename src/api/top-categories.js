@@ -1,8 +1,8 @@
-import phone from '../../assets/toys.jpg';
-import laptop from "../../assets/clothes.jpg";
-import shirt from "../../assets/toys.jpg";
-import shoe from "../../assets/makeup.jpg";
-import bag from "../../assets/toys.jpg";
+import phone from '../assets/toys.jpg';
+import laptop from "../assets/clothes.jpg";
+import shirt from "../assets/toys.jpg";
+import shoe from "../assets/makeup.jpg";
+import bag from "../assets/toys.jpg";
 
 const topCats = [
   {
@@ -51,7 +51,7 @@ const topCats = [
 
 export const fetchTopCategories = async (testing) => {
     if (testing) {
-        return topCats;
+        return { ok: true, data: topCats };
     }
     try {
         const resp = await fetch('');
