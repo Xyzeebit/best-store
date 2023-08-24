@@ -1,18 +1,64 @@
 import { createSlice } from "@reduxjs/toolkit";
+import icon from "../assets/smartphone.png";
+
+
+ const list = [
+   {
+     id: "jainba6b9jxhbya",
+     title: "Samsung ultra s20 6gb ram 124gb rom",
+     image: icon,
+   },
+   {
+     id: "jainb6b9njxhbya",
+     title: "Samsung ultra s20 6gb ram 124gb rom",
+     image: icon,
+   },
+   {
+     id: "jainb6b9jxhbMya",
+     title: "Samsung ultra s20 6gb ram 124gb rom",
+     image: icon,
+   },
+   {
+     id: "jainb6b9jxhboya",
+     title: "Samsung ultra s20 6gb ram 124gb rom",
+     image: icon,
+   },
+   {
+     id: "jainb6b9jxhbYoya",
+     title: "Samsung ultra s20 6gb ram 124gb rom",
+     image: icon,
+   },
+   {
+     id: "jainVb6b9jxhboya",
+     title: "Samsung ultra s20 6gb ram 124gb rom",
+     image: icon,
+   },
+ ];
+   
 
 const initialState = {
     loading: true,
     error: null,
     data: null,
+    searching: false,
+    list: null,
 };
 
 export const categoriesSlice = createSlice({
     name: 'categories',
     initialState,
     reducers: {
-        searchProduct: () => {
+        searchProduct: (state, action) => {
+            const text = action.payload.text;
+            if (text) {
+                state.list = list;
+                state.searching = true;
+            } else {
+                state.searching = false;
+            }
             
         },
+
         fetchCategories: (state, { payload }) => {
             if (payload.ok) {
                 state.loading = false;

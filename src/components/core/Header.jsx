@@ -16,7 +16,7 @@ const Header = () => {
           <NavBrand brand="Bestore" />
           <Wrapper>
             <LinkIconButton text={"Account"} icon={personIcon} to="/account" />
-            <Cart items={8} />
+            <Cart items={0} />
           </Wrapper>
           <ProductSearch />
         </header>

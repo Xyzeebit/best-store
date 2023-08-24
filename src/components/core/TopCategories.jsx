@@ -15,7 +15,6 @@ const TopCategories = () => {
   useEffect(() => {
     async function getData() {
       const resp = await fetchTopCategories(true);
-      console.log(resp);
       dispatch(updateTopCategories(resp));
       setNoData(false);
     }

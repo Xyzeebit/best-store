@@ -1,7 +1,10 @@
 import { useRef, useState } from 'react';
 import searchIcon from '../../assets/icon-search.svg';
+import { useDispatch } from 'react-redux';
+import { searchProduct } from '../../redux/categoriesSlice';
 
 const ProductSearch = () => {
+    const dispatch = useDispatch();
     const [value, setValue] = useState('');
     const [wh, setWh] = useState('wh-18');
     const [bg, setBg] = useState("bg-gray-200");
@@ -11,6 +14,11 @@ const ProductSearch = () => {
 
     const handleValueChange = ({ target }) => {
         setValue(target.value);
+        if (value.length > 1) {
+            dispatch(searchProduct({ text: value }));
+        } else {
+            dispatch(searchProduct({ text: '' }));
+        }
     }
     const handleExpandInput = () => {
         setExpandInput(true);
@@ -26,9 +34,11 @@ const ProductSearch = () => {
         if (value.trim().length < 1) {
             setExpandInput(false);
         }
+        dispatch(searchProduct({ text: '' }));
     }
     const handleProductSearch = (evt) => {
         evt.preventDefault();
+        dispatch(searchProduct({ text: value }));
     }
     return (
         <form

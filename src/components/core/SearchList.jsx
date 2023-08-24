@@ -1,51 +1,32 @@
 import PropTypes from 'prop-types';
 import SearchItem from "./SearchItem";
-import icon from '../../assets/smartphone.png';
+import { useDispatch, useSelector } from 'react-redux';
+import { searchProduct } from '../../redux/categoriesSlice';
 
 const SearchList = () => {
-    const list = [
-      {
-        id: "jainba6b9jxhbya",
-        title: "Samsung ultra s20 6gb ram 124gb rom",
-        image: icon,
-      },
-      {
-        id: "jainb6b9njxhbya",
-        title: "Samsung ultra s20 6gb ram 124gb rom",
-        image: icon,
-      },
-      {
-        id: "jainb6b9jxhbMya",
-        title: "Samsung ultra s20 6gb ram 124gb rom",
-        image: icon,
-      },
-      {
-        id: "jainb6b9jxhboya",
-        title: "Samsung ultra s20 6gb ram 124gb rom",
-        image: icon,
-      },
-      {
-        id: "jainb6b9jxhbYoya",
-        title: "Samsung ultra s20 6gb ram 124gb rom",
-        image: icon,
-      },
-      {
-        id: "jainVb6b9jxhboya",
-        title: "Samsung ultra s20 6gb ram 124gb rom",
-        image: icon,
-      },
-    ];
+    const { searching, list } = useSelector(state => state.categories);
+    const dispatch = useDispatch();
+
+    const handleClick = () => {
+        dispatch(searchProduct({ text: '' }));
+    }
    
     return (
-      <div className='flex justify-end mt-4 pr-4 pl-4 md:pl-0 md:pr-16'>
-        <div className={` h-56 max-h-64 w-full md:w-2/4 px-1 shadow-md rounded overflow-auto`}>
-          {list.map(({ id, title, image }) => {
-            return (
-              <SearchItem key={id} id={id} title={title} image={image} />
-            );
-          })}
-        </div>
-      </div>
+      <>
+        {searching &&
+          <div className="flex justify-end mt-2 pr-4 pl-4 md:pl-0 md:pr-16" onClick={handleClick}>
+            <div
+              className={` h-56 max-h-64 w-full md:w-2/4 bg-white px-1 py-1 shadow-lg rounded overflow-auto`}
+            >
+              {list.map(({ id, title, image }) => {
+                return (
+                  <SearchItem key={id} id={id} title={title} image={image} />
+                );
+              })}
+            </div>
+          </div>
+        }
+      </>
     );
 }
 
