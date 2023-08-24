@@ -21,7 +21,7 @@ const Banner = ({ id, image }) => {
             {/* <img src={image} alt={id} className="m-auto h-52 md:h-60 lg:h-80" /> */}
           </div>
           <div className="absolute bottom-10 right-10">
-            <button className="px-8 py-2 bg-green-900 rounded-lg text-white shadow-sm">Buy now</button>
+            <button className="px-8 py-2 bg-yellow-900 w-32 h-32 border-4 border-yellow-500 border-dotted rounded-full font-bold text-black shadow-sm">Shop Now</button>
           </div>
         </div>
       </Link>
