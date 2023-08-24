@@ -43,7 +43,7 @@ const ProductSearch = () => {
                 onChange={handleValueChange}
                 onFocus={handleFocused}
                 onBlur={handleBlurred}
-                className={`${expandInput ? wh : collapse} input-transform bg-transparent outline-none placeholder-gray-400`}
+                className={`${expandInput ? wh : collapse} ${wh} input-transform bg-transparent outline-none placeholder-gray-400`}
             />
             <img src={searchIcon} alt="" width={15} height={15} onClick={handleExpandInput} />
         </form>
