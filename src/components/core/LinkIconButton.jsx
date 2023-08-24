@@ -20,7 +20,7 @@ const LinkIconButton = ({ text, icon, to }) => {
     return (
       <Link
         to={to}
-        className={`flex items-center justify-center font-bold text-xsm transition-all pt-1 pb-1 pl-1 pr-3 rounded-3xl ${btnBG}`}
+        className={`flex items-center justify-center font-bold text-xsm md:text-sm transition-all pt-1 pb-1 pl-1 pr-3 rounded-3xl ${btnBG}`}
         onMouseEnter={handleFocusGained}
         onMouseLeave={handleFocusLost}
       >
