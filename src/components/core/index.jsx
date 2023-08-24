@@ -5,5 +5,6 @@ import LinkIconButton from "./LinkIconButton";
 import Container from './Container';
 import Carousel from "./Carousel";
 import TopCategories from "./TopCategories";
+import NewArrivals from "./NewArrivals";
 
-export { Header, ProductSearch, IconButton, LinkIconButton, Container, Carousel, TopCategories };
+export { Header, ProductSearch, IconButton, LinkIconButton, Container, Carousel, TopCategories, NewArrivals };
