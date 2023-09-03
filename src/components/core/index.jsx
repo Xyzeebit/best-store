@@ -6,5 +6,6 @@ import Container from './Container';
 import Carousel from "./Carousel";
 import TopCategories from "./TopCategories";
 import NewArrivals from "./NewArrivals";
+import BestSellers from "./BestSellers";
 
-export { Header, ProductSearch, IconButton, LinkIconButton, Container, Carousel, TopCategories, NewArrivals };
+export { Header, ProductSearch, IconButton, LinkIconButton, Container, Carousel, TopCategories, NewArrivals, BestSellers };
