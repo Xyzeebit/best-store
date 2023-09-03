@@ -4,7 +4,7 @@ import { useState } from 'react';
 import iconFavorite from '../../assets/icons/favorite.svg';
 import iconFavoriteFilled from '../../assets/icons/favorite-filled.svg';
 
-import { addToCart } from "../../redux/categoriesSlice";
+import { addToCart, removeFromCart } from "../../redux/categoriesSlice";
 import { useDispatch } from "react-redux";
 
 const ProductCard = ({ id, title, image, prices }) => {
@@ -12,7 +12,11 @@ const ProductCard = ({ id, title, image, prices }) => {
     const dispatch = useDispatch();
     const handleAddToCart = item => {
         setFavorite(!favorite);
-        dispatch(addToCart({ item }));
+        if (favorite) {
+            dispatch(removeFromCart({ id: item.id }));
+        } else {
+            dispatch(addToCart({ item }));
+        }
     }
     return (
       <div className="rounded-md shadow-lg bg-white relative">
