@@ -63,7 +63,6 @@ const NewArrivals = () => {
             title={item.title}
             image={item.image}
             prices={item.prices}
-            // ratings={item.ratings}
           />
         )
       })}

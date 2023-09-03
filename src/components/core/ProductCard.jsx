@@ -29,22 +29,21 @@ const ProductCard = ({ id, title, image, prices }) => {
             className="object-fit w-full h-32 md:h-48 rounded-t-md"
           />
         </div>
-        <div className="p-2">
+        <div className="px-4 py-2 w-48">
           <Link
             to={`/products/${id}`}
             className="font-bold text-sm md:text-md text-gray-700"
           >
             {title}
           </Link>
-          <div className="flex gap-4 py-2">
+          <div className="flex items-center justify-start gap-4 py-2">
             <div className="font-bold text-lg text-green-900">${prices[0]}</div>
             {prices[1] && (
-              <div className="text-sm text-red-500">
+              <div className="text-sm font-semibold text-red-500">
                 <s>${prices[1]}</s>
               </div>
             )}
           </div>
-          {/* {ratings && <div>{ratings}</div>} */}
         </div>
         <div className="absolute top-5 right-5 rounded-full bg-gray-200 flex items-center justify-center w-10 h-10">
           <img
@@ -64,7 +63,6 @@ ProductCard.propTypes = {
     title: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     prices: PropTypes.array.isRequired,
-    // ratings: PropTypes.number,
 }
 
 export default ProductCard;
