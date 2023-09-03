@@ -6,9 +6,10 @@ import Wrapper from './Wrapper';
 
 import personIcon from '../../assets/icon-person.png';
 import SearchList from './SearchList';
+import { useSelector } from 'react-redux';
 
 const Header = () => {
-
+    const { cartItemCounter } = useSelector(state => state.categories);
     return (
       <div className='sticky top-0 z-50 '>
         <div className="bg-yellow-500 h-4"></div>
@@ -16,7 +17,7 @@ const Header = () => {
           <NavBrand brand="Bestore" />
           <Wrapper>
             <LinkIconButton text={"Account"} icon={personIcon} to="/account" />
-            <Cart items={0} />
+            <Cart items={cartItemCounter} />
           </Wrapper>
           <ProductSearch />
         </header>

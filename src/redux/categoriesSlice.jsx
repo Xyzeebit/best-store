@@ -37,11 +37,13 @@ import icon from "../assets/smartphone.png";
    
 
 const initialState = {
-    loading: true,
-    error: null,
-    data: null,
-    searching: false,
-    list: null,
+  loading: true,
+  error: null,
+  data: null,
+  searching: false,
+  list: null,
+  cart: [],
+  cartItemCounter: 0,
 };
 
 export const categoriesSlice = createSlice({
@@ -57,7 +59,22 @@ export const categoriesSlice = createSlice({
                 state.searching = false;
             }
             
-        },
+      },
+      
+      addToCart: (state, action) => {
+        const item = action.payload.item;
+        state.cart.push(item);
+        state.cartItemCounter++;
+      },
+
+      removeFromCart: (state, action) => {
+        const id = action.payload.id;
+        const index = state.cart.IndexOf(item => item.id === id);
+        if (index) {
+          state.splice(index, 1);
+          state.cartItemCounter--;
+        }
+      },
 
         fetchCategories: (state, { payload }) => {
             if (payload.ok) {
@@ -73,6 +90,6 @@ export const categoriesSlice = createSlice({
     }
 });
 
-export const { searchProduct } = categoriesSlice.actions;
+export const { searchProduct, addToCart, removeFromCart } = categoriesSlice.actions;
 
 export default categoriesSlice.reducer;
