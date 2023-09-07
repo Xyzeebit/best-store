@@ -20,7 +20,7 @@ const ProductCard = ({ id, title, image, prices }) => {
     }
     return (
       <div className="rounded-md shadow-lg bg-white relative">
-        <div className="w-48 h-32 md:w-56 md:h-48">
+        <div className="w-48 h-32 md:w-56 md:h-48 ">
           <img
             src={image}
             alt={title}

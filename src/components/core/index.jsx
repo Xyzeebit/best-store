@@ -7,5 +7,8 @@ import Carousel from "./Carousel";
 import TopCategories from "./TopCategories";
 import NewArrivals from "./NewArrivals";
 import BestSellers from "./BestSellers";
+import DealsOfTheDay from './DealsOfTheDay'
 
-export { Header, ProductSearch, IconButton, LinkIconButton, Container, Carousel, TopCategories, NewArrivals, BestSellers };
+export { Header, ProductSearch, IconButton, LinkIconButton, 
+    Container, Carousel, TopCategories, NewArrivals, BestSellers, DealsOfTheDay
+};
