@@ -1,17 +1,65 @@
 import flashIcon from '../../assets/icons/flash-on.svg'
 import clothes from '../../assets/clothes.jpg';
-
+import PropTypes from 'prop-types';
 import { useEffect, useState } from "react"
 import FlashSalesItem from './FlashSalesItem';
 
 const flashSales = [
-    {
-        id: 'KJIIi9ksjo',
-        image: clothes,
-        text: 'Babies wear',
-        price: '130.45'
-    }
-]
+  {
+    id: "KJIIi9ksjo",
+    image: clothes,
+    text: "Babies wear Babies wear Babies wear",
+    price: "130.45",
+  },
+  {
+    id: "KJIIi9k0sjo",
+    image: clothes,
+    text: "Babies wear",
+    price: "130.45",
+  },
+  {
+    id: "KJIIi9ksjo2",
+    image: clothes,
+    text: "Babies wear",
+    price: "130.45",
+  },
+  {
+    id: "KJIIi39ksjo",
+    image: clothes,
+    text: "Babies wear",
+    price: "130.45",
+  },
+  {
+    id: "KJI4Ii9ksjo",
+    image: clothes,
+    text: "Babies wear",
+    price: "130.45",
+  },
+  {
+    id: "KJIIi59ksjo",
+    image: clothes,
+    text: "Babies wear",
+    price: "130.45",
+  },
+  {
+    id: "KJ6IIi9ksjo",
+    image: clothes,
+    text: "Babies wear",
+    price: "130.45",
+  },
+  {
+    id: "KJIIi97ksjo",
+    image: clothes,
+    text: "Babies wear",
+    price: "130.45",
+  },
+  {
+    id: "KJIIi9k8sjo",
+    image: clothes,
+    text: "Babies wear",
+    price: "130.45",
+  },
+];
 
 const FlashSales = ({ timer }) => {
     const [hh, setHH] = useState(timer.hours);
@@ -59,6 +107,13 @@ const FlashSales = ({ timer }) => {
           </div>
         </div>
     );
+}
+
+FlashSales.propTypes = {
+    timer: PropTypes.objectOf({
+        hours: PropTypes.number.isRequired,
+        minutes: PropTypes.number.isRequired
+    })
 }
 
 export default FlashSales;

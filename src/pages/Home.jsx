@@ -1,4 +1,4 @@
-import { Header, Container, Carousel, TopCategories, NewArrivals, BestSellers, DealsOfTheDay } from "../components/core";
+import { Header, Container, Carousel, TopCategories, NewArrivals, BestSellers, DealsOfTheDay, Footer, Promotion } from "../components/core";
 
 const Home = () => {
     
@@ -9,8 +9,10 @@ const Home = () => {
         <Carousel />
         <TopCategories />
         <NewArrivals />
-        <BestSellers />
         <DealsOfTheDay />
+        <BestSellers />
+        <Promotion />
+        <Footer />
       </Container>
     </>
   );
