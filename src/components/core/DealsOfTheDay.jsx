@@ -3,6 +3,7 @@ import imgMakeup from '../../assets/makeup.jpg';
 import imgStationery from "../../assets/stationery.jpg";
 import imgFootwear from "../../assets/footwear.jpg";
 import imgToys from "../../assets/toys.jpg";
+import FlashSales from "./FlashSales";
 
 
 
@@ -44,22 +45,7 @@ const DealsOfTheDay = () => {
             />
           </div>
         </div>
-        <div className="col-span-3 md:col-span-1 rounded-lg">
-          <div className="font-bold text-xl text-green-900 pb-4">
-            Flash Sales
-          </div>
-          <div className="grid grid-cols-9 md:grid-cols-3 gap-2">
-            <div className="col-span-3 md:col-span-1 h-24 bg-red-500 rounded-lg"></div>
-            <div className="col-span-3 md:col-span-1 h-24 bg-yellow-500 rounded-lg"></div>
-            <div className="col-span-3 md:col-span-1 h-24 bg-green-500 rounded-lg"></div>
-            <div className="col-span-3 md:col-span-1 h-24 bg-blue-500 rounded-lg"></div>
-            <div className="col-span-3 md:col-span-1 h-24 bg-pink-500 rounded-lg"></div>
-            <div className="col-span-3 md:col-span-1 h-24 bg-gray-500 rounded-lg"></div>
-            <div className="col-span-3 md:col-span-1 h-24 bg-slate-500 rounded-lg"></div>
-            <div className="col-span-3 md:col-span-1 h-24 bg-orange-500 rounded-lg"></div>
-            <div className="col-span-3 md:col-span-1 h-24 bg-red-500 rounded-lg"></div>
-          </div>
-        </div>
+        <FlashSales timer={{hours: 1, minutes: 2}} />
       </div>
     );
 }
