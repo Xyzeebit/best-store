@@ -4,7 +4,7 @@ import ProductSearch from './ProductSearch';
 import LinkIconButton from './LinkIconButton';
 import Wrapper from './Wrapper';
 
-import personIcon from '../../assets/icon-person.png';
+import personIcon from '../../assets/icons/user_icon.svg';
 import SearchList from './SearchList';
 import { useSelector } from 'react-redux';
 import Logo from './Logo';

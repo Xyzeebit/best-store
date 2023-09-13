@@ -14,18 +14,18 @@ const LinkIconButton = ({ text, icon, to }) => {
     }
     const handleFocusLost = () => {
         setBtnBG("");
-        setTextColor("text-gray-700");
+        setTextColor("text-green-900");
     }
 
     return (
       <Link
         to={to}
-        className={`flex items-center justify-center gap-1 font-bold text-xsm md:text-sm transition-all pt-1 pb-1 pl-1 pr-3 rounded-3xl ${btnBG}`}
+        className={`flex items-center justify-center hover:gap-1 font-bold text-xsm md:text-sm transition-all pt-1 pb-1 pl-1 pr-3 rounded-3xl ${btnBG}`}
         onMouseEnter={handleFocusGained}
         onMouseLeave={handleFocusLost}
       >
         <span className="bg-white p-2 rounded-full">
-          <img src={icon} alt={text} width={14} height={12} />
+          <img src={icon} alt={text} width={14} height={15} />
         </span>
         <span className={`${textColor}`}>{text}</span>
       </Link>
