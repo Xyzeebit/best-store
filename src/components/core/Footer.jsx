@@ -6,9 +6,10 @@ import gpayIcon from "../../assets/icons/gpay_icon.svg";
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
+  const year = new Date().getFullYear();
     return (
-      <div className="px-4 md:px-16">
-        <div className="flex flex-col md:flex-row items-start justify-between gap-4 md:gap-6">
+      <div className="">
+        <div className="px-4 md:px-16 flex flex-col md:flex-row items-start justify-between gap-4 md:gap-6">
           <div className="w-full md:w-2/5">
             <div className="flex items-center justify-start gap-2">
               <img src={cartIcon} alt="Bestore" width={40} height={40} />
@@ -195,6 +196,27 @@ const Footer = () => {
                 </Link>
               </div>
             </div>
+          </div>
+        </div>
+        <div className="mt-10 flex items-center justify-around border-t-2 px-4 py-4">
+          <div>
+            <Link
+              to={`/terms-of-use`}
+              className="text-xsm md:text-sm text-gray-600 hover:underline"
+            >
+              Terms of Use
+            </Link>
+          </div>
+          <div>
+            <Link
+              to={`/privacy-policy`}
+              className="text-xsm md:text-sm text-gray-600 hover:underline"
+            >
+              Privacy Policy
+            </Link>
+          </div>
+          <div className="text-xsm md:text-sm text-gray-600">
+            All Rights Reserved Bestore | {year}
           </div>
         </div>
       </div>

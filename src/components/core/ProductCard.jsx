@@ -29,7 +29,7 @@ const ProductCard = ({ id, title, image, prices }) => {
             className="object-fit w-full h-32 md:h-48 rounded-t-md"
           />
         </div>
-        <div className="px-4 py-2 w-48">
+        <div className={`px-4 py-2 w-48 ${title.length > 50 ? 'truncate' : ''}`}>
           <Link
             to={`/products/${id}`}
             className="font-bold text-sm md:text-md text-gray-700"
@@ -45,7 +45,7 @@ const ProductCard = ({ id, title, image, prices }) => {
             )}
           </div>
         </div>
-        <div className="absolute top-5 right-5 rounded-full bg-gray-200 flex items-center justify-center w-10 h-10">
+        <div className="absolute top-3 right-3 rounded-full bg-gray-200 flex items-center justify-center w-10 h-10">
           <img
             src={favorite ? iconFavoriteFilled : iconFavorite}
             width={25}

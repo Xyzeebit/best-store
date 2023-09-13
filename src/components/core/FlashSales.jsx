@@ -110,7 +110,7 @@ const FlashSales = ({ timer }) => {
 }
 
 FlashSales.propTypes = {
-    timer: PropTypes.object.isRequired,
+    timer: PropTypes.object
 }
 
 export default FlashSales;
