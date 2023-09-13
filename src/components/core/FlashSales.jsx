@@ -110,10 +110,7 @@ const FlashSales = ({ timer }) => {
 }
 
 FlashSales.propTypes = {
-    timer: PropTypes.objectOf({
-        hours: PropTypes.number.isRequired,
-        minutes: PropTypes.number.isRequired
-    })
+    timer: PropTypes.object.isRequired,
 }
 
 export default FlashSales;
