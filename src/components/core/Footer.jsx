@@ -106,7 +106,7 @@ const Footer = () => {
                   to={`/about/bestore`}
                   className="text-xsm md:text-sm text-gray-600 hover:underline"
                 >
-                  About Beststore
+                  About Bestore
                 </Link>
                 <Link
                   to={`/about/careers`}
