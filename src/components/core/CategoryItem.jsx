@@ -13,7 +13,7 @@ const CategoryItem = ({ text, image }) => (
       />
     </div>
 
-    <div className="absolute top-3 left-0 right-0 z-10 text-center text-green-900 font-bold">{text}</div>
+    <div className="absolute w-40 rounded-md bg-gray-200 m-auto top-3 left-0 right-0 z-10 text-center text-green-900 font-bold">{text}</div>
   </div>
 );
 

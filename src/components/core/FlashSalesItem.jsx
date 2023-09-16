@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom';
 const FlashSalesItem = ({ id, text, price, image }) => (
   <Link
     to={`/flashsales/${id}`}
-    className="col-span-3 md:col-span-1 h-24 bg-red-500 rounded-lg shadow overflow-hidden"
+    className="col-span-3 md:col-span-1 h-32 md:h-28 bg-red-500 rounded-lg shadow overflow-hidden"
   >
-    <div className='bg-white h-24'>
-      <div className='h-14'>
-        <img src={image} alt={text} width={100} height={100} className='w-full' />
+    <div className='bg-white h-30 md:h-28'>
+      <div className='h-20 md:h-18'>
+        <img src={image} alt={text} width={100} height={100} className='w-full h-full' />
       </div>
       <div className="px-2 md:px-1 lg:px-2 bg-yellow-200">
         <div className="font-bold text-sm text-red-500">${price}</div>
