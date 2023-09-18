@@ -1,8 +1,10 @@
-import phone from '../assets/toys.jpg';
-import laptop from "../assets/clothes.jpg";
-import shirt from "../assets/toys.jpg";
-import shoe from "../assets/makeup.jpg";
-import bag from "../assets/toys.jpg";
+import phone from '../assets/smartphone.png';
+import laptop from "../assets/kadican.webp";
+import shirt from "../assets/mens-shirt.webp";
+import makeup from "../assets/makeup.jpg";
+import toys from "../assets/toys.jpg";
+import shoes from "../assets/sneakers.webp";
+import hair from '../assets/women-hair.webp'
 
 const topCats = [
   {
@@ -14,20 +16,20 @@ const topCats = [
   {
     id: "sjiUj9jnk",
     title: "Laptops",
-    image: phone,
+    image: laptop,
     category: "electronics",
   },
   {
     id: "s8bjij9jnk",
     title: "Toys",
-    image: laptop,
+    image: toys,
     category: "toys-and-games",
   },
   {
     id: "s8bBjij9jnk",
-    title: "Games",
-    image: laptop,
-    category: "toys-and-games",
+    title: "Hair",
+    image: hair,
+    category: "hair",
   },
   {
     id: "sjijLJ9jnk",
@@ -38,14 +40,14 @@ const topCats = [
   {
     id: "sjiJOj9jnk",
     title: "Cosmetics",
-    image: shoe,
+    image: makeup,
     category: "makeup-and-cosmetics",
   },
   {
     id: "sbHjij9jnk",
-    title: "Books",
-    image: bag,
-    category: "books",
+    title: "Sneakers",
+    image: shoes,
+    category: "footwear",
   },
 ];
 

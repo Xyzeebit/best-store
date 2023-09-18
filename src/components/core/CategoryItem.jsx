@@ -9,11 +9,11 @@ const CategoryItem = ({ text, image }) => (
         alt={text}
         width={200}
         height={200}
-        className="object-fit h-48 w-full transition-all hover:scale-110"
+        className="object-fit w-48 h-48 transition-all hover:scale-110"
       />
     </div>
 
-    <div className="absolute w-40 rounded-md bg-gray-200 m-auto top-3 left-0 right-0 z-10 text-center text-green-900 font-bold">{text}</div>
+    <div className="absolute bg-gray-transparent rounded-md w-28 m-auto top-3 left-0 right-0 z-10 text-center text-green-900 font-bold">{text}</div>
   </div>
 );
 

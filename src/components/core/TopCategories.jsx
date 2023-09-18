@@ -5,7 +5,7 @@ import { fetchTopCategories } from '../../api/top-categories';
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateTopCategories } from '../../redux/topcatSlice';
-
+import allProductsImage from '../../assets/icons/menu-four-icon.svg'
 
 const TopCategories = () => {
   const [noData, setNoData] = useState(true);
@@ -33,7 +33,7 @@ const TopCategories = () => {
     return (
       <TopProductsList title={"Shop Now From Our Top Categories"}>
         {data.map((cat) => (
-          <Link key={cat.id} to={'/' + cat.category}>
+          <Link key={cat.id} to={"/" + cat.category}>
             <CategoryItem
               text={cat.title}
               image={cat.image}
@@ -41,6 +41,20 @@ const TopCategories = () => {
             />
           </Link>
         ))}
+        <Link
+          to="/products"
+          className="flex flex-col items-center justify-center h-48 gap-2"
+        >
+          <div className="w-40 flex flex-col items-center justify-center">
+            <img
+              src={allProductsImage}
+              alt="all products"
+              width={45}
+              height={45}
+            />
+          </div>
+          <div className="w-40 font-bold text-center text-green-900">All Categories</div>
+        </Link>
       </TopProductsList>
     );
   }
