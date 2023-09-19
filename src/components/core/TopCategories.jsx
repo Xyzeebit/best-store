@@ -5,7 +5,7 @@ import { fetchTopCategories } from '../../api/top-categories';
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateTopCategories } from '../../redux/topcatSlice';
-import allProductsImage from '../../assets/icons/menu-four-icon.svg'
+import allProductsImage from '../../assets/icons/menu-icon.svg'
 
 const TopCategories = () => {
   const [noData, setNoData] = useState(true);
@@ -43,14 +43,15 @@ const TopCategories = () => {
         ))}
         <Link
           to="/products"
-          className="flex flex-col items-center justify-center h-48 gap-2"
+          className="flex flex-col items-center justify-center w-48 h-48 gap-2 bg-red-200 rounded-full"
         >
-          <div className="w-40 flex flex-col items-center justify-center">
+          <div className="w-48 flex flex-col items-center justify-center">
             <img
               src={allProductsImage}
               alt="all products"
               width={45}
               height={45}
+              className="stroke-green-900"
             />
           </div>
           <div className="w-40 font-bold text-center text-green-900">All Categories</div>
