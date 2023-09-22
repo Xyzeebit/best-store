@@ -12,7 +12,14 @@ const Cart = ({ items }) => {
             {items}
           </span>
         ) : (
-          <span className="font-bold text-green-900 text-sm">Cart</span>
+          <>
+            <span className="flex md:hidden bg-green-900 w-5 h-5 rounded-full justify-center items-center text-white text-xsm">
+              {items ?? 0}
+            </span>
+            <span className="hidden md:block font-bold text-green-900 text-sm">
+              Cart
+            </span>
+          </>
         )}
       </Link>
     );
