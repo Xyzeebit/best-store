@@ -7,15 +7,15 @@ import Banner from './Banners';
 
 register();
 
-const Carousel = ({item}) => {
+const Carousel = ({item, delay, classes}) => {
   const items = useSelector(state => state.carousel[item]);
   
   return (
-    <div className="carousel m-4 md:m-16 h-52 md:h-60 lg:h-80 bg-gray-200">
+    <div className={"carousel " +  classes}>
       <swiper-container
         pagination="false"
         speed={400}
-        delay={3000}
+        delay={delay ?? 3000}
         autoplay="true"
       >
         {items.map(item => (
@@ -30,6 +30,8 @@ const Carousel = ({item}) => {
 
 Carousel.propTypes = {
   item: PropTypes.string.isRequired,
-}
+  delay: PropTypes.number,
+  classes: PropTypes.string.isRequired,
+};
 
 export default Carousel;
