@@ -6,7 +6,7 @@ import footwear from "../assets/footwear.jpg";
 import makeup from "../assets/makeup.jpg";
 import appliances from "../assets/appliances.jpg";
 
-export const ITEMS = [
+export const BANNER_ITEMS = [
   {
     id: nanoid(8),
     to: "/book-and-stationery/stationeries",
@@ -33,3 +33,16 @@ export const ITEMS = [
     image: appliances,
   },
 ];
+
+export const DEALS_ITEM = [
+  {
+    id: nanoid(8),
+    to: "/shoes/footwear",
+    image: footwear,
+  },
+  {
+    id: nanoid(8),
+    to: "/beauty/makeup",
+    image: makeup,
+  },
+]

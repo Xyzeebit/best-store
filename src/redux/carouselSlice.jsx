@@ -1,10 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { ITEMS } from "../api/apis";
+import { BANNER_ITEMS, DEALS_ITEM } from "../api/apis";
 
 const initialState = {
   bannersLoading: true,
-  banners: ITEMS,
-  deals: null,
+  banners: BANNER_ITEMS,
+  dealsLoading: true,
+  deals: DEALS_ITEM,
 }
 
 const carouselSlice = createSlice({
@@ -22,6 +23,9 @@ const carouselSlice = createSlice({
     updateDealsCarousel: (state, { items }) => {
       if (items.ok) {
         state.deals = items.deals;
+        state.dealsLoading = false;
+      } else {
+        state.dealsLoading = false;
       }
     },
   },

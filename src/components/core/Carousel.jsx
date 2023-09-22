@@ -4,11 +4,12 @@ import 'swiper/css/pagination';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import Banner from './Banners';
+import HotDeal from './HotDeals';
 
 register();
 
-const Carousel = ({item, delay, classes}) => {
-  const items = useSelector(state => state.carousel[item]);
+const Carousel = ({tag, delay, classes}) => {
+  const items = useSelector(state => state.carousel[tag]);
   
   return (
     <div className={"carousel " +  classes}>
@@ -20,7 +21,7 @@ const Carousel = ({item, delay, classes}) => {
       >
         {items.map(item => (
           <swiper-slide key={item.id}>
-            <Banner to={item.url} image={item.image} />
+            {tag === 'banners' ? <Banner to={item.url} image={item.image} /> : <HotDeal {...item} />}
           </swiper-slide>
         ))}
       </swiper-container>
@@ -29,7 +30,7 @@ const Carousel = ({item, delay, classes}) => {
 }
 
 Carousel.propTypes = {
-  item: PropTypes.string.isRequired,
+  tag: PropTypes.string.isRequired,
   delay: PropTypes.number,
   classes: PropTypes.string.isRequired,
 };

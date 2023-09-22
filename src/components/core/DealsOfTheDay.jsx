@@ -3,7 +3,8 @@ import imgMakeup from '../../assets/makeup.jpg';
 import imgStationery from "../../assets/stationery.jpg";
 import imgFootwear from "../../assets/footwear.jpg";
 import imgToys from "../../assets/toys.jpg";
-import FlashSales from "./FlashSales";
+// import FlashSales from "./FlashSales";
+import Carousel from "./Carousel";
 
 
 
@@ -45,7 +46,8 @@ const DealsOfTheDay = () => {
             />
           </div>
         </div>
-        <FlashSales timer={{hours: 1, minutes: 2}} />
+        {/* <FlashSales timer={{hours: 1, minutes: 2}} /> */}
+        <Carousel tag="deals" delay={5000} classes="col-span-3 md:col-span-1 rounded-lg" />
       </div>
     );
 }
