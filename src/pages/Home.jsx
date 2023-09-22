@@ -6,7 +6,7 @@ const Home = () => {
     <>
       <Header />
       <Container>
-        <Carousel />
+        <Carousel item="banners" />
         <TopCategories />
         <NewArrivals />
         <DealsOfTheDay />
