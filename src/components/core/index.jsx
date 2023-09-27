@@ -7,13 +7,15 @@ import Container from './Container';
 import Carousel from "./Carousel";
 import TopCategories from "./TopCategories";
 import NewArrivals from "./NewArrivals";
+import FlashSales from "./FlashSales";
 import BestSellers from "./BestSellers";
 import DealsOfTheDay from './DealsOfTheDay'
 import Promotion from "./Promotion";
 import Footer from "./Footer";
 
 export { Header, ProductSearch, IconButton, LinkIconButton, 
-    Container, Carousel, TopCategories, NewArrivals, BestSellers, DealsOfTheDay,
+    Container, Carousel, TopCategories, NewArrivals, BestSellers,
+    FlashSales, DealsOfTheDay,
     Promotion,
     Logo,
     Footer
