@@ -39,10 +39,12 @@ export const DEALS_ITEM = [
     id: nanoid(8),
     to: "/shoes/footwear",
     image: footwear,
+    text: "Gucci sneaker for outdoors",
   },
   {
     id: nanoid(8),
     to: "/beauty/makeup",
     image: makeup,
+    text: "Makeup set",
   },
-]
+];
