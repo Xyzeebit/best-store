@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import Rating from './Rating';
 
 const FlashSalesItem = ({ id, text, price, image }) => (
   <Link to={`/flashsales/${id}`} className=" rounded shadow overflow-hidden">
@@ -16,6 +17,9 @@ const FlashSalesItem = ({ id, text, price, image }) => (
       <div className="w-2/3 m:w-3/5 h-28 px-2 md:pl-4 lg:pl-4 bg-white">
         <div className={` text-gray-500 ${text.length > 50 ? 'truncate' : 'break-words'}`}>
           {text}
+        </div>
+        <div className='py-2'>
+         <Rating rating={2.5} /> 
         </div>
         <div className="font-bold text-sm text-red-500">${price}</div>
       </div>
