@@ -99,8 +99,8 @@ const FlashSales = () => {
     }, [hh, mm, ss]);
 
     return (
-        <div className="px-4 md:px-16">
-            <div className="font-bold text-xl text-green-900 pb-4 inline-flex items-center justify-center">
+        <div className="px-4 md:px-16 mb-12 mt-4">
+          <div className="font-bold text-xl text-green-900 pb-4 inline-flex items-center justify-center">
                 <img src={flashIcon} alt='flash sales' width={30} height={30} />
                 <div>Flash Sales {`${hh > 9 ? hh : '0'+hh}:${mm > 9 ? mm : '0'+mm}:${ss > 9 ? ss : '0'+ss}`}</div>
           </div>
