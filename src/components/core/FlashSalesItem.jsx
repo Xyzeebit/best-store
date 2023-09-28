@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Rating from './Rating';
 
-const FlashSalesItem = ({ id, text, price, image }) => (
+const FlashSalesItem = ({ id, text, price, image, rating }) => (
   <Link to={`/flashsales/${id}`} className=" rounded shadow overflow-hidden">
     <div className="flex items-start justify-start bg-white">
       <div className="w-1/3 md:w-2/5 h-28">
@@ -15,11 +15,11 @@ const FlashSalesItem = ({ id, text, price, image }) => (
         />
       </div>
       <div className="w-2/3 m:w-3/5 h-28 px-2 md:pl-4 lg:pl-4 bg-white">
-        <div className={` text-gray-500 ${text.length > 50 ? 'truncate' : 'break-words'}`}>
-          {text}
+        <div className={` text-gray-500`}>
+          {text.length > 35 ? text.substring(0, 35) + "..." : text}
         </div>
         <div className='py-2'>
-         <Rating rating={2.5} /> 
+         <Rating rating={rating} /> 
         </div>
         <div className="font-bold text-sm text-red-500">${price}</div>
       </div>
@@ -32,6 +32,7 @@ FlashSalesItem.propTypes = {
     text: PropTypes.string.isRequired,
     price: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
+    rating: PropTypes.number
 }
 
 export default FlashSalesItem;
