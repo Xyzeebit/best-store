@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 const HotDeal = ({text, image, to}) => {
     return (
-      <div className="w-full">
-        <div className="h-60">
+      <div className="w-full rounded shadow">
+        <div className="h-60 overflow-hidden">
           <img
             src={image}
             alt={text}
@@ -21,14 +21,14 @@ const HotDeal = ({text, image, to}) => {
           >
             {text}
           </div>
-          <div>
+          {/* <div>
             <Link
               to={to}
               className="bg-white border-2 border-gray-500 text-green-900 px-8 py-2 rounded-full"
             >
               Shop Now
             </Link>
-          </div>
+          </div> */}
         </div>
       </div>
     );
