@@ -15,7 +15,7 @@ const FlashSalesItem = ({ id, text, price, image, rating }) => (
         />
       </div>
       <div className="w-2/3 m:w-3/5 h-28 px-2 md:pl-4 lg:pl-4 bg-white">
-        <div className={` text-gray-500`}>
+        <div className={`font-semibold text-gray-500`}>
           {text.length > 35 ? text.substring(0, 35) + "..." : text}
         </div>
         <div className='py-2'>

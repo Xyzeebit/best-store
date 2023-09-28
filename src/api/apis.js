@@ -48,3 +48,17 @@ export const DEALS_ITEM = [
     text: "Makeup set",
   },
 ];
+
+
+export const PRODUCTS = [
+  {
+    id: nanoid(16),
+    title: "",
+    description: "",
+    imageThumbnail: "",
+    images: [],
+    categories: [],
+    tags: [],
+    brand: "",
+  }
+];
