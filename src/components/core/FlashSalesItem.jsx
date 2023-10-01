@@ -1,18 +1,27 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import Rating from './Rating';
 
-const FlashSalesItem = ({ id, text, price, image }) => (
-  <Link
-    to={`/flashsales/${id}`}
-    className="col-span-3 md:col-span-1 h-32 md:h-28 bg-red-500 rounded-lg shadow overflow-hidden"
-  >
-    <div className='bg-white h-30 md:h-28'>
-      <div className='h-20 md:h-18'>
-        <img src={image} alt={text} width={100} height={100} className='w-full h-full' />
+const FlashSalesItem = ({ id, text, price, image, rating }) => (
+  <Link to={`/flashsales/${id}`} className=" rounded shadow overflow-hidden">
+    <div className="flex items-start justify-start bg-white">
+      <div className="w-1/3 md:w-2/5 h-28">
+        <img
+          src={image}
+          alt={text}
+          width={100}
+          height={100}
+          className="w-full h-full"
+        />
       </div>
-      <div className="px-2 md:px-1 lg:px-2 bg-yellow-200">
+      <div className="w-2/3 m:w-3/5 h-28 px-2 md:pl-4 lg:pl-4 bg-white">
+        <div className={`font-semibold text-gray-500`}>
+          {text.length > 35 ? text.substring(0, 35) + "..." : text}
+        </div>
+        <div className='py-2'>
+         <Rating rating={rating} /> 
+        </div>
         <div className="font-bold text-sm text-red-500">${price}</div>
-        <div className="text-xsm text-semibold text-gray-500 truncate">{text}</div>
       </div>
     </div>
   </Link>
@@ -23,6 +32,7 @@ FlashSalesItem.propTypes = {
     text: PropTypes.string.isRequired,
     price: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
+    rating: PropTypes.number
 }
 
 export default FlashSalesItem;

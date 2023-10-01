@@ -43,18 +43,17 @@ const TopCategories = () => {
         ))}
         <Link
           to="/products"
-          className="flex flex-col items-center justify-center w-48 h-48 gap-2 bg-red-200 rounded-full"
+          className="flex flex-col items-center justify-center w-48 h-48 gap-2 bg-gray-200 rounded-full h-rotate-45"
         >
-          <div className="w-48 flex flex-col items-center justify-center">
+          <div className="w-full flex flex-col items-center justify-center">
             <img
               src={allProductsImage}
               alt="all products"
               width={45}
               height={45}
-              className="stroke-green-900"
             />
           </div>
-          <div className="w-40 font-bold text-center text-green-900">All Categories</div>
+          <div className="w-48 font-bold text-center text-green-900">All Categories</div>
         </Link>
       </TopProductsList>
     );

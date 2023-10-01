@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-const Banner = ({ id, image }) => {
+const Banner = ({ to, image }) => {
     return (
-      <Link to={id}>
+      <Link to={to}>
         <div
           className="relative w-full h-52 md:h-60 lg:h-80 rounded-lg"
           style={{
@@ -31,7 +31,7 @@ const Banner = ({ id, image }) => {
 
 
 Banner.propTypes = {
-    id: PropTypes.string.isRequired,
+    to: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
 }
 
