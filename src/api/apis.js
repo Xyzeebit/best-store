@@ -62,3 +62,11 @@ export const PRODUCTS = [
     brand: "",
   }
 ];
+
+export function isValidEmail(email) {
+  return email.length > 5;
+}
+
+export function isValidPassword(pwd) {
+  return pwd.length > 5;
+}

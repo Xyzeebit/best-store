@@ -26,7 +26,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/register",
-    element: <Auth Signin={false} />,
+    element: <Auth signIn={false} />,
     errorElement: (
       <ErrorBoundary
         message="Oops!!! an error occurred while loading this page"
