@@ -4,13 +4,17 @@ import PropTypes from 'prop-types'
 import googleIcon from '../../assets/icons/google-icon.svg';
 import { isValidEmail, isValidPassword } from '../../api/apis';
 import { useNavigate } from 'react-router-dom';
+import { updateUser } from '../../redux/userSlice';
+import { nanoid } from '@reduxjs/toolkit';
+import { useDispatch } from 'react-redux';
 
 const AuthForm = ({signIn}) => {
     const [email, setEmail] = useState('');
     const [pwd, setPwd] = useState('');
     const [cpwd, setCPwd] = useState('');
     const [shouldContinue, setShouldContinue] = useState(false);
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const handleContinue = () => {
         if (isValidEmail(email)) {
@@ -21,6 +25,14 @@ const AuthForm = ({signIn}) => {
     const handleSubmit = () => {
         if (signIn) {
             if (isValidEmail(email) && isValidPassword(pwd)) {
+                const user = {
+                    id: nanoid(12),
+                    email,
+                    name: 'John Doe',
+                    orders: [],
+                    isLoggedIn: true,
+                }
+                dispatch(updateUser(user));
                 navigate('/');
             }
         }

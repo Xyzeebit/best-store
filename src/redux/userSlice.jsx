@@ -5,15 +5,18 @@ const initialState = {
     name: '',
     orders: [],
     avatar: '',
-    id: ''
+    id: '',
+    email: '',
 }
 
 export const userReducer = createSlice({
     name: 'user',
     initialState,
     reducers: {
-        updateUser: (state, { user }) => {
-            state = user;
+        updateUser: (state, payload) => {
+            console.log(payload)
+            state = { ...state, ...payload.payload };
+            console.log(state)
         }
     }
 });
