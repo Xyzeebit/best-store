@@ -14,6 +14,7 @@ import Logo from './Logo';
 const Header = () => {
   const { cartItemCounter } = useSelector(state => state.categories);
   const { isLoggedIn } = useSelector(state => state.user);
+  console.log(isLoggedIn)
     return (
       <div className='sticky top-0 z-50 '>
         <div className="bg-red-500 h-4"></div>

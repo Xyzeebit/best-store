@@ -6,7 +6,7 @@ const Auth = ({signIn}) => {
     return (
         <>
             <div className="bg-red-500 py-2" />
-            <div className="px-4 md:px-16 py-4 shadow">
+            <div className="px-4 md:px-16 py-2 shadow">
                 <Logo />
             </div>
             {signIn ? <Signin /> : ''}

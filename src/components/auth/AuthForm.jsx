@@ -22,18 +22,20 @@ const AuthForm = ({signIn}) => {
         }
     }
 
-    const handleSubmit = () => {
+    const handleSubmit = (evt) => {
+        evt.preventDefault();
         if (signIn) {
             if (isValidEmail(email) && isValidPassword(pwd)) {
                 const user = {
                     id: nanoid(12),
                     email,
-                    name: 'John Doe',
+                    name: "John Doe",
                     orders: [],
                     isLoggedIn: true,
-                }
+                };
                 dispatch(updateUser(user));
-                navigate('/');
+                // evt.defaultPrevented = false
+                navigate('/')
             }
         }
     }
@@ -63,7 +65,7 @@ const AuthForm = ({signIn}) => {
                     className=" font-semibold transition-all px-2 py-2 outline-2 outline-gray-900 focus:outline-2 focus:outline-green-900 focus:border-none outline-none w-full rounded-md"
                 />
                 {shouldContinue == false && <button onClick={handleContinue}
-                    className="w-48 m-auto bg-gray-950 text-white font-semibold rounded-3xl px-6 py-2 mt-6 shadow-sm">
+                    className="w-48 m-auto bg-gray-950 text-white font-semibold rounded-3xl px-6 py-2 mt-6 shadow-sm hover:bg-red-500">
                     Continue
                 </button>}
             </div>
@@ -83,7 +85,7 @@ const AuthForm = ({signIn}) => {
                     className=" font-semibold transition-all px-2 py-2 outline-2 outline-gray-900 focus:outline-2 focus:outline-green-900 focus:border-none outline-none w-full rounded-md"
                 />}
                 <button onClick={handleSubmit}
-                    className="w-48 m-auto bg-gray-950 text-white font-semibold rounded-3xl px-6 py-2 mt-6 shadow-sm">
+                    className="w-48 m-auto bg-gray-950 text-white font-semibold rounded-3xl px-6 py-2 mt-6 mb-4 shadow-sm hover:bg-red-500">
                     {signIn ? "Sign in" : "Create account"}
                 </button>
             </div>}
