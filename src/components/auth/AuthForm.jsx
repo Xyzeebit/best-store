@@ -12,7 +12,9 @@ const AuthForm = ({signIn}) => {
     const [email, setEmail] = useState('');
     const [emailErr, setEmailErr] = useState(false); 
     const [pwd, setPwd] = useState('');
+    const [pwdErr, setPwdErr] = useState(false);
     const [cpwd, setCPwd] = useState('');
+    const [cpwdErr, setCPwdErr] = useState(false);
     const [shouldContinue, setShouldContinue] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -36,8 +38,11 @@ const AuthForm = ({signIn}) => {
                     orders: [],
                     isLoggedIn: true,
                 };
+                setPwdErr(false);
                 navigate('/');
                 dispatch(updateUser(user));
+            } else {
+                setPwdErr(true);
             }
         }
     }
@@ -60,7 +65,13 @@ const AuthForm = ({signIn}) => {
         <p className="py-4 font-semibold">Continue with email</p>
         <div className="flex flex-col">
           <div>
-            <small className={`${emailErr ? 'block' : 'hidden'} pb-2 text-red-600 font-semibold`}>*Invalid email address</small>
+            <small
+              className={`${
+                emailErr ? "block" : "hidden"
+              } pb-2 text-red-600 font-semibold`}
+            >
+              *Invalid email address
+            </small>
             <input
               type="email"
               value={email}
@@ -80,21 +91,39 @@ const AuthForm = ({signIn}) => {
         </div>
         {shouldContinue && (
           <div className="mt-8 flex flex-col">
-            <input
-              type="password"
-              value={pwd}
-              onChange={({ target }) => setPwd(target.value)}
-              placeholder="Enter password"
-              className=" font-semibold transition-all px-2 py-2 outline-2 outline-gray-900 focus:outline-2 focus:outline-green-900 focus:border-none outline-none w-full rounded-md"
-            />
-            {!signIn && (
+            <div>
+              <small
+                className={`${
+                  pwdErr ? "block" : "hidden"
+                } pb-2 text-red-600 font-semibold`}
+              >
+                *Password should be at least 6 characters long
+              </small>
               <input
                 type="password"
-                value={cpwd}
-                onChange={({ target }) => setCPwd(target.value)}
-                placeholder="Confirm password"
+                value={pwd}
+                onChange={({ target }) => setPwd(target.value)}
+                placeholder="Enter password"
                 className=" font-semibold transition-all px-2 py-2 outline-2 outline-gray-900 focus:outline-2 focus:outline-green-900 focus:border-none outline-none w-full rounded-md"
               />
+            </div>
+            {!signIn && (
+              <div>
+                <small
+                  className={`${
+                    cpwdErr ? "block" : "hidden"
+                  } pb-2 text-red-600 font-semibold`}
+                >
+                  *Passwords does not match
+                </small>
+                <input
+                  type="password"
+                  value={cpwd}
+                  onChange={({ target }) => setCPwd(target.value)}
+                  placeholder="Confirm password"
+                  className=" font-semibold transition-all px-2 py-2 outline-2 outline-gray-900 focus:outline-2 focus:outline-green-900 focus:border-none outline-none w-full rounded-md"
+                />
+              </div>
             )}
             <button
               onClick={handleSubmit}
