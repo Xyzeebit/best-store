@@ -1,4 +1,4 @@
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState } from 'react';
 import PropTypes from 'prop-types'
 import googleIcon from '../../assets/icons/google-icon.svg';
@@ -133,6 +133,23 @@ const AuthForm = ({signIn}) => {
             </button>
           </div>
         )}
+        <div className="text-sm text-center pt-4">
+          {signIn ? (
+            <p>
+              Don{"'"}t have account? create one{" "}
+              <Link to={"/register"} className="text-blue-600 hover:underline">
+                here
+              </Link>
+            </p>
+          ) : (
+            <p>
+              Have account,{" "}
+              <Link to={"/signin"} className="text-blue-600 hover:underline">
+                sign in
+              </Link>
+            </p>
+          )}
+        </div>
       </div>
     );
 }
