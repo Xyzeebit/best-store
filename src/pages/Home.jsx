@@ -1,7 +1,10 @@
+import { useEffect } from "react";
 import { Header, Container, Carousel, TopCategories, NewArrivals, BestSellers, DealsOfTheDay, Footer, Promotion, FlashSales } from "../components/core";
 
 const Home = () => {
-    
+  useEffect(() => {
+    document.title = "Bestore | Best Shopping Experience"
+  }, []);
   return (
     <>
       <Header />

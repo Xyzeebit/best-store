@@ -5,7 +5,7 @@ import cartIcon from '../../assets/icon-cart.png';
 
 const Cart = ({ items }) => {
     return (
-      <Link to="/checkout" className="flex items-center justify-center gap-1">
+      <Link to="/cart" className="flex items-center justify-center gap-1">
         <img src={cartIcon} alt="cart" width={15} height={15} />
         {items > 0 ? (
           <span className="bg-green-900 w-5 h-5 rounded-full flex justify-center items-center text-white text-xsm">
