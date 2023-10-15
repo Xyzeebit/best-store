@@ -6,9 +6,10 @@ import { isValidEmail, isValidPassword } from '../../api/apis';
 import { useNavigate } from 'react-router-dom';
 import { updateUser } from '../../redux/userSlice';
 import { nanoid } from '@reduxjs/toolkit';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const AuthForm = ({signIn}) => {
+  const { isLoggedIn } = useSelector(state => state.user);
     const [email, setEmail] = useState('');
     const [emailErr, setEmailErr] = useState([false, 'Email address cannot be empty']); 
     const [pwd, setPwd] = useState('');
@@ -44,7 +45,6 @@ const AuthForm = ({signIn}) => {
                     isLoggedIn: true,
                 };
                 setPwdErr(false);
-                navigate('/');
                 dispatch(updateUser(user));
             } else {
                 setPwdErr(true);
@@ -55,11 +55,17 @@ const AuthForm = ({signIn}) => {
     useEffect(() => {
       document.title = 'Bestore | Sign in'
     }, []);
+  
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate('/');
+    }
+  }, [isLoggedIn, navigate]);
 
     return (
       <div className="sm:w-80 w-full md:w-96 p-4 bg-gray-100 border-2 border-gray-900 rounded-md overflow-hidden">
         <h1 className="font-semibold text-xl text-center">
-          Sign in to your account
+          {signIn ? "Sign in to your account" : "Create an account"}
         </h1>
         <button className="w-48 m-auto flex items-center justify-center gap-4 px-4 py-2 mt-6 mb-6 bg-green-900 rounded-3xl hover:bg-red-500">
           <img
@@ -123,7 +129,7 @@ const AuthForm = ({signIn}) => {
                     cpwdErr ? "block" : "hidden"
                   } pb-2 text-red-600 font-semibold`}
                 >
-                  *Passwords does not match
+                  *Passwords do not match
                 </small>
                 <input
                   type="password"
