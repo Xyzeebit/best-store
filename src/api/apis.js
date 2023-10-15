@@ -64,7 +64,28 @@ export const PRODUCTS = [
 ];
 
 export function isValidEmail(email) {
-  return email.length > 5;
+  if (typeof email !== 'string')
+    return [false, "Email must be valid character set"];
+  email = email.trim();
+  const pattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+  if (!pattern.test(email)) {
+    return [false, "Email address not valid"];
+  }
+  const [local, domain] = email.split('@');
+  if (local.length === 0 || domain.length === 0) {
+    return [false, "Email address too short"];
+  }
+  if (domain.includes('.')) {
+    const domains = domain.split('.');
+    for (const p of domains) {
+      if (p.length < 2) {
+        return [false, "Invalid sub domain"];
+      }
+    }
+  } else {
+    return [false, "Invalid email address"];
+  }
+  return [true, 'success'];
 }
 
 export function isValidPassword(pwd) {

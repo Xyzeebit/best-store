@@ -10,12 +10,11 @@ import loginIcon from "../../assets/icons/login_icon.svg";
 import SearchList from './SearchList';
 import { useSelector } from 'react-redux';
 import Logo from './Logo';
-import { useEffect } from 'react';
 
 const Header = () => {
   const { cartItemCounter } = useSelector(state => state.categories);
   const { isLoggedIn } = useSelector(state => state.user);
-  
+
     return (
       <div className='sticky top-0 z-50 '>
         <div className="bg-red-500 h-4"></div>

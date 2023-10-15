@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types'
 import googleIcon from '../../assets/icons/google-icon.svg';
 import { isValidEmail, isValidPassword } from '../../api/apis';
@@ -10,7 +10,7 @@ import { useDispatch } from 'react-redux';
 
 const AuthForm = ({signIn}) => {
     const [email, setEmail] = useState('');
-    const [emailErr, setEmailErr] = useState(false); 
+    const [emailErr, setEmailErr] = useState([false, 'Email address cannot be empty']); 
     const [pwd, setPwd] = useState('');
     const [pwdErr, setPwdErr] = useState(false);
     const [cpwd, setCPwd] = useState('');
@@ -19,18 +19,23 @@ const AuthForm = ({signIn}) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const handleContinue = () => {
-        if (isValidEmail(email)) {
-            setShouldContinue(true);
-            setEmailErr(false)
-        } else {
-            setEmailErr(true);
-        }
+  const handleContinue = () => {
+    if (email.trim()) {
+      const [valid, text] = isValidEmail(email);
+      if (valid) {
+        setShouldContinue(true);
+        setEmailErr([false, ""])
+      } else {
+        setEmailErr([true, text]);
+      }
+    } else {
+      setEmailErr([true, "Email address cannot be empty"]);
     }
+  }
 
     const handleSubmit = () => {
         if (signIn) {
-            if (isValidEmail(email) && isValidPassword(pwd)) {
+            if (!emailErr[0] && isValidPassword(pwd)) {
                 const user = {
                     id: nanoid(12),
                     email,
@@ -46,6 +51,10 @@ const AuthForm = ({signIn}) => {
             }
         }
     }
+
+    useEffect(() => {
+      document.title = 'Bestore | Sign in'
+    }, []);
 
     return (
       <div className="sm:w-80 w-full md:w-96 p-4 bg-gray-100 border-2 border-gray-900 rounded-md overflow-hidden">
@@ -67,10 +76,10 @@ const AuthForm = ({signIn}) => {
           <div>
             <small
               className={`${
-                emailErr ? "block" : "hidden"
+                emailErr[0] ? "block" : "hidden"
               } pb-2 text-red-600 font-semibold`}
             >
-              *Invalid email address
+              *{emailErr[1]}
             </small>
             <input
               type="email"
@@ -137,7 +146,7 @@ const AuthForm = ({signIn}) => {
           {signIn ? (
             <p>
               Don{"'"}t have account? create one{" "}
-              <Link to={"/register"} className="text-blue-600 hover:underline">
+              <Link to={"/signup"} className="text-blue-600 hover:underline">
                 here
               </Link>
             </p>
