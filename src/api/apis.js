@@ -91,3 +91,26 @@ export function isValidEmail(email) {
 export function isValidPassword(pwd) {
   return pwd.length > 5;
 }
+
+export async function signInWithEmailAndPassword(email, password) {
+  const user = {
+    id: nanoid(12),
+    email,
+    name: "John Doe",
+    orders: [],
+    isLoggedIn: true,
+  };
+
+  return user;
+}
+
+export async function createUserWithEmailAndPassword(email, password) {
+  const user = {
+    id: nanoid(12),
+    email,
+    name: "John Doe",
+    orders: [],
+    isLoggedIn: true,
+  };
+  return user;
+}

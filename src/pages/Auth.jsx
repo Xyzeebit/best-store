@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { Logo } from '../components/core';
 import Signin from '../components/auth/Signin';
+import Register from '../components/auth/Register';
 
 const Auth = ({signIn}) => {
     return (
@@ -9,7 +10,7 @@ const Auth = ({signIn}) => {
             <div className="px-4 md:px-16 py-2 shadow">
                 <Logo />
             </div>
-            {signIn ? <Signin /> : ''}
+            {signIn ? <Signin /> : <Register />}
         </>
     );
 }
