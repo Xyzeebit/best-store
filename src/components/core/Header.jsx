@@ -18,7 +18,7 @@ const Header = () => {
     return (
       <div className='sticky top-0 z-50 '>
         <div className="bg-red-500 h-4"></div>
-        <header className="bg-white shadow-sm px-4 md:px-16 py-2 flex items-center justify-between flex-wrap gap-4">
+        <header className="bg-white shadow-sm px-4 md:px-16 py-2 flex items-center justify-between flex-wrap gap-3 md:gap-4">
           {/* <NavBrand brand="Bestore" /> */}
           <Logo />
           <Wrapper>

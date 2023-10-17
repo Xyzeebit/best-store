@@ -64,7 +64,7 @@ const PRODUCTS = [
 const TopProducts = () => {
     return (
         <div className="px-4 md:px-16 py-4">
-            <h1 className="font-bold text-xl text-green-900">Top Product Categories</h1>
+            <h1 className="font-bold text-xl text-green-900 pb-2">Top Product Categories</h1>
             <div className="py-4 flex items-start justify-start gap-4 overflow-auto top-pro">
                 {PRODUCTS.map(({ text, url }) => (
                     <ProductLink key={text + url} text={text} url={url} />
