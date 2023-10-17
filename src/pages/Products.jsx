@@ -1,10 +1,17 @@
-
+import { useEffect } from 'react';
+import { Container, Header, TopProducts } from '../components/core';
 
 const Products = () => {
+    useEffect(() => {
+        document.title = "Bestore | Products"
+    }, [])
     return (
-        <div>
-            Products
-        </div>
+        <>
+            <Header />
+            <Container>
+                <TopProducts />
+            </Container>
+        </>
     )
 }
 
