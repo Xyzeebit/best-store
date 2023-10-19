@@ -75,6 +75,7 @@ export const categoriesSlice = createSlice({
           state.cart.splice(index, 1);
           state.cartItemCounter--;
         }
+        return state;
       },
 
         fetchCategories: (state, { payload }) => {
