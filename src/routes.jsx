@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import { ErrorBoundary } from "./components/error";
 import Home from "./pages/Home";
 import Auth from "./pages/Auth";
+import Products from "./pages/Products";
 
 const router = createBrowserRouter([
   {
@@ -37,6 +38,16 @@ const router = createBrowserRouter([
   {
     path: "/cart",
     element: <h1>Cart</h1>,
+    errorElement: (
+      <ErrorBoundary
+        message="Oops!!! an error occurred while loading this page"
+        path="/"
+      />
+    ),
+  },
+  {
+    path: "/products",
+    element: <Products />,
     errorElement: (
       <ErrorBoundary
         message="Oops!!! an error occurred while loading this page"

@@ -10,12 +10,13 @@ import NewArrivals from "./NewArrivals";
 import FlashSales from "./FlashSales";
 import BestSellers from "./BestSellers";
 import DealsOfTheDay from './DealsOfTheDay'
+import TopProducts from "./TopProducts";
 import Promotion from "./Promotion";
 import Footer from "./Footer";
 
 export { Header, ProductSearch, IconButton, LinkIconButton, 
     Container, Carousel, TopCategories, NewArrivals, BestSellers,
-    FlashSales, DealsOfTheDay,
+    FlashSales, DealsOfTheDay, TopProducts,
     Promotion,
     Logo,
     Footer

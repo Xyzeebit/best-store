@@ -8,6 +8,7 @@ import starHalfColoredIcon from "../../assets/icons/star-half-colored-icon.svg";
 
 
 const Rating = ({ rating }) => {
+    const [w, h] = [15, 15];
     const counterRef = useRef();
     counterRef.current = rating ?? 0;
     const getRatingColor = () => {
@@ -21,13 +22,13 @@ const Rating = ({ rating }) => {
         }
     }
     return (
-      <div className='flex items-start justify-start gap-2'>
-        <img src={getRatingColor()} alt="rating" width={18} height={18} />
-        <img src={getRatingColor()} alt="rating" width={18} height={18} />
-        <img src={getRatingColor()} alt="rating" width={18} height={18} />
-        <img src={getRatingColor()} alt="rating" width={18} height={18} />
-        <img src={getRatingColor()} alt="rating" width={18} height={18} />
-      </div>
+        <div className='flex items-start justify-start gap-2'>
+            <img src={getRatingColor()} alt="rating" width={w} height={h} />
+            <img src={getRatingColor()} alt="rating" width={w} height={h} />
+            <img src={getRatingColor()} alt="rating" width={w} height={h} />
+            <img src={getRatingColor()} alt="rating" width={w} height={h} />
+            <img src={getRatingColor()} alt="rating" width={w} height={h} />
+        </div>
     );
 }
 
