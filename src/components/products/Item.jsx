@@ -18,7 +18,7 @@ const Item = ({ id, title, price, image, ratings, category }) => {
           <div className="truncate font-semibold text-sm text-green-900 hover:underline">
             <Link to={`/${category}/${id}`}>{title}</Link>
           </div>
-          <p className="text-red-500">USD {price}</p>
+          <p className="text-red-500 font-semibold">USD {price}</p>
           <div className="text-sm text-gray-500">
             {ratings ? (
               <div>
