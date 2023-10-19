@@ -65,6 +65,7 @@ export const categoriesSlice = createSlice({
         const item = action.payload.item;
         state.cart.push(item);
         state.cartItemCounter++;
+        return state;
       },
 
       removeFromCart: (state, action) => {
