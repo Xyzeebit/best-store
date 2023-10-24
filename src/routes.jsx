@@ -55,6 +55,16 @@ const router = createBrowserRouter([
       />
     ),
   },
+  {
+    path: "/*",
+    element: <Products />,
+    errorElement: (
+      <ErrorBoundary
+        message="Oops!!! an error occurred while loading this page"
+        path="/"
+      />
+    ),
+  },
 ]);
 
 export default router;
