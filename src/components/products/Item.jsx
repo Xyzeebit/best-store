@@ -1,8 +1,23 @@
 import Rating from '../core/Rating'
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addToCart, removeFromCart } from '../../redux/categoriesSlice';
+import { useState } from 'react';
 
 const Item = ({ id, title, price, image, ratings, category }) => {
+  const [itemAdded, setItemAdded] = useState(false);
+  const dispatch = useDispatch();
+  const handleAddToCart = () => {
+    if (itemAdded) {
+      dispatch(removeFromCart({ id }));
+      setItemAdded(false);
+    } else {
+      const item = { id, title, price, image, ratings, category };
+      dispatch(addToCart({ item }));
+      setItemAdded(true);
+    }
+  }
     return (
       <div className="shadow rounded overflow-hidden">
         <div className="h-32 overflow-hidden">
@@ -34,8 +49,11 @@ const Item = ({ id, title, price, image, ratings, category }) => {
             )}
           </div>
           <div className="flex items-center justify-center pt-2">
-            <button className="font-semibold text-xsm text-gray-500 px-4 py-1 rounded-3xl bg-white border-2 border-gray-400 hover:bg-red-500 hover:border-red-500 hover:text-white">
-              Add to Cart
+            <button
+              onClick={handleAddToCart}
+              className="font-semibold text-xsm text-gray-500 px-4 py-1 rounded-3xl bg-white border-2 border-gray-400 hover:bg-red-500 hover:border-red-500 hover:text-white"
+            >
+              {itemAdded ? "Remove from Cart" : "Add to Cart"}
             </button>
           </div>
         </div>
