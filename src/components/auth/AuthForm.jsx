@@ -73,7 +73,7 @@ const AuthForm = ({signIn}) => {
       <h1 className="font-semibold text-xl text-center">
         {signIn ? "Sign in to your account" : "Create an account"}
       </h1>
-      <button className="w-48 m-auto flex items-center justify-center gap-4 px-4 py-2 mt-6 mb-6 bg-green-900 rounded-3xl hover:bg-red-500">
+      <button className="m-auto flex items-center justify-center gap-3 px-6 py-2 mt-6 mb-6 bg-green-900 rounded-3xl hover:bg-red-500">
         <img
           src={googleIcon}
           alt="sign in with google"
