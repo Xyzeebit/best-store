@@ -19,7 +19,7 @@ const ProductList = () => {
         if (path === "products") {
             return "random"
         } else {
-            return "random"
+            return path;
         }
     }
 

@@ -70,7 +70,7 @@ export const categoriesSlice = createSlice({
 
     removeFromCart: (state, action) => {
       const id = action.payload.id;
-      const index = state.cart.findIndex(item => item.id === id);
+      const index = state.cart.findIndex(item => item?.id === id);
       if (index !== -1) {
         state.cart.splice(index, 1);
         state.cartItemCounter--;
