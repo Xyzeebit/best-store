@@ -53,54 +53,70 @@ const topCats = [
   },
 ];
 
-const products = {
-  random: [
-    {
-      id: nanoid(14),
-      title: "Tecno Spark 4",
-      image: phone,
-      price: "150.00",
-      ratings: 3.7,
-      category: "phones",
-    },
-    {
-      id: nanoid(14),
-      title: "Laptops",
-      image: laptop,
-      category: "electronics",
-    },
-    {
-      id: nanoid(14),
-      title: "Toys",
-      image: toys,
-      category: "toys-and-games",
-    },
-    {
-      id: nanoid(14),
-      title: "Hair",
-      image: hair,
-      category: "hair",
-    },
-    {
-      id: nanoid(14),
-      title: "Shirts",
-      image: shirt,
-      category: "clothes",
-    },
-    {
-      id: nanoid(14),
-      title: "Cosmetics",
-      image: makeup,
-      category: "makeup-and-cosmetics",
-    },
-    {
-      id: nanoid(14),
-      title: "Sneakers",
-      image: shoes,
-      category: "footwear",
-    },
-  ],
-};
+const products = [
+  {
+    id: nanoid(14),
+    title: "Tecno Spark 4",
+    image: phone,
+    price: "150.00",
+    ratings: 3.7,
+    category: "phones",
+  },
+  {
+    id: nanoid(14),
+    title: "Laptops",
+    image: laptop,
+    category: "electronics",
+  },
+  {
+    id: nanoid(14),
+    title: "Toys",
+    image: toys,
+    category: "toys-and-games",
+  },
+  {
+    id: nanoid(14),
+    title: "Hair",
+    image: hair,
+    category: "hair",
+  },
+  {
+    id: nanoid(14),
+    title: "Shirts",
+    image: shirt,
+    category: "clothes",
+  },
+  {
+    id: nanoid(14),
+    title: "Cosmetics",
+    image: makeup,
+    category: "makeup-and-cosmetics",
+  },
+  {
+    id: nanoid(14),
+    title: "Sneakers",
+    image: shoes,
+    category: "footwear",
+  },
+];
+
+
+function filterByKey(key) {
+  key = key.trim().toLowerCase();
+  console.log(key)
+  if (key === "random" || key === "products" || key === "all")
+    return products;
+  
+  const data = products.filter(item => {
+    if (item.category === key) {
+      return true
+    } else {
+      return false;
+    }
+  });
+  return data;
+}
+
 export const fetchTopCategories = async (testing) => {
   if (testing) {
     return { ok: true, data: topCats };
@@ -120,7 +136,7 @@ export const fetchTopCategories = async (testing) => {
 
 export const fetchProducts = async (testing, key) => {
   if (testing) {
-    return { ok: true, data: products[key] };
+    return { ok: true, data: filterByKey(key) };
   }
   try {
     const resp = await fetch("");

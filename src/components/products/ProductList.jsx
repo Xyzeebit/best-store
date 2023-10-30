@@ -8,6 +8,7 @@ import Item from "./Item";
 
 const ProductList = () => {
     const [pathname, setPathname] = useState('random');
+    const [oldPath, setOldPath] = useState('');
     const dispatch = useDispatch();
     const { data } = useSelector(state => state.categories);
     const location = useLocation();
@@ -24,21 +25,15 @@ const ProductList = () => {
     }
 
     useEffect(() => {
-        setPathname(getLocation(location.pathname));
-    }, [location]);
-
-    useEffect(() => {
+        const path = getLocation(location.pathname);
         async function getData() {
-            const resp = await fetchProducts(true, pathname);
+            const resp = await fetchProducts(true, path);
+            console.log(resp)
             dispatch(fetchCategories(resp));
         }
-        if (data) {
-            // do nothing
-        } else {
-            getData();
-
-        }
-    }, [data, dispatch, pathname]);
+        getData();
+    }, [dispatch, location.pathname]);
+    
     return (
       <Suspense fallback={<p>Loading...</p>}>
         <div className="py-5">

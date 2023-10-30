@@ -30,11 +30,11 @@ const PRODUCTS = [
   },
   {
     text: "Shoes",
-    url: "/footwear/shoes",
+    url: "/shoes",
   },
   {
     text: "Games",
-    url: "/toys-and-games",
+    url: "/games",
   },
   {
     text: "Bags",
@@ -42,7 +42,7 @@ const PRODUCTS = [
   },
   {
     text: "Books",
-    url: "/books-and-stationeries",
+    url: "/books",
   },
   {
     text: "Beauty",
@@ -50,11 +50,11 @@ const PRODUCTS = [
   },
   {
     text: "Toys",
-    url: "/toys-and-games",
+    url: "/toys",
   },
   {
     text: "Stationeries",
-    url: "/books-and-stationeries",
+    url: "/stationeries",
   },
   {
     text: "Travel",
