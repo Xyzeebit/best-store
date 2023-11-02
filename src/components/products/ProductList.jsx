@@ -1,14 +1,11 @@
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useLocation } from 'react-router-dom'
-// import Item from "./Item";
+import Item from "./Item";
 import { fetchProducts } from "../../api/top-categories";
 import { fetchCategories } from "../../redux/categoriesSlice";
-import Item from "./Item";
 
 const ProductList = () => {
-    const [pathname, setPathname] = useState('random');
-    const [oldPath, setOldPath] = useState('');
     const dispatch = useDispatch();
     const { data } = useSelector(state => state.categories);
     const location = useLocation();
@@ -28,7 +25,6 @@ const ProductList = () => {
         const path = getLocation(location.pathname);
         async function getData() {
             const resp = await fetchProducts(true, path);
-            console.log(resp)
             dispatch(fetchCategories(resp));
         }
         getData();

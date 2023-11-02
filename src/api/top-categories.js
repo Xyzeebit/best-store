@@ -103,7 +103,6 @@ const products = [
 
 function filterByKey(key) {
   key = key.trim().toLowerCase();
-  console.log(key)
   if (key === "random" || key === "products" || key === "all")
     return products;
   
