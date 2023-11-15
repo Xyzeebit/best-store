@@ -1,34 +1,22 @@
 import { Suspense, useEffect } from "react";
+import PropTypes from "prop-types";
 import { useSelector, useDispatch } from "react-redux";
-import { useLocation } from 'react-router-dom'
 import Item from "./Item";
 import { fetchProducts } from "../../api/top-categories";
 import { fetchCategories } from "../../redux/categoriesSlice";
 
-const ProductList = () => {
+const ProductList = ({ category }) => {
     const dispatch = useDispatch();
     const { data } = useSelector(state => state.categories);
-    const location = useLocation();
-
-    const getLocation = path => {
-        path = path.split('/');
-        const len = path.length;
-        path = path[len - 1];
-        if (path === "products") {
-            return "random"
-        } else {
-            return path;
-        }
-    }
 
     useEffect(() => {
-        const path = getLocation(location.pathname);
+        const path = category.toLowerCase();
         async function getData() {
             const resp = await fetchProducts(true, path);
             dispatch(fetchCategories(resp));
         }
         getData();
-    }, [dispatch, location.pathname]);
+    }, [dispatch, category]);
     
     return (
       <Suspense fallback={<p>Loading...</p>}>
@@ -41,6 +29,10 @@ const ProductList = () => {
         </div>
       </Suspense>
     );
+}
+
+ProductList.propTypes = {
+    category: PropTypes.string.isRequired,
 }
 
 export default ProductList;

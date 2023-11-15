@@ -40,6 +40,16 @@ const router = createBrowserRouter([
     ),
   },
   {
+    path: "/signup",
+    element: <Auth signIn={false} />,
+    errorElement: (
+      <ErrorBoundary
+        message="Oops!!! an error occurred while loading this page"
+        path="/"
+      />
+    ),
+  },
+  {
     path: "/cart",
     element: <h1>Cart</h1>,
     errorElement: (
@@ -68,6 +78,10 @@ const router = createBrowserRouter([
   {
     path: "/games",
     element: <Products category="games" />,
+  },
+  {
+    path: "/gadgets",
+    element: <Products category="gadgets" />,
   },
   {
     path: "/toys",

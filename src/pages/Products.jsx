@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
+import PropTypes from "prop-types";
 import { Container, Header, TopProducts } from '../components/core';
 
-const Products = () => {
+const Products = ({ category }) => {
     useEffect(() => {
         document.title = "Bestore | Products"
     }, [])
@@ -9,10 +10,14 @@ const Products = () => {
         <>
             <Header />
             <Container>
-                <TopProducts />
+                <TopProducts category={category} />
             </Container>
         </>
     )
+}
+
+Products.propTypes = {
+    category: PropTypes.string.isRequired,
 }
 
 export default Products;

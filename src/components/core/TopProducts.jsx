@@ -10,23 +10,23 @@ const PRODUCTS = [
   },
   {
     text: "Phones",
-    url: "/electronics/phones",
+    url: "/phones",
   },
   {
     text: "Laptops",
-    url: "/electronics/laptops",
+    url: "/laptops",
   },
   {
     text: "Furniture",
-    url: "/furniture",
+    url: "/home-and-living",
   },
   {
     text: "Gadgets",
-    url: "/electronics/gadgets",
+    url: "/gadgets",
   },
   {
     text: "Shirts",
-    url: "/clothes/shirt",
+    url: "/shirts",
   },
   {
     text: "Shoes",
@@ -62,7 +62,7 @@ const PRODUCTS = [
   },
 ];
 
-const TopProducts = () => {
+const TopProducts = ({ category }) => {
   return (
     <div className="px-4 md:px-16 py-4">
       <h1 className="font-bold text-xl text-green-900 pb-2">Top Product Categories</h1>
@@ -71,7 +71,7 @@ const TopProducts = () => {
           <ProductLink key={text + url} text={text} url={url} />
         ))}
       </div>
-      <ProductList />
+      <ProductList category={category} />
     </div>
   );
 }
@@ -89,9 +89,13 @@ const ProductLink = ({ text, url }) => (
   </NavLink>
 );
 
+TopProducts.propTypes = {
+  category: PropTypes.string.isRequired,
+};
+
 ProductLink.propTypes = {
-    url: PropTypes.string.isRequired,
-    text: PropTypes.string.isRequired,
-}
+  url: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
+};
 
 export default TopProducts;
