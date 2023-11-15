@@ -46,7 +46,7 @@ const PRODUCTS = [
   },
   {
     text: "Beauty",
-    url: "/beauty",
+    url: "/care-products",
   },
   {
     text: "Toys",
@@ -54,7 +54,7 @@ const PRODUCTS = [
   },
   {
     text: "Stationeries",
-    url: "/stationeries",
+    url: "/books-and-stationeries",
   },
   {
     text: "Travel",
