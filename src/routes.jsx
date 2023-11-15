@@ -152,7 +152,7 @@ const router = createBrowserRouter([
     element: <Products category="home" />,
   },
   {
-    path: "/card-products",
+    path: "/care-products",
     element: <Products category="care" />,
   },
   {
