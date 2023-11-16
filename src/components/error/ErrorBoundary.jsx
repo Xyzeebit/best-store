@@ -1,26 +1,36 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { Layout } from "../core";
 import errorImage from "../../assets/no-signal.png";
 
-const ErrorBoundary = ({ message, path }) => (
+const Error = ({ message, path }) => (
   <div className="h-full">
     <div>
       <img
         src={errorImage}
-        alt={message}
-        width={100}
+        alt={() => console.log(message)}
+        width={150}
         height={100}
         className="m-auto"
       />
     </div>
-    <div className="text-center text-gray-400">{message}</div>
+    <div className="font-bold text-3xl text-center text-gray-900">{message}</div>
     <div className="inline-flex items-center justify-center w-full mt-4">
-      <Link to={path} className="bg-blue-700 hover:bg-blue-500 text-white px-8 py-2 rounded-xl">
-        retry
+      <Link to={path} className="bg-green-900 hover:bg-red-500 text-white px-8 py-2 rounded-3xl shadow">
+        Retry
       </Link>
     </div>
   </div>
 );
+
+Error.propTypes = {
+  message: PropTypes.string.isRequired,
+  path: PropTypes.string.isRequired,
+};
+
+const ErrorBoundary = ({message, path}) => <Layout renderHeader={true}>
+  <Error message={message} path={path} />
+</Layout>
 
 ErrorBoundary.propTypes = {
   message: PropTypes.string.isRequired,
