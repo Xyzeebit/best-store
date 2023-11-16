@@ -9,27 +9,27 @@ import appliances from "../assets/appliances.jpg";
 export const BANNER_ITEMS = [
   {
     id: nanoid(8),
-    to: "/book-and-stationery/stationeries",
+    to: "/books-and-stationeries",
     image: stationery,
   },
   {
     id: nanoid(8),
-    to: "/clothes/kids",
+    to: "/babies",
     image: clothes,
   },
   {
     id: nanoid(8),
-    to: "/shoes/footwear",
+    to: "/footwears",
     image: footwear,
   },
   {
     id: nanoid(8),
-    to: "/beauty/makeup",
+    to: "/makeup-and-cosmetics",
     image: makeup,
   },
   {
     id: nanoid(8),
-    to: "/electronics/home-appliances",
+    to: "/home-appliances",
     image: appliances,
   },
 ];
@@ -37,13 +37,13 @@ export const BANNER_ITEMS = [
 export const DEALS_ITEM = [
   {
     id: nanoid(8),
-    to: "/shoes/footwear",
+    to: "/footwears",
     image: footwear,
     text: "Gucci sneaker for outdoors",
   },
   {
     id: nanoid(8),
-    to: "/beauty/makeup",
+    to: "/makeup-and-cosmetics",
     image: makeup,
     text: "Makeup set",
   },

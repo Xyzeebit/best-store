@@ -62,37 +62,37 @@ const Footer = () => {
               <div className="font-bold mb-4">Categories</div>
               <div className="flex flex-col gap-1">
                 <Link
-                  to={`/products/electronics`}
+                  to={`/electronics`}
                   className="text-xsm md:text-sm text-gray-600 hover:underline"
                 >
                   Electronics
                 </Link>
                 <Link
-                  to={`/products/clothings`}
+                  to={`/clothings`}
                   className="text-xsm md:text-sm text-gray-600 hover:underline"
                 >
                   Clothings and Accessories
                 </Link>
                 <Link
-                  to={`/products/home-and-living`}
+                  to={`/home-and-living`}
                   className="text-xsm md:text-sm text-gray-600 hover:underline"
                 >
                   Home and Living
                 </Link>
                 <Link
-                  to={`/products/care-products`}
+                  to={`/care-products`}
                   className="text-xsm md:text-sm text-gray-600 hover:underline"
                 >
                   Beauty and Personal Care
                 </Link>
                 <Link
-                  to={`/products/sport-and-outdoors`}
+                  to={`/sport-and-outdoors`}
                   className="text-xsm md:text-sm text-gray-600 hover:underline"
                 >
                   Sports and Outdoors
                 </Link>
                 <Link
-                  to={`/products/games-and-toys`}
+                  to={`/games-and-toys`}
                   className="text-xsm md:text-sm text-gray-600 hover:underline"
                 >
                   Games and Toys

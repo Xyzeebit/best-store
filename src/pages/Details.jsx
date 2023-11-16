@@ -1,10 +1,13 @@
-
+import { useParams } from "react-router-dom";
+import { Layout } from "../components/core";
 
 const Details = () => {
+    const param = useParams();
+    console.log(param)
     return (
-        <div>
+        <Layout renderHeader={true}>
             View Details
-        </div>
+        </Layout>
     );
 }
 

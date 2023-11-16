@@ -1,13 +1,12 @@
 import { useEffect } from "react";
-import { Header, Container, Carousel, TopCategories, NewArrivals, BestSellers, DealsOfTheDay, Footer, Promotion, FlashSales } from "../components/core";
+import { Container, Carousel, TopCategories, NewArrivals, BestSellers, DealsOfTheDay, Footer, Promotion, FlashSales, Layout } from "../components/core";
 
-const Home = () => {
+const HomePage = () => {
   useEffect(() => {
     document.title = "Bestore | Best Shopping Experience"
   }, []);
   return (
     <>
-      <Header />
       <Container>
         <Carousel tag="banners" classes="m-4 md:m-16 h-52 md:h-60 lg:h-80 bg-gray-200" />
         <TopCategories />
@@ -21,5 +20,11 @@ const Home = () => {
     </>
   );
 }
+
+const Home = () => (
+  <Layout renderHeader={true}>
+    <HomePage />
+  </Layout>
+);
 
 export default Home;

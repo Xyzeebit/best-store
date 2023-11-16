@@ -3,9 +3,8 @@ import { ErrorBoundary } from "./components/error";
 import Home from "./pages/Home";
 import Auth from "./pages/Auth";
 import Products from "./pages/Products";
-// import Error404 from "./pages/error-page";
-// import Details from "./pages/Details";
-// import { Layout } from "./components/core";
+import Error404 from "./pages/error-page";
+import Details from './pages/Details';
 
 const router = createBrowserRouter([
   {
@@ -17,7 +16,6 @@ const router = createBrowserRouter([
         path="/"
       />
     ),
-    children: [],
   },
   {
     path: "/signin",
@@ -88,6 +86,10 @@ const router = createBrowserRouter([
     element: <Products category="toys" />,
   },
   {
+    path: "/games-and-toys",
+    element: <Products category="games" />,
+  },
+  {
     path: "/bags",
     element: <Products category="bags" />,
   },
@@ -141,7 +143,31 @@ const router = createBrowserRouter([
   },
   {
     path: "/deals",
-    element: <Products category="deals" />,
+    element: <Products category="flashsales" />,
+  },
+  {
+    path: "/:category",
+    element: <Products category="random" />,
+    loader: ({ param }) => {
+      console.log(param);
+      return null
+    },
+  },
+  {
+    path: "deals/:itemId",
+    element: <Details />,
+    loader: ({ param }) => {
+      console.log(param);
+      return null;
+    },
+  },
+  {
+    path: ":category/:itemId",
+    element: <Details />,
+    loader: ({ param }) => {
+      console.log(param);
+      return null;
+    },
   },
   {
     path: "/products/electronics",
@@ -158,6 +184,10 @@ const router = createBrowserRouter([
   {
     path: "/sport-and-outdoors",
     element: <Products category="sports" />,
+  },
+  {
+    path: "/hairs",
+    element: <Products category="hairs" />,
   },
   {
     path: "/about",
@@ -231,13 +261,18 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/promotions/cashback",
-        element: <Products category="stationeries" />,
+        element: <h1>Cashback</h1>,
       },
     ],
   },
   {
     path: "/checkout",
     element: <h1>Checkout</h1>,
+  },
+  {
+    path: "*",
+    element: <Error404 />,
+    errorElement: <ErrorBoundary path="/" message="Page Not Found" />,
   },
 ]);
 

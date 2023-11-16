@@ -7,7 +7,7 @@ import iconFavoriteFilled from '../../assets/icons/favorite-filled.svg';
 import { addToCart, removeFromCart } from "../../redux/categoriesSlice";
 import { useDispatch } from "react-redux";
 
-const ProductCard = ({ id, title, image, prices }) => {
+const ProductCard = ({ id, title, image, prices, category }) => {
     const [favorite, setFavorite] = useState(false);
     const dispatch = useDispatch();
     const handleAddToCart = item => {
@@ -31,7 +31,7 @@ const ProductCard = ({ id, title, image, prices }) => {
         </div>
         <div className={`px-4 py-2 w-48 ${title.length > 50 ? 'truncate' : ''}`}>
           <Link
-            to={`/products/${id}`}
+            to={`/${category}/${id}`}
             className="font-bold text-sm md:text-md text-gray-700"
           >
             {title}
@@ -63,6 +63,7 @@ ProductCard.propTypes = {
     title: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     prices: PropTypes.array.isRequired,
+    category: PropTypes.string.isRequired,
 }
 
 export default ProductCard;

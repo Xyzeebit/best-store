@@ -10,46 +10,46 @@ import hair from "../assets/women-hair.webp";
 
 const topCats = [
   {
-    id: "sjij9jnk",
+    id: nanoid(12),
     title: "Phones",
     image: phone,
-    category: "electronics",
+    category: "phones",
   },
   {
-    id: "sjiUj9jnk",
+    id: nanoid(12),
     title: "Laptops",
     image: laptop,
-    category: "electronics",
+    category: "laptops",
   },
   {
-    id: "s8bjij9jnk",
+    id: nanoid(12),
     title: "Toys",
     image: toys,
-    category: "toys-and-games",
+    category: "toys",
   },
   {
-    id: "s8bBjij9jnk",
+    id: nanoid(12),
     title: "Hair",
     image: hair,
-    category: "hair",
+    category: "hairs",
   },
   {
-    id: "sjijLJ9jnk",
+    id: nanoid(12),
     title: "Shirts",
     image: shirt,
-    category: "clothes",
+    category: "shirts",
   },
   {
-    id: "sjiJOj9jnk",
+    id: nanoid(12),
     title: "Cosmetics",
     image: makeup,
     category: "makeup-and-cosmetics",
   },
   {
-    id: "sbHjij9jnk",
+    id: nanoid(12),
     title: "Sneakers",
     image: shoes,
-    category: "footwear",
+    category: "footwears",
   },
 ];
 
@@ -66,19 +66,19 @@ const products = [
     id: nanoid(14),
     title: "Laptops",
     image: laptop,
-    category: "electronics",
+    category: "laptops",
   },
   {
     id: nanoid(14),
     title: "Toys",
     image: toys,
-    category: "toys-and-games",
+    category: "toys",
   },
   {
     id: nanoid(14),
     title: "Hair",
     image: hair,
-    category: "hair",
+    category: "hairs",
   },
   {
     id: nanoid(14),
@@ -96,7 +96,7 @@ const products = [
     id: nanoid(14),
     title: "Sneakers",
     image: shoes,
-    category: "footwear",
+    category: "footwears",
   },
 ];
 
