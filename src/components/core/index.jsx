@@ -1,5 +1,6 @@
 import Header from "./Header";
 import Logo from "./Logo";
+Layout
 import ProductSearch from "./ProductSearch";
 import IconButton from "./IconButton";
 import LinkIconButton from "./LinkIconButton";
@@ -13,8 +14,9 @@ import DealsOfTheDay from './DealsOfTheDay'
 import TopProducts from "./TopProducts";
 import Promotion from "./Promotion";
 import Footer from "./Footer";
+import Layout from "./Layout";
 
-export { Header, ProductSearch, IconButton, LinkIconButton, 
+export { Layout, Header, ProductSearch, IconButton, LinkIconButton, 
     Container, Carousel, TopCategories, NewArrivals, BestSellers,
     FlashSales, DealsOfTheDay, TopProducts,
     Promotion,

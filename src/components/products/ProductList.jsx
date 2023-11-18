@@ -1,44 +1,23 @@
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useEffect } from "react";
+import PropTypes from "prop-types";
 import { useSelector, useDispatch } from "react-redux";
-import { useLocation } from 'react-router-dom'
-// import Item from "./Item";
+import Item from "./Item";
 import { fetchProducts } from "../../api/top-categories";
 import { fetchCategories } from "../../redux/categoriesSlice";
-import Item from "./Item";
 
-const ProductList = () => {
-    const [pathname, setPathname] = useState('random');
+const ProductList = ({ category }) => {
     const dispatch = useDispatch();
     const { data } = useSelector(state => state.categories);
-    const location = useLocation();
-
-    const getLocation = path => {
-        path = path.split('/');
-        const len = path.length;
-        path = path[len - 1];
-        if (path === "products") {
-            return "random"
-        } else {
-            return path;
-        }
-    }
 
     useEffect(() => {
-        setPathname(getLocation(location.pathname));
-    }, [location]);
-
-    useEffect(() => {
+        const path = category.toLowerCase();
         async function getData() {
-            const resp = await fetchProducts(true, pathname);
+            const resp = await fetchProducts(true, path);
             dispatch(fetchCategories(resp));
         }
-        if (data) {
-            // do nothing
-        } else {
-            getData();
-
-        }
-    }, [data, dispatch, pathname]);
+        getData();
+    }, [dispatch, category]);
+    
     return (
       <Suspense fallback={<p>Loading...</p>}>
         <div className="py-5">
@@ -50,6 +29,10 @@ const ProductList = () => {
         </div>
       </Suspense>
     );
+}
+
+ProductList.propTypes = {
+    category: PropTypes.string.isRequired,
 }
 
 export default ProductList;
