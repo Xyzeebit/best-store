@@ -3,10 +3,10 @@ import Header from './Header';
 
 const Layout = ({ renderHeader, children }) => {
     return (
-        <>
+        <div className="md:bg-gray-50">
             {renderHeader && <Header />}
             {children}
-        </>
+        </div>
     );
 }
 

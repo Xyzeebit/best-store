@@ -114,3 +114,47 @@ export async function createUserWithEmailAndPassword(email, password) {
   };
   return user;
 }
+
+export async function getDataByCategoryAndId(category, id) {
+  const data = {
+    category,
+    id,
+    description: "White designer sneakers, size 26",
+    prices: ["150.45", "160.45"],
+    rating: 4.5,
+    quantitiesLeft: 12,
+    title: "Sneakers",
+    images: [footwear, clothes, stationery],
+  };
+  return { ok: true, data };
+}
+
+export function getRecentViews() {
+  let data = localStorage.getItem('bestore');
+  let recentViews = [];
+  try {
+    data = JSON.parse(data);
+    recentViews = data.recentViews;
+  } catch (error) {
+    console.log(error);
+  }
+  return recentViews;
+}
+
+export function addItemToRecentViews(item) {
+  const storage = getRecentViews();
+  item = storage.recentViews.find(it => it.id === item.id);
+  if (item) {
+    if (storage.recentViews.length > 15) {
+      storage.recentViews.splice(0, 1, ...[item]);
+    } else {
+      storage.recentViews.push(item);
+    }
+    try {
+      localStorage.setItem('bestore', JSON.stringify(storage))
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+}

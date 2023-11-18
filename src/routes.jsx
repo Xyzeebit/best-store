@@ -156,6 +156,7 @@ const router = createBrowserRouter([
   {
     path: "deals/:itemId",
     element: <Details />,
+    errorElement: <ErrorBoundary path="/" message="Unable to load data" />,
     loader: ({ param }) => {
       console.log(param);
       return null;
@@ -164,6 +165,7 @@ const router = createBrowserRouter([
   {
     path: ":category/:itemId",
     element: <Details />,
+    errorElement: <ErrorBoundary path="/" message="Unable to load data" />,
     loader: ({ param }) => {
       console.log(param);
       return null;
