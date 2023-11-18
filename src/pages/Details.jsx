@@ -30,19 +30,28 @@ const Details = () => {
               <ViewItem images={data.images} />
             </div>
 
-            <div className="w-full md:w-1/2 md:p-4 rounded-xl border-2 border-gray-500">
+            <div className="w-full md:w-1/2 p-4 rounded-xl border-2 border-gray-500 bg-white">
               <h1 className="font-bold text-2xl">{data.title}</h1>
               <p className="pt-4 pb-4">{data.description}</p>
-              <div className="pb-4">
-                <Rating rating={data.rating} />
+              <div className="pb-4 flex gap-4 justify-start items-center">
+                <Rating rating={data.rating[0]} />
+                <small>({data.rating[1]})</small>
               </div>
               <div className="flex gap-4 justify-start items-center font-semibold">
                 <p className="text-xl text-green-900">${data.prices[0]}</p>
                 {data.prices[1] && (
                   <p className="text-red-500">
-                    <s>{data.prices[1]}</s>
+                    <s>${data.prices[1]}</s>
                   </p>
                 )}
+              </div>
+              <div className="pt-12 flex items-center justify-center gap-4 md:gap-6 text-xs md:text-sm">
+                <button className="bg-green-900 border-2 border-green-900 rounded-3xl text-white font-semibold px-8 md:px-10 lg:px-14 py-2 shadow-sm hover:bg-red-500 hover:border-red-500">
+                  Buy now
+                </button>
+                <button className="bg-gray-100 rounded-3xl text-grey-900 font-semibold px-8 md:px-10 lg:px-14 py-2 border-2 border-grey-500 shadow-sm hover:bg-red-500 hover:border-red-500 hover:text-white">
+                  Add to Cart
+                </button>
               </div>
             </div>
           </div>

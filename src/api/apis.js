@@ -121,7 +121,7 @@ export async function getDataByCategoryAndId(category, id) {
     id,
     description: "White designer sneakers, size 26",
     prices: ["150.45", "160.45"],
-    rating: 4.5,
+    rating: [4.5, 27],
     quantitiesLeft: 12,
     title: "Sneakers",
     images: [footwear, clothes, stationery],
