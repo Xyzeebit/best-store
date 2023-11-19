@@ -2,13 +2,14 @@ import { useParams } from "react-router-dom";
 import { Layout } from "../components/core";
 import ViewItem from "../components/products/ViewItem";
 import { useEffect, useState } from "react";
-import { getDataByCategoryAndId } from "../api/apis";
+import { addItemToRecentViews, getDataByCategoryAndId } from "../api/apis";
 import Rating from "../components/core/Rating";
 import { addToCart, removeFromCart } from "../redux/categoriesSlice";
 import { useDispatch } from "react-redux";
 
 import minus from '../assets/icons/minus-circle-icon.svg'
 import plus from "../assets/icons/plus-circle-icon.svg";
+import RecentViews from "../components/products/RecentViews";
 
 
 const Details = () => {
@@ -31,6 +32,10 @@ const Details = () => {
   }
 
   useEffect(() => {
+    document.title = `Bestore collections |  ${data.title ? data.title : ''}`;
+  }, [data?.title]);
+
+  useEffect(() => {
       const { category, itemId } = param;
       async function getData() {
           const resp = await getDataByCategoryAndId(category, itemId);
@@ -41,6 +46,12 @@ const Details = () => {
       }
       getData();
   }, [param]);
+
+  useEffect(() => {
+    if (data.id) {
+      addItemToRecentViews(data);
+    }
+  }, [data]);
 
   return (
     <Layout renderHeader={true}>
@@ -123,6 +134,7 @@ const Details = () => {
           </div>
         </div>
       )}
+      {!loading && <RecentViews id={data.id} />}
     </Layout>
   );
 }
