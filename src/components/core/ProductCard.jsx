@@ -7,7 +7,7 @@ import iconFavoriteFilled from '../../assets/icons/favorite-filled.svg';
 import { addToCart, removeFromCart } from "../../redux/categoriesSlice";
 import { useDispatch } from "react-redux";
 
-const ProductCard = ({ id, title, image, prices, category }) => {
+const ProductCard = ({ id, title, image, prices, category, optional }) => {
     const [favorite, setFavorite] = useState(false);
     const dispatch = useDispatch();
     const handleAddToCart = item => {
@@ -45,7 +45,7 @@ const ProductCard = ({ id, title, image, prices, category }) => {
             )}
           </div>
         </div>
-        <div className="absolute top-3 right-3 rounded-full bg-gray-200 flex items-center justify-center w-10 h-10">
+        {!optional && <div className="absolute top-3 right-3 rounded-full bg-gray-200 flex items-center justify-center w-10 h-10">
           <img
             src={favorite ? iconFavoriteFilled : iconFavorite}
             width={25}
@@ -53,7 +53,7 @@ const ProductCard = ({ id, title, image, prices, category }) => {
             alt="Add to cart"
             onClick={() => handleAddToCart({ id, title, prices })}
           />
-        </div>
+        </div>}
       </div>
     );
 }
@@ -64,6 +64,7 @@ ProductCard.propTypes = {
     image: PropTypes.string.isRequired,
     prices: PropTypes.array.isRequired,
     category: PropTypes.string.isRequired,
+    optional: PropTypes.bool,
 }
 
 export default ProductCard;

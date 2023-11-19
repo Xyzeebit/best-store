@@ -62,9 +62,12 @@ export const categoriesSlice = createSlice({
     },
       
     addToCart: (state, action) => {
-      const item = action.payload.item;
-      state.cart.push(item);
-      state.cartItemCounter++;
+      const item = action.payload;
+      const index = state.cart.findIndex((it) => it?.id === item.id);
+      if (index == -1) {
+        state.cart.push(item);
+        state.cartItemCounter++;
+      }
       return state;
     },
 

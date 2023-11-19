@@ -1,5 +1,5 @@
 import TopProductsList from "./TopProductsList";
-import icon from "../../assets/smartphone.png";
+import icon from "../../assets/phone1.webp";
 import makeup from '../../assets/makeup.jpg'
 import ProductCard from "./ProductCard";
 

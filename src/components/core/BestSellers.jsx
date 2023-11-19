@@ -69,6 +69,7 @@ const BestSellers = () => {
             image={item.image}
             prices={item.prices}
             category={item.category}
+            optional={false}
           />
         );
       })}

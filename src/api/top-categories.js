@@ -1,7 +1,7 @@
 import { nanoid } from "@reduxjs/toolkit";
 
-import phone from "../assets/smartphone.png";
-import laptop from "../assets/kadican.webp";
+import phone from "../assets/phone2.webp";
+import laptop from "../assets/laptop.jpg";
 import shirt from "../assets/mens-shirt.webp";
 import makeup from "../assets/makeup.jpg";
 import toys from "../assets/toys.jpg";
