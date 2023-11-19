@@ -137,26 +137,54 @@ export function getRecentViews() {
   let recentViews = [];
   try {
     data = JSON.parse(data);
-    recentViews = data.recentViews;
+    recentViews = [...data.recentViews];
   } catch (error) {
     console.log(error);
   }
-  return recentViews;
+  return recentViews.reverse();
 }
 
 export function addItemToRecentViews(item) {
-  const storage = getRecentViews();
-  item = storage.recentViews.find(it => it.id === item.id);
-  if (item) {
+  let storage = localStorage.getItem('bestore');
+  if (!storage) {
+    const obj = {
+      user: {
+        id: "",
+        isLoggedIn: false,
+      },
+      recentViews: [],
+    };
+    try {
+      localStorage.setItem("bestore", JSON.stringify(obj));
+      storage = localStorage.getItem("bestore");
+      try {
+        storage = JSON.parse(storage);
+      } catch (error) {
+        console.log(error);
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  } else {
+    try {
+      storage = JSON.parse(storage);
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  const found = storage.recentViews.find(it => it.id === item.id);
+  if (found) {
+    return;
+  } else {
     if (storage.recentViews.length > 15) {
       storage.recentViews.splice(0, 1, ...[item]);
     } else {
       storage.recentViews.push(item);
     }
     try {
-      localStorage.setItem('bestore', JSON.stringify(storage))
+      localStorage.setItem("bestore", JSON.stringify(storage));
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   }
 

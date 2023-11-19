@@ -56,7 +56,7 @@ const Details = () => {
   return (
     <Layout renderHeader={true}>
       {!loading && (
-        <div className="px-4 md:px-16 py-4 md:py-8 flex flex-col md:flex-row justify-center items-start gap-4 bg-white shadow">
+        <div className="px-4 md:px-16 py-4 md:py-8 mb-12 flex flex-col md:flex-row justify-center items-start gap-4 bg-white shadow">
           <div className="w-full md:w-1/2 overflow-hidden rounded-xl border-2 border-gray-500">
             <ViewItem images={data.images} />
           </div>

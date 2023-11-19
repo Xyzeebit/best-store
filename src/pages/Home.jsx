@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Container, Carousel, TopCategories, NewArrivals, BestSellers, DealsOfTheDay, Footer, Promotion, FlashSales, Layout } from "../components/core";
+import { Container, Carousel, TopCategories, NewArrivals, BestSellers, DealsOfTheDay, Promotion, FlashSales, Layout } from "../components/core";
 
 const HomePage = () => {
   useEffect(() => {
@@ -15,7 +15,6 @@ const HomePage = () => {
         <FlashSales />
         <BestSellers />
         <Promotion />
-        <Footer />
       </Container>
     </>
   );

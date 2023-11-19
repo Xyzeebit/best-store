@@ -16,7 +16,7 @@ const RecentViews = ({ id }) => {
     }
 
     return (
-        <div className="px-4 md:px-16 py-8">
+        <div className="px-4 md:px-16 pt-8 pb-16">
             <h2 className='font-bold text-green-900 pt-4 pb-4 text-xl'>Recently viewed</h2>
             <div className='flex justify-start items-center gap-4 md:gap-6 pb-8 overflow-auto top-pro'>
                 {items.map((item) => (
