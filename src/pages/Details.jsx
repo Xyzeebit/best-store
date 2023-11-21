@@ -9,6 +9,10 @@ import { useDispatch } from "react-redux";
 
 import minus from '../assets/icons/minus-circle-icon.svg'
 import plus from "../assets/icons/plus-circle-icon.svg";
+import truckIcon from "../assets/icons/delivery-truck-icon.svg";
+import boxIcon from "../assets/icons/return-box-shipping-icon.svg";
+
+
 import RecentViews from "../components/products/RecentViews";
 
 
@@ -81,12 +85,14 @@ const Details = () => {
                 </p>
               )}
             </div>
-            {data.discount > 0 && (<div className="pb-8 text-sm">
-              <span className="text-red-500 font-semibold">
-                {data.discount}%
-              </span>{" "}
-              <span className="text-gray-900">discount</span>
-            </div>)}
+            {data.discount > 0 && (
+              <div className="pb-8 text-sm">
+                <span className="text-red-500 font-semibold">
+                  {data.discount}%
+                </span>{" "}
+                <span className="text-gray-900">discount</span>
+              </div>
+            )}
             <hr />
             <div className="flex justify-center items-center gap-4 pt-8">
               <button
@@ -119,8 +125,10 @@ const Details = () => {
                 />
               </button>
             </div>
-            <small className="text-center block text-xs text-green-900 p-2">{ data.quantityLeft } item(s) left</small>
-            <div className="pt-12 flex items-center justify-center gap-4 md:gap-6 text-xs">
+            <small className="text-center block text-xs text-green-900 p-2">
+              only {data.quantityLeft} item(s) left
+            </small>
+            <div className="pt-12 pb-8 flex items-center justify-center gap-4 md:gap-6 text-xs">
               <button className="bg-green-900 border-2 border-green-900 rounded-3xl text-white font-semibold px-8 md:px-10 lg:px-14 py-2 shadow-sm hover:bg-red-500 hover:border-red-500">
                 Buy now
               </button>
@@ -128,8 +136,19 @@ const Details = () => {
                 className="bg-gray-100 rounded-3xl text-grey-900 font-semibold px-8 md:px-10 lg:px-14 py-2 border-2 border-grey-500 shadow-sm hover:bg-red-500 hover:border-red-500 hover:text-white"
                 onClick={addItemToCart}
               >
-                {addedToCart ? "Remove from Cart" : "Add to Cart" }
+                {addedToCart ? "Remove from Cart" : "Add to Cart"}
               </button>
+            </div>
+            <hr />
+            <div className="pt-8 text-sm text-gray-900">
+              <p className="flex justify-start items-center gap-4 pb-2">
+                <img src={truckIcon} alt="free delivery" width={20} height={20} />{" "}
+                <span>Free delivery</span>
+              </p>
+              <p className="flex justify-start items-center gap-4">
+                <img src={boxIcon} alt="free delivery" width={20} height={20} />
+                <span>Return delivery</span>
+              </p>
             </div>
           </div>
         </div>
