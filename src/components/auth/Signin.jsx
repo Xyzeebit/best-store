@@ -4,7 +4,7 @@ import AuthForm from "./AuthForm";
 
 const Signin = () => {
     return (
-      <Layout>
+      <Layout renderHeader={false}>
         <div className="flex items-center justify-center p-4 md:p-10 mb-10">
           <AuthForm signIn={true} />
         </div>
