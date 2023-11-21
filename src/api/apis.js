@@ -6,6 +6,14 @@ import footwear from "../assets/footwear.jpg";
 import makeup from "../assets/makeup.jpg";
 import appliances from "../assets/appliances.jpg";
 
+// import { createClient } from "@supabase/supabase-js";
+
+// // Create a single supabase client for interacting with your database
+// const supabase = createClient(
+//   "https://xyzcompany.supabase.co",
+//   "public-anon-key"
+// );
+
 export const BANNER_ITEMS = [
   {
     id: nanoid(8),
@@ -49,7 +57,6 @@ export const DEALS_ITEM = [
   },
 ];
 
-
 export const PRODUCTS = [
   {
     id: nanoid(16),
@@ -60,23 +67,23 @@ export const PRODUCTS = [
     categories: [],
     tags: [],
     brand: "",
-  }
+  },
 ];
 
 export function isValidEmail(email) {
-  if (typeof email !== 'string')
+  if (typeof email !== "string")
     return [false, "Email must be valid character set"];
   email = email.trim();
   const pattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
   if (!pattern.test(email)) {
     return [false, "Email address not valid"];
   }
-  const [local, domain] = email.split('@');
+  const [local, domain] = email.split("@");
   if (local.length === 0 || domain.length === 0) {
     return [false, "Email address too short"];
   }
-  if (domain.includes('.')) {
-    const domains = domain.split('.');
+  if (domain.includes(".")) {
+    const domains = domain.split(".");
     for (const p of domains) {
       if (p.length < 2) {
         return [false, "Invalid sub domain"];
@@ -85,7 +92,7 @@ export function isValidEmail(email) {
   } else {
     return [false, "Invalid email address"];
   }
-  return [true, 'success'];
+  return [true, "success"];
 }
 
 export function isValidPassword(pwd) {
@@ -133,7 +140,7 @@ export async function getDataByCategoryAndId(category, id) {
 }
 
 export function getRecentViews() {
-  let data = localStorage.getItem('bestore');
+  let data = localStorage.getItem("bestore");
   let recentViews = [];
   try {
     data = JSON.parse(data);
@@ -145,7 +152,7 @@ export function getRecentViews() {
 }
 
 export function addItemToRecentViews(item) {
-  let storage = localStorage.getItem('bestore');
+  let storage = localStorage.getItem("bestore");
   if (!storage) {
     const obj = {
       user: {
@@ -163,16 +170,16 @@ export function addItemToRecentViews(item) {
         console.log(error);
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   } else {
     try {
       storage = JSON.parse(storage);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   }
-  const found = storage.recentViews.find(it => it.id === item.id);
+  const found = storage.recentViews.find((it) => it.id === item.id);
   if (found) {
     return;
   } else {
@@ -187,5 +194,79 @@ export function addItemToRecentViews(item) {
       console.log(error);
     }
   }
-
 }
+
+export async function signout() {
+  // clear record
+  return true;
+}
+
+// async function signUpNewUser() {
+//   const { data, error } = await supabase.auth.signUp({
+//     email: 'example@email.com',
+//     password: 'example-password',
+//     options: {
+//       emailRedirectTo: 'https//example.com/welcome'
+//     }
+//   })
+// }
+
+// async function signOut() {
+//   const { error } = await supabase.auth.signOut()
+// }
+
+// async function signInWithEmail() {
+//   const { data, error } = await supabase.auth.signInWithPassword({
+//     email: 'example@email.com',
+//     password: 'example-password'
+//   })
+// }
+
+// async function uploadImage(file) {
+//   // const avatarFile = event.target.files[0];
+//   const { data, error } = await supabase.storage
+//     .from("avatars")
+//     .upload("best-store/images/file.name.png", file, {
+//       cacheControl: "3600",
+//       upsert: false,
+//     });
+//   if (error) {
+//   } else {
+//     console.log(data.Key);
+//   }
+// }
+
+// async function downloadImage() {
+//   const { data, error } = await supabase.storage
+//     .from("bucket-name")
+//     .download("path/to/image.jpg", {
+//       transform: { width: 640, height: 480, fit: "clip" },
+//     });
+// }
+
+// async function create(data) {
+
+// }
+
+// async function read(option) {
+  
+// const { data, error } = await supabase.from("countries").select(`
+//     name,
+//     cities (
+//       name
+//     )
+//   `);
+
+  
+// const { count, error } = await supabase
+//   .from("countries")
+//   .select("*", { count: "exact", head: true });
+// }
+
+// async function update(data) {
+
+// }
+
+// async function remove(option) {
+
+// }
