@@ -5,6 +5,9 @@ import Auth from "./pages/Auth";
 import Products from "./pages/Products";
 import Error404 from "./pages/error-page";
 import Details from './pages/Details';
+import Profile from "./pages/Profile";
+import Cart from "./pages/Cart";
+import SignOut from './pages/SignOut'
 
 const router = createBrowserRouter([
   {
@@ -48,8 +51,28 @@ const router = createBrowserRouter([
     ),
   },
   {
+    path: "/signout",
+    element: <SignOut />,
+    errorElement: (
+      <ErrorBoundary
+        message="Oops!!! an error occurred while loading this page"
+        path="/"
+      />
+    ),
+  },
+  {
+    path: "/account",
+    element: <Profile />,
+    errorElement: (
+      <ErrorBoundary
+        message="Oops!!! an error occurred while loading this page"
+        path="/"
+      />
+    ),
+  },
+  {
     path: "/cart",
-    element: <h1>Cart</h1>,
+    element: <Cart />,
     errorElement: (
       <ErrorBoundary
         message="Oops!!! an error occurred while loading this page"

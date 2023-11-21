@@ -1,11 +1,13 @@
 import AuthForm from "./AuthForm";
-
+import { Layout } from "../core";
 
 const Register = () => {
     return (
-      <div className="flex items-center justify-center p-4 md:p-10">
-        <AuthForm signIn={false} />
-      </div>
+      <Layout renderHeader={false}>
+        <div className="flex items-center justify-center p-4 md:p-10 mb-10">
+          <AuthForm signIn={false} />
+        </div>
+      </Layout>
     );
 }
 

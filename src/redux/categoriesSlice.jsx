@@ -81,6 +81,14 @@ export const categoriesSlice = createSlice({
       return state;
     },
 
+    updateCartItem: (state, action) => {
+      const index = state.cart.findIndex(it => it.id === action.payload.id);
+      if (index != 1) {
+        state.cart[index] = { ...state.cart[index], ...action.payload };
+      }
+      return state;
+    },
+
     fetchCategories: (state, { payload }) => {
       if (payload.ok) {
         state.loading = false;
@@ -96,6 +104,6 @@ export const categoriesSlice = createSlice({
   }
 });
 
-export const { searchProduct, addToCart, removeFromCart, fetchCategories } = categoriesSlice.actions;
+export const { searchProduct, addToCart, removeFromCart, updateCartItem, fetchCategories } = categoriesSlice.actions;
 
 export default categoriesSlice.reducer;

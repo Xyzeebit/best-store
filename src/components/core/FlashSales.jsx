@@ -7,8 +7,8 @@ import { useEffect, useState } from "react"
 import FlashSalesItem from './FlashSalesItem';
 
 const timer = {
-  hours: 1,
-  minutes: 2
+  hours: 18,
+  minutes: 54
 };
 const flashSales = [
   {

@@ -15,9 +15,9 @@ const Error = ({ message, path }) => (
       />
     </div>
     <div className="font-bold text-3xl text-center text-gray-900">{message}</div>
-    <div className="inline-flex items-center justify-center w-full mt-4">
+    <div className="inline-flex items-center justify-center w-full mt-8 mb-12">
       <Link to={path} className="bg-green-900 hover:bg-red-500 text-white px-8 py-2 rounded-3xl shadow">
-        Retry
+        Return home
       </Link>
     </div>
   </div>

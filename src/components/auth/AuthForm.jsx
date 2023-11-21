@@ -1,37 +1,60 @@
 import { Link } from "react-router-dom";
-import { useState, useEffect } from 'react';
-import PropTypes from 'prop-types'
-import googleIcon from '../../assets/icons/google-icon.svg';
-import { createUserWithEmailAndPassword, isValidEmail, isValidPassword, signInWithEmailAndPassword } from '../../api/apis';
-import { useNavigate } from 'react-router-dom';
-import { updateUser } from '../../redux/userSlice';
-import { useDispatch, useSelector } from 'react-redux';
+import { useState, useEffect } from "react";
+import PropTypes from "prop-types";
+import googleIcon from "../../assets/icons/google-icon.svg";
+import {
+  createUserWithEmailAndPassword,
+  isValidEmail,
+  isValidPassword,
+  signInWithEmailAndPassword,
+} from "../../api/apis";
+import { useNavigate } from "react-router-dom";
+import { updateUser } from "../../redux/userSlice";
+import { useDispatch, useSelector } from "react-redux";
 
-const AuthForm = ({signIn}) => {
-  const { isLoggedIn } = useSelector(state => state.user);
-    const [email, setEmail] = useState('');
-    const [emailErr, setEmailErr] = useState([false, 'Email address cannot be empty']); 
-    const [pwd, setPwd] = useState('');
-    const [pwdErr, setPwdErr] = useState(false);
-    const [cpwd, setCPwd] = useState('');
-    const [cpwdErr, setCPwdErr] = useState(false);
-    const [shouldContinue, setShouldContinue] = useState(false);
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
+const AuthForm = ({ signIn }) => {
+  const { isLoggedIn } = useSelector((state) => state.user);
+  const [firstname, setFirstname] = useState("");
+  const [firstnameErr, setFirstnameErr] = useState(false);
+  const [lastname, setLastname] = useState("");
+  const [lastnameErr, setLastnameErr] = useState(false);
+  const [email, setEmail] = useState("");
+  const [emailErr, setEmailErr] = useState([
+    false,
+    "Email address cannot be empty",
+  ]);
+  const [pwd, setPwd] = useState("");
+  const [pwdErr, setPwdErr] = useState(false);
+  const [cpwd, setCPwd] = useState("");
+  const [cpwdErr, setCPwdErr] = useState(false);
+  const [shouldContinue, setShouldContinue] = useState([false, false]);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const handleContinue = () => {
+  const handleContinueToPwd = () => {
     if (email.trim()) {
       const [valid, text] = isValidEmail(email);
       if (valid) {
-        setShouldContinue(true);
-        setEmailErr([false, ""])
+        setShouldContinue([true, false]);
+        setEmailErr([false, ""]);
       } else {
         setEmailErr([true, text]);
       }
     } else {
       setEmailErr([true, "Email address cannot be empty"]);
     }
-  }
+  };
+  const handleContinueToName = () => {
+    if (isValidPassword(pwd)) {
+      if (pwd === cpwd) {
+        setShouldContinue([true, true])
+      } else {
+        setCPwdErr(true)
+      }
+    } else {
+      setPwdErr(true)
+    }
+  };
 
   const handleSubmit = async () => {
     if (signIn) {
@@ -45,10 +68,19 @@ const AuthForm = ({signIn}) => {
     } else {
       if (isValidPassword(pwd)) {
         if (cpwd === pwd) {
-          const user = await createUserWithEmailAndPassword(email, pwd);
-          setPwdErr(false);
-          setCPwdErr(false);
-          dispatch(updateUser(user));
+          if (firstname.length >= 2) {
+            if (lastname.length >= 2) {
+              const user = await createUserWithEmailAndPassword(email, pwd);
+              user.name = firstname + " " + lastname;
+              setPwdErr(false);
+              setCPwdErr(false);
+              dispatch(updateUser(user));
+            } else {
+              setLastnameErr(true);
+            }
+          } else {
+            setFirstnameErr(true);
+          }
         } else {
           setCPwdErr(true);
         }
@@ -56,15 +88,15 @@ const AuthForm = ({signIn}) => {
         setPwdErr(true);
       }
     }
-  }
+  };
 
-    useEffect(() => {
-      document.title = `Bestore | ${signIn ? 'Sign in' : 'Create an Account'}`
-    }, [signIn]);
-  
+  useEffect(() => {
+    document.title = `Bestore | ${signIn ? "Sign in" : "Create an Account"}`;
+  }, [signIn]);
+
   useEffect(() => {
     if (isLoggedIn) {
-      navigate('/');
+      navigate("/");
     }
   }, [isLoggedIn, navigate]);
 
@@ -80,15 +112,16 @@ const AuthForm = ({signIn}) => {
           width={25}
           height={25}
         />
-        <span className="text-white">Google Sign {signIn ? 'in' : 'up'}</span>
+        <span className="text-white">Google Sign {signIn ? "in" : "up"}</span>
       </button>
       <hr />
       <p className="py-4 font-semibold">Continue with email</p>
       <div className="flex flex-col">
         <div>
           <small
-            className={`${emailErr[0] ? "block" : "hidden"
-              } pb-2 text-red-600 font-semibold`}
+            className={`${
+              emailErr[0] ? "block" : "hidden"
+            } pb-2 text-red-600 font-semibold`}
           >
             *{emailErr[1]}
           </small>
@@ -100,21 +133,22 @@ const AuthForm = ({signIn}) => {
             className={` font-semibold transition-all px-2 py-2 outline-2 outline-gray-900 focus:outline-2 focus:outline-green-900 focus:border-none outline-none w-full rounded-md`}
           />
         </div>
-        {shouldContinue == false && (
+        {shouldContinue[0] == false && (
           <button
-            onClick={handleContinue}
+            onClick={handleContinueToPwd}
             className="w-48 m-auto bg-gray-950 text-white font-semibold rounded-3xl px-6 py-2 mt-6 shadow-sm hover:bg-red-500"
           >
             Continue
           </button>
         )}
       </div>
-      {shouldContinue && (
+      {shouldContinue[0] && (
         <div className="mt-8 flex flex-col">
           <div>
             <small
-              className={`${pwdErr ? "block" : "hidden"
-                } pb-2 text-red-600 font-semibold`}
+              className={`${
+                pwdErr ? "block" : "hidden"
+              } pb-2 text-red-600 font-semibold`}
             >
               *Password should be at least 6 characters long
             </small>
@@ -129,8 +163,9 @@ const AuthForm = ({signIn}) => {
           {!signIn && (
             <div className="pt-8">
               <small
-                className={`${cpwdErr ? "block" : "hidden"
-                  } pb-2 text-red-600 font-semibold`}
+                className={`${
+                  cpwdErr ? "block" : "hidden"
+                } pb-2 text-red-600 font-semibold`}
               >
                 *Passwords do not match
               </small>
@@ -143,14 +178,72 @@ const AuthForm = ({signIn}) => {
               />
             </div>
           )}
-          <button
-            onClick={handleSubmit}
-            className="w-48 m-auto bg-gray-950 text-white font-semibold rounded-3xl px-6 py-2 mt-6 mb-4 shadow-sm hover:bg-red-500"
-          >
-            {signIn ? "Sign in" : "Create account"}
-          </button>
+          {!signIn && shouldContinue[1] == false && (
+            <button
+              onClick={handleContinueToName}
+              className="w-48 m-auto bg-gray-950 text-white font-semibold rounded-3xl px-6 py-2 mt-6 shadow-sm hover:bg-red-500"
+            >
+              Continue
+            </button>
+          )}
         </div>
       )}
+      {
+        <div className="flex flex-col">
+          {shouldContinue[1] && (
+            <div>
+              <div className="pt-8">
+                <small
+                  className={`${
+                    firstnameErr ? "block" : "hidden"
+                  } pb-2 text-red-600 font-semibold`}
+                >
+                  *Enter a valid name
+                </small>
+                <input
+                  type="text"
+                  value={firstname}
+                  onChange={({ target }) => setFirstname(target.value)}
+                  placeholder="First name"
+                  className=" font-semibold transition-all px-2 py-2 outline-2 outline-gray-900 focus:outline-2 focus:outline-green-900 focus:border-none outline-none w-full rounded-md"
+                />
+              </div>
+              <div className="pt-8">
+                <small
+                  className={`${
+                    lastnameErr ? "block" : "hidden"
+                  } pb-2 text-red-600 font-semibold`}
+                >
+                  *Enter a valid name
+                </small>
+                <input
+                  type="text"
+                  value={lastname}
+                  onChange={({ target }) => setLastname(target.value)}
+                  placeholder="Last name"
+                  className=" font-semibold transition-all px-2 py-2 outline-2 outline-gray-900 focus:outline-2 focus:outline-green-900 focus:border-none outline-none w-full rounded-md"
+                />
+              </div>
+            </div>
+          )}
+          {shouldContinue[0] && signIn && (
+            <button
+              onClick={handleSubmit}
+              className="w-48 m-auto bg-gray-950 text-white font-semibold rounded-3xl px-6 py-2 mt-6 mb-4 shadow-sm hover:bg-red-500"
+            >
+              {signIn ? "Sign in" : "Create account"}
+            </button>
+          )}
+          {shouldContinue[1] && !signIn && (
+            <button
+              onClick={handleSubmit}
+              className="w-48 m-auto bg-gray-950 text-white font-semibold rounded-3xl px-6 py-2 mt-6 mb-4 shadow-sm hover:bg-red-500"
+            >
+              {signIn ? "Sign in" : "Create account"}
+            </button>
+          )}
+        </div>
+      }
       <div className="text-sm text-center pt-4">
         {signIn ? (
           <p>
@@ -170,7 +263,7 @@ const AuthForm = ({signIn}) => {
       </div>
     </div>
   );
-}
+};
 
 AuthForm.propTypes = {
   signIn: PropTypes.bool.isRequired,
