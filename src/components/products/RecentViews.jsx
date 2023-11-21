@@ -21,7 +21,7 @@ const RecentViews = ({ id }) => {
             <div className='flex justify-start items-center gap-4 md:gap-6 pb-8 overflow-auto top-pro'>
                 {items.map((item) => (
                     <ProductCard
-                        key={item.title}
+                        key={item.id}
                         id={item.id}
                         title={item.title}
                         image={item.images[0]}
