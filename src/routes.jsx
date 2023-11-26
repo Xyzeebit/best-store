@@ -7,7 +7,9 @@ import Error404 from "./pages/error-page";
 import Details from './pages/Details';
 import Profile from "./pages/Profile";
 import Cart from "./pages/Cart";
+import Checkout from './pages/Checkout';
 import SignOut from './pages/SignOut'
+import NotFound from "./pages/NotFound";
 
 const router = createBrowserRouter([
   {
@@ -204,83 +206,83 @@ const router = createBrowserRouter([
   },
   {
     path: "/about",
-    element: <h1>About Bestore</h1>,
+    element: <NotFound />,
     children: [
       {
         path: "/about/career",
-        element: <h1>Career</h1>,
+        element: <NotFound />,
       },
       {
         path: "/about/affiliate-and-partners",
-        element: <h1>Affiliate and Partners</h1>,
+        element: <NotFound />,
       },
     ],
   },
   {
     path: "/blog",
-    element: <h1>Blog</h1>,
+    element: <NotFound />,
   },
   {
     path: "/services",
-    element: <h1>Services</h1>,
+    element: <NotFound />,
     children: [
       {
         path: "/services/coupons",
-        element: <h1>Coupons and Gifts</h1>,
+        element: <NotFound />,
       },
       {
         path: "/services/apps",
-        element: <h1>Mobile App</h1>,
+        element: <NotFound />,
       },
       {
         path: "/services/merchant",
-        element: <h1>Become a Merchant</h1>,
+        element: <NotFound />,
       },
     ],
   },
   {
     path: "/help",
-    element: <h1>Help</h1>,
+    element: <NotFound />,
     children: [
       {
         path: "/help/returns",
-        element: <h1>Returns</h1>,
+        element: <NotFound />,
       },
       {
         path: "/help/track-orders",
-        element: <h1>Track Orders</h1>,
+        element: <NotFound />,
       },
       {
         path: "/help/contact",
-        element: <h1>Contact us</h1>,
+        element: <NotFound />,
       },
       {
         path: "/help/security-and-fraud",
-        element: <h1>Security and Fraud</h1>,
+        element: <NotFound />,
       },
     ],
   },
   {
     path: "/terms-of-use",
-    element: <h1>Terms of Use</h1>,
+    element: <NotFound />,
   },
   {
     path: "/privacy-policy",
-    element: <h1>Privacy Policy</h1>,
+    element: <NotFound />,
   },
   {
     path: "/promotions",
-    element: <h1>Promotions</h1>,
+    element: <NotFound />,
     children: [
       {
         path: "/promotions/cashback",
-        element: <h1>Cashback</h1>,
+        element: <NotFound />,
       },
     ],
   },
   {
     path: "/checkout",
-    element: <h1>Checkout</h1>,
+    element: <Checkout />,
   },
   {
     path: "*",
