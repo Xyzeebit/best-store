@@ -1,21 +1,19 @@
 import PropTypes from "prop-types";
+import { useState } from 'react';
+import visaIcon from "../../assets/icons/visa_icon.svg";
+import mastercardIcon from "../../assets/icons/mastercard_icon.svg";
+import paypalIcon from "../../assets/icons/paypal_icon.svg";
+import gpayIcon from "../../assets/icons/gpay_icon.svg";
 
-const orders = [
-  {
-    id: "kdskj0jn",
-    price: "150.45",
-    title: "iWatch",
-    quantity: 1,
-  },
-  {
-    id: "kdskj09jn",
-    price: "850.00",
-    title: "Laptop XS-119",
-    quantity: 2,
-  },
-];
+const CheckoutPanel = ({ orders }) => {
+  const [coupon, setCoupon] = useState('');
+  const [applyCoupon, setApplyCoupon] = useState(false);
+  const [paymentMethod, setPaymentMethod] = useState("");
 
-const CheckoutPanel = () => {
+  const handleSubmit = () => {
+
+  }
+
   return (
     <div className="px-4 md:px-16 py-12">
       <div className="flex justify-center gap-6 items-start flex-col md:flex-row">
@@ -25,9 +23,10 @@ const CheckoutPanel = () => {
               Review items and shipping
             </h1>
             <ul>
-              {orders.map((order) => (
-                <Order key={order.id} {...order} />
-              ))}
+              {orders &&
+                orders.orders.map((order) => (
+                  <Order key={order.id} {...order} />
+                ))}
             </ul>
           </div>
 
@@ -35,33 +34,138 @@ const CheckoutPanel = () => {
             <h2 className="text-gray-800 font-bold py-4">
               Delivery Information
             </h2>
-            <DeliveryAddress />
+            <DeliveryAddress deliveryInfo={orders.deliveryDetails} />
           </div>
         </div>
 
-        <div className="md:w-1/2">
-          <h1>Order Summary</h1>
-          <div>
-            <input type="text" placeholder="Enter coupon code" />
-            <button>Apply coupon</button>
+        <form
+          className="md:w-1/2 bg-white p-4 rounded shadow"
+          onSubmit={handleSubmit}
+        >
+          <h1 className="text-gray-800 font-bold py-4">Order Summary</h1>
+          <div className="border-2 flex rounded-full overflow-hidden">
+            <input
+              className="w-full h-10 px-4 outline-none font-semibold"
+              type="text"
+              value={coupon}
+              placeholder="Enter coupon code"
+              onChange={({ target }) => setCoupon(target.value)}
+            />
+            <button
+              role="button"
+              type="button"
+              onClick={() => setApplyCoupon(!applyCoupon)}
+              className={`w-40 text-white text-xs rounded-3xl ${
+                applyCoupon ? "bg-red-500" : "bg-green-900"
+              } py-2 shadow-lg`}
+            >
+              Apply coupon
+            </button>
           </div>
-          <p>Payment Methods</p>
+          <p className="text-gray-800 font-bold pt-8 pb-4">Payment Methods</p>
           <div>
             <ul>
-              <li>Cash on Delivery</li>
-              <li>Shopcart Card</li>
-              <li>Paypal</li>
-              <li>Credit or Debit Card</li>
+              <li className="flex items-center justify-start gap-3 pb-2">
+                <input
+                  type="radio"
+                  name="payment"
+                  onChange={() => setPaymentMethod("cash")}
+                  value={paymentMethod}
+                  id="cash"
+                  className="w-5 h-5"
+                />
+                <label htmlFor="cash" className="text-green-900 font-semibold">
+                  Cash on Delivery
+                </label>
+              </li>
+              <li className="flex items-center justify-start gap-3 pb-2">
+                <input
+                  type="radio"
+                  name="payment"
+                  onChange={() => setPaymentMethod("gpay")}
+                  value={paymentMethod}
+                  id="gpay"
+                  className="w-5 h-5"
+                />
+                <label htmlFor="gpay" className="text-green-900 font-semibold">
+                  Google Pay
+                </label>
+              </li>
+              <li className="flex items-center justify-start gap-3 pb-2">
+                <input
+                  type="radio"
+                  name="payment"
+                  onChange={() => setPaymentMethod("paypal")}
+                  value={paymentMethod}
+                  id="paypal"
+                  className="w-5 h-5"
+                />
+                <label
+                  htmlFor="paypal"
+                  className="text-green-900 font-semibold"
+                >
+                  Paypal
+                </label>
+              </li>
+              <li className="flex items-center justify-start gap-3 pb-2">
+                <input
+                  type="radio"
+                  name="payment"
+                  onChange={() => setPaymentMethod("card")}
+                  value={paymentMethod}
+                  id="card"
+                  className="w-5 h-5"
+                />
+                <label htmlFor="card" className="text-green-900 font-semibold">
+                  Credit or Debit Card
+                </label>
+              </li>
             </ul>
-            <div>
-              <img />
-              <img />
-              <img />
+            <div className="flex justify-center items-center gap-4">
+              <img src={visaIcon} alt="visa card" width={35} height={25} />
+              <img
+                src={mastercardIcon}
+                alt="visa card"
+                width={35}
+                height={25}
+              />
+              <img src={gpayIcon} alt="visa card" width={35} height={25} />
+              <img src={paypalIcon} alt="visa card" width={35} height={25} />
             </div>
-            <div>payment method form here | card by default</div>
-            <div>total</div>
+            {paymentMethod && (
+              <div>payment method form here | card by default</div>
+            )}
+            <div>
+              <p className="text-gray-800 font-bold pt-8 pb-4">
+                Checkout Total
+              </p>
+              <div className="flex justify-between items-center px-2 py-1">
+                <span className="font-semibold">Sub Total</span>
+                <span className="text-green-900 font-medium">${"1000.00"}</span>
+              </div>
+              <div className="flex justify-between items-center px-2 py-1">
+                <span className="font-semibold">Tax(5%)</span>
+                <span className="text-green-900 font-medium">${"1050.00"}</span>
+              </div>
+              {applyCoupon && (
+                <div className="flex justify-between items-center px-2 py-1">
+                  <span className="font-semibold">Coupon Discount</span>
+                  <span className="text-green-900 font-medium">
+                    ${"-100.00"}
+                  </span>
+                </div>
+              )}
+              <div className="flex justify-between items-center px-2 py-1">
+                <span className="font-semibold">Shipping Fee</span>
+                <span className="text-green-900 font-medium">${"0.00"}</span>
+              </div>
+              <div className="flex justify-between items-center border-b-2 px-2 py-1 mt-10 bg-gray-50">
+                <span className="font-semibold">Total</span>
+                <span className="text-green-900 font-medium text-lg">${"1050.00"}</span>
+              </div>
+            </div>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );
@@ -82,7 +186,7 @@ const Order = ({ title, price, quantity }) => (
 Order.propTypes = {
   title: PropTypes.string.isRequired,
   price: PropTypes.string.isRequired,
-  quantity: PropTypes.string.isRequired,
+  quantity: PropTypes.number.isRequired,
 };
 
 const Value = ({ label, text }) => (
@@ -97,20 +201,39 @@ Value.propTypes = {
   text: PropTypes.string.isRequired,
 }
 
-const DeliveryAddress = () => (
+const DeliveryAddress = ({ deliveryInfo }) => (
   <div className="">
     <div className="flex gap-4 justify-start items-center">
-      <Value label="First name" text="Donald" />
-      <Value label="Last name" text="Sunday" />
+      <Value label="First name" text={deliveryInfo.firstname} />
+      <Value label="Last name" text={deliveryInfo.lastname} />
     </div>
-    <Value label="Address" text="123 Fake Street" />
+    <Value label="Address" text={deliveryInfo.address} />
     <div className="flex gap-4 justify-start items-center">
-      <Value label="City/Town" text="Uyo" />
-      <Value label="Zip/Post Code" text="50012" />
+      <Value label="City" text={deliveryInfo.city} />
+      <Value label="Zip Code" text={deliveryInfo.zipCode} />
     </div>
-    <Value label="Phone" text="+234 0903 137 2176" />
-    <Value label="Email" text="gotodonald@gmail.com" />
+    <Value label="Phone" text={deliveryInfo.phone} />
+    <Value label="Email" text={deliveryInfo.email} />
   </div>
 );
+
+DeliveryAddress.propTypes = {
+  deliveryInfo: PropTypes.shape({
+    firstname: PropTypes.string.isRequired,
+    lastname: PropTypes.string.isRequired,
+    address: PropTypes.string.isRequired,
+    city: PropTypes.string.isRequired,
+    zipCode: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    phone: PropTypes.string.isRequired,
+  }),
+};
+
+CheckoutPanel.propTypes = {
+  orders: PropTypes.objectOf({
+    orders: PropTypes.array.isRequired,
+    deliveryDetails: PropTypes.array.isRequired
+  })
+}
 
 export default CheckoutPanel;
