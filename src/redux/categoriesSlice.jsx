@@ -53,6 +53,7 @@ import icon from "../assets/smartphone.png";
      city: "Uyo",
      zipCode: "50021"
    },
+   shippingCost: 3.00,
  };
    
 

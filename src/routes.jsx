@@ -283,7 +283,7 @@ const router = createBrowserRouter([
   {
     path: "/checkout",
     element: <Checkout />,
-  },
+    errorElement: <ErrorBoundary path="/" message="Page Not Found" />,  },
   {
     path: "*",
     element: <Error404 />,

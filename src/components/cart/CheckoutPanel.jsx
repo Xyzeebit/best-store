@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import visaIcon from "../../assets/icons/visa_icon.svg";
 import mastercardIcon from "../../assets/icons/mastercard_icon.svg";
 import paypalIcon from "../../assets/icons/paypal_icon.svg";
@@ -9,10 +9,31 @@ const CheckoutPanel = ({ orders }) => {
   const [coupon, setCoupon] = useState('');
   const [applyCoupon, setApplyCoupon] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState("");
+  const [total, setTotal] = useState({
+    subTotal: 0.00, totalTax: 0.00, total: 0.00
+  });
+  const TAX_RATE = 1.05; // 5% tax rate
+  const COUPON = 100.00; // coupon amount
 
   const handleSubmit = () => {
 
   }
+
+  useEffect(() => {
+    if (orders && orders.orders) {
+      let subTotal = 0;
+      orders.orders.forEach(order => {
+        subTotal += parseFloat(order.price * order.quantity)
+      });
+      let totalTax = subTotal * TAX_RATE;
+      let total = totalTax;
+      if (applyCoupon) {
+        total -= COUPON;
+      }
+      total += orders.shippingCost;
+      setTotal({ subTotal, totalTax, total });
+    }
+  }, [orders, applyCoupon]);
 
   return (
     <div className="px-4 md:px-16 py-12">
@@ -59,7 +80,7 @@ const CheckoutPanel = ({ orders }) => {
                 applyCoupon ? "bg-red-500" : "bg-green-900"
               } py-2 shadow-lg`}
             >
-              Apply coupon
+              {applyCoupon ? 'Coupon applied' : 'Apply coupon'}
             </button>
           </div>
           <p className="text-gray-800 font-bold pt-8 pb-4">Payment Methods</p>
@@ -141,27 +162,33 @@ const CheckoutPanel = ({ orders }) => {
               </p>
               <div className="flex justify-between items-center px-2 py-1">
                 <span className="font-semibold">Sub Total</span>
-                <span className="text-green-900 font-medium">${"1000.00"}</span>
+                <span className="text-green-900 font-medium">
+                  ${total.subTotal.toFixed(2)}
+                </span>
               </div>
               <div className="flex justify-between items-center px-2 py-1">
                 <span className="font-semibold">Tax(5%)</span>
-                <span className="text-green-900 font-medium">${"1050.00"}</span>
+                <span className="text-green-900 font-medium">
+                  ${total.totalTax.toFixed(2)}
+                </span>
               </div>
               {applyCoupon && (
                 <div className="flex justify-between items-center px-2 py-1">
                   <span className="font-semibold">Coupon Discount</span>
-                  <span className="text-green-900 font-medium">
-                    ${"-100.00"}
-                  </span>
+                  <span className="text-green-900 font-medium">-${COUPON}</span>
                 </div>
               )}
               <div className="flex justify-between items-center px-2 py-1">
                 <span className="font-semibold">Shipping Fee</span>
-                <span className="text-green-900 font-medium">${"0.00"}</span>
+                <span className="text-green-900 font-medium">
+                  ${orders.shippingCost.toFixed(2)}
+                </span>
               </div>
               <div className="flex justify-between items-center border-b-2 px-2 py-1 mt-10 bg-gray-50">
                 <span className="font-semibold">Total</span>
-                <span className="text-green-900 font-medium text-lg">${"1050.00"}</span>
+                <span className="text-green-900 font-medium text-lg">
+                  ${total.total.toFixed(2)}
+                </span>
               </div>
             </div>
           </div>
@@ -232,7 +259,8 @@ DeliveryAddress.propTypes = {
 CheckoutPanel.propTypes = {
   orders: PropTypes.objectOf({
     orders: PropTypes.array.isRequired,
-    deliveryDetails: PropTypes.array.isRequired
+    deliveryDetails: PropTypes.array.isRequired,
+    shippingCost: PropTypes.number.isRequired,
   })
 }
 
