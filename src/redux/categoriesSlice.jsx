@@ -34,6 +34,27 @@ import icon from "../assets/smartphone.png";
      image: icon,
    },
  ];
+
+ const order = {
+   orders: [
+     {
+       id: "8Nsjjkla",
+       title: "iWatch",
+       price: "145.45",
+       quantity: 2,
+     },
+   ],
+   deliveryDetails: {
+     firstname: "Donald",
+     lastname: "Sunday",
+     email: "gotodonald@gmail.com",
+     phone: "+2349031372176",
+     address: "123 fake street",
+     city: "Uyo",
+     zipCode: "50021"
+   },
+   shippingCost: 3.00,
+ };
    
 
 const initialState = {
@@ -44,6 +65,7 @@ const initialState = {
   list: null,
   cart: [],
   cartItemCounter: 0,
+  orders: order,
 };
 
 export const categoriesSlice = createSlice({
@@ -89,6 +111,17 @@ export const categoriesSlice = createSlice({
       return state;
     },
 
+    createOrders: (state, action) => {
+      state.orders.deliveryDetails = action.payload.deliveryDetails;
+      state.orders.orders = action.payload.orders;
+
+      return state;
+    },
+    clearOrders: (state) => {
+      state.order.deliveryDetails = [];
+      return state;
+    },
+
     fetchCategories: (state, { payload }) => {
       if (payload.ok) {
         state.loading = false;
@@ -104,6 +137,14 @@ export const categoriesSlice = createSlice({
   }
 });
 
-export const { searchProduct, addToCart, removeFromCart, updateCartItem, fetchCategories } = categoriesSlice.actions;
+export const {
+  searchProduct,
+  addToCart,
+  removeFromCart,
+  updateCartItem,
+  fetchCategories,
+  clearOrders,
+  createOrders,
+} = categoriesSlice.actions;
 
 export default categoriesSlice.reducer;

@@ -201,6 +201,8 @@ export async function signout() {
   return true;
 }
 
+
+
 // async function signUpNewUser() {
 //   const { data, error } = await supabase.auth.signUp({
 //     email: 'example@email.com',

@@ -13,11 +13,11 @@ const CartItem = ({ item }) => {
   }
   const changeQuantity = (increase) => {
     if (increase) {
-      if (item.quantityLeft >= item.quantity) {
+      if (item.quantityLeft > item.quantity) {
         dispatch(updateCartItem({ quantity: item.quantity + 1, id: item.id }));
       }
     } else {
-      if (item.quantity > 0) {
+      if (item.quantity > 1) {
         dispatch(updateCartItem({ quantity: item.quantity - 1, id: item.id }));
       }
     }
