@@ -37,12 +37,12 @@ import icon from "../assets/smartphone.png";
 
  const order = {
    orders: [
-     {
-       id: "8Nsjjkla",
-       title: "iWatch",
-       price: "145.45",
-       quantity: 2,
-     },
+    //  {
+    //    id: "8Nsjjkla",
+    //    title: "iWatch",
+    //    price: "145.45",
+    //    quantity: 2,
+    //  },
    ],
    deliveryDetails: {
     //  firstname: "Donald",
@@ -53,7 +53,7 @@ import icon from "../assets/smartphone.png";
     //  city: "Uyo",
     //  zipCode: "50021"
    },
-   shippingCost: 3.00,
+   shippingCost: 0.00,
  };
    
 

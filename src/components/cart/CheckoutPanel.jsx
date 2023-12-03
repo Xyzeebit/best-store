@@ -181,7 +181,7 @@ const CheckoutPanel = ({ orders }) => {
               {applyCoupon && (
                 <div className="flex justify-between items-center px-2 py-1">
                   <span className="font-semibold">Coupon Discount</span>
-                  <span className="text-green-900 font-medium">-${COUPON}</span>
+                  <span className="text-green-900 font-medium">-${COUPON.toFixed(2)}</span>
                 </div>
               )}
               <div className="flex justify-between items-center px-2 py-1">
@@ -215,7 +215,7 @@ const Order = ({ title, price, quantity }) => (
   <div className="border rounded bg-gray-100 mb-4">
     <p className="font-bold px-2 pt-2 text-gray-800">{title}</p>
     <p className="text-green-900 px-2 text-sm font-semibold text-right">
-      ${price}
+      ${(price * quantity).toFixed(2)}
     </p>
     <small className="block bg-gray-200 p-2 font-semibold text-right text-xs text-gray-900">
       Quantity: {quantity}

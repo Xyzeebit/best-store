@@ -13,7 +13,7 @@ const Checkout = () => {
     }, []);
 
     useEffect(() => {
-        if (!orders) {
+        if (!orders || orders.orders.length < 1) {
             navigate('/cart')
         }
     }, [orders, navigate]);
