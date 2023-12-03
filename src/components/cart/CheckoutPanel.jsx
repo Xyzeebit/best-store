@@ -1,11 +1,14 @@
 import PropTypes from "prop-types";
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import visaIcon from "../../assets/icons/visa_icon.svg";
 import mastercardIcon from "../../assets/icons/mastercard_icon.svg";
 import paypalIcon from "../../assets/icons/paypal_icon.svg";
 import gpayIcon from "../../assets/icons/gpay_icon.svg";
+import editIcon from "../../assets/icons/edit-2-icon.svg";
+
 
 const CheckoutPanel = ({ orders }) => {
+  const [edit, setEdit] = useState(false);
   const [coupon, setCoupon] = useState('');
   const [applyCoupon, setApplyCoupon] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState("");
@@ -52,10 +55,15 @@ const CheckoutPanel = ({ orders }) => {
           </div>
 
           <div className="pt-6">
-            <h2 className="text-gray-800 font-bold py-4">
-              Delivery Information
-            </h2>
-            <DeliveryAddress deliveryInfo={orders.deliveryDetails} />
+            <div className="flex justify-between items-center">
+              <h2 className="text-gray-800 font-bold py-4">
+                Delivery Information
+              </h2>
+              <button className="" onClick={() => setEdit(!edit)}>
+                <img src={editIcon} width={20} height={20} alt="Edit delivery information" />
+              </button>
+            </div>
+            <DeliveryAddress deliveryInfo={orders.deliveryDetails} edit={edit} />
           </div>
         </div>
 
@@ -80,7 +88,7 @@ const CheckoutPanel = ({ orders }) => {
                 applyCoupon ? "bg-red-500" : "bg-green-900"
               } py-2 shadow-lg`}
             >
-              {applyCoupon ? 'Coupon applied' : 'Apply coupon'}
+              {applyCoupon ? "Coupon applied" : "Apply coupon"}
             </button>
           </div>
           <p className="text-gray-800 font-bold pt-8 pb-4">Payment Methods</p>
@@ -153,9 +161,7 @@ const CheckoutPanel = ({ orders }) => {
               <img src={gpayIcon} alt="visa card" width={35} height={25} />
               <img src={paypalIcon} alt="visa card" width={35} height={25} />
             </div>
-            {paymentMethod && (
-              <div>payment method form here | card by default</div>
-            )}
+            {paymentMethod === "card" && <CardForm />}
             <div>
               <p className="text-gray-800 font-bold pt-8 pb-4">
                 Checkout Total
@@ -192,6 +198,11 @@ const CheckoutPanel = ({ orders }) => {
               </div>
             </div>
           </div>
+          <div className="pt-4 flex items-center justify-center">
+            <button className="px-8 py-2 font-semibold text-sm rounded-3xl bg-green-900 text-white">
+              Checkout
+            </button>
+          </div>
         </form>
       </div>
     </div>
@@ -216,33 +227,102 @@ Order.propTypes = {
   quantity: PropTypes.number.isRequired,
 };
 
-const Value = ({ label, text }) => (
-  <div className="w-full mb-2">
-    <div className="rounded-tr-md bg-gray-200 w-40 text-xs text-gray-500 p-1 font-semibold">{label}</div>
-    <div className="p-1 bg-gray-50 text-gray-900">{text}</div>
-  </div>
-)
+const Value = ({ label, text, showForm, value, handler }) => {
+  return (
+    <div className="w-full mb-2">
+      <div className="rounded-tr-md bg-gray-200 w-40 text-xs text-gray-500 p-1 font-semibold">
+        {label}
+      </div>
+      {!showForm && <div className={`bg-gray-50 text-gray-900 ${text ? 'p-1' : ''}`}>{text}</div>}
+      {(!text || showForm) && (
+        <div className="w-full h-10 font-semibold border">
+          <input
+            type="text"
+            value={value}
+            onChange={handler}
+            className="w-full h-10 px-4 font-semibold border outline-none focus:shadow-outline focus:bg-gray-100"
+          />
+        </div>
+      )}
+    </div>
+  );
+}
 
 Value.propTypes = {
   label: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
+  showForm: PropTypes.bool.isRequired,
+  value: PropTypes.string,
+  handler: PropTypes.object.isRequired
 }
 
-const DeliveryAddress = ({ deliveryInfo }) => (
-  <div className="">
-    <div className="flex gap-4 justify-start items-center">
-      <Value label="First name" text={deliveryInfo.firstname} />
-      <Value label="Last name" text={deliveryInfo.lastname} />
+const DeliveryAddress = ({ deliveryInfo, edit }) => {
+  const [firstname, setFirstname] = useState('');
+  const [lastname, setLastname] = useState("");
+  const [address, setAddress] = useState("");
+  const [city, setCity] = useState("");
+  const [zipCode, setZipCode] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+
+  return (
+    <div className="">
+      <div className="flex gap-4 justify-start items-center">
+        <Value
+          label="First name"
+          text={null}
+          showForm={edit}
+          value={firstname}
+          handler={({ target }) => setFirstname(target.value)}
+        />
+        <Value
+          label="Last name"
+          text={deliveryInfo.lastname}
+          showForm={edit}
+          value={lastname}
+          handler={({ target }) => setLastname(target.value)}
+        />
+      </div>
+      <Value
+        label="Address"
+        text={deliveryInfo.address}
+        showForm={edit}
+        value={address}
+        handler={({ target }) => setAddress(target.value)}
+      />
+      <div className="flex gap-4 justify-start items-center">
+        <Value
+          label="City"
+          text={deliveryInfo.city}
+          showForm={edit}
+          value={city}
+          handler={({ target }) => setCity(target.value)}
+        />
+        <Value
+          label="Zip Code"
+          text={deliveryInfo.zipCode}
+          showForm={edit}
+          value={zipCode}
+          handler={({ target }) => setZipCode(target.value)}
+        />
+      </div>
+      <Value
+        label="Phone"
+        text={deliveryInfo.phone}
+        showForm={edit}
+        value={phone}
+        handler={({ target }) => setPhone(target.value)}
+      />
+      <Value
+        label="Email"
+        text={deliveryInfo.email}
+        showForm={edit}
+        value={email}
+        handler={({ target }) => setEmail(target.value)}
+      />
     </div>
-    <Value label="Address" text={deliveryInfo.address} />
-    <div className="flex gap-4 justify-start items-center">
-      <Value label="City" text={deliveryInfo.city} />
-      <Value label="Zip Code" text={deliveryInfo.zipCode} />
-    </div>
-    <Value label="Phone" text={deliveryInfo.phone} />
-    <Value label="Email" text={deliveryInfo.email} />
-  </div>
-);
+  );
+}
 
 DeliveryAddress.propTypes = {
   deliveryInfo: PropTypes.shape({
@@ -254,6 +334,7 @@ DeliveryAddress.propTypes = {
     email: PropTypes.string.isRequired,
     phone: PropTypes.string.isRequired,
   }),
+  edit: PropTypes.bool.isRequired,
 };
 
 CheckoutPanel.propTypes = {
@@ -262,6 +343,65 @@ CheckoutPanel.propTypes = {
     deliveryDetails: PropTypes.array.isRequired,
     shippingCost: PropTypes.number.isRequired,
   })
+}
+
+const CardForm = () => {
+  const [cardNumber, setCardNumber] = useState('');
+  const [expire, setExpire] = useState("");
+  const [cvv, setCVV] = useState("");
+  const cardRef = useRef();
+
+  const handleCardNumber = ({target}) => {
+    if (target.value.length <= 16) {
+      setCardNumber(target.value.trim());
+    }
+  }
+  const handleExpire = ({target}) => {
+    if (expire.length < 5) {
+      if(expire.length === 1) {
+        setExpire(target.value + "/");
+      } else {
+        setExpire(target.value);
+      }
+    }
+  }
+  const handleCVV = ({ target }) => {
+    if (cvv.length < 3) {
+      setCVV(target.value);
+    }
+  };
+
+  return (
+    <fieldset className="bg-gray-50 m-auto px-4 py-8 mt-6 border rounded-md">
+      <div className="mb-8">
+        <input
+          type="number"
+          value={cardNumber}
+          placeholder="Card number"
+          size={16}
+          ref={cardRef}
+          onChange={handleCardNumber}
+          className="w-full h-10 px-4 font-semibold border outline-none appearance-none"
+        />
+      </div>
+      <div className="flex items-center justify-around gap-12">
+        <input
+          type="text"
+          value={expire}
+          placeholder="MM/YY"
+          onChange={handleExpire}
+          className="w-full h-10 px-4 font-semibold border outline-none appearance-none"
+        />
+        <input
+          type="number"
+          value={cvv}
+          placeholder="CVV"
+          onChange={handleCVV}
+          className="w-full h-10 px-4 font-semibold border outline-none appearance-none"
+        />
+      </div>
+    </fieldset>
+  );
 }
 
 export default CheckoutPanel;
