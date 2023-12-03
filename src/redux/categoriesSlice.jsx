@@ -45,13 +45,13 @@ import icon from "../assets/smartphone.png";
      },
    ],
    deliveryDetails: {
-     firstname: "Donald",
-     lastname: "Sunday",
-     email: "gotodonald@gmail.com",
-     phone: "+2349031372176",
-     address: "123 fake street",
-     city: "Uyo",
-     zipCode: "50021"
+    //  firstname: "Donald",
+    //  lastname: "Sunday",
+    //  email: "gotodonald@gmail.com",
+    //  phone: "+2349031372176",
+    //  address: "123 fake street",
+    //  city: "Uyo",
+    //  zipCode: "50021"
    },
    shippingCost: 3.00,
  };

@@ -19,7 +19,7 @@ const CheckoutPanel = ({ orders }) => {
   const COUPON = 100.00; // coupon amount
 
   const handleSubmit = () => {
-
+    console.log("order placed")
   }
 
   useEffect(() => {
@@ -199,7 +199,9 @@ const CheckoutPanel = ({ orders }) => {
             </div>
           </div>
           <div className="pt-4 flex items-center justify-center">
-            <button className="px-8 py-2 font-semibold text-sm rounded-3xl bg-green-900 text-white">
+            <button
+              className="px-8 py-2 hover:bg-green-700 shadow-sm font-semibold text-sm rounded-3xl bg-green-900 text-white"
+            >
               Checkout
             </button>
           </div>
@@ -357,12 +359,8 @@ const CardForm = () => {
     }
   }
   const handleExpire = ({target}) => {
-    if (expire.length < 5) {
-      if(expire.length === 1) {
-        setExpire(target.value + "/");
-      } else {
-        setExpire(target.value);
-      }
+    if (target.value.length < 5) {
+      setExpire(target.value);
     }
   }
   const handleCVV = ({ target }) => {
@@ -370,6 +368,12 @@ const CardForm = () => {
       setCVV(target.value);
     }
   };
+
+  const insertBar = ({ target }) => {
+    if (target.value.length > 2 && target.value.indexOf("/") === -1) {
+      setExpire(target.value.substring(0, 2) + "/" + target.value.substring(2));
+    }
+  }
 
   return (
     <fieldset className="bg-gray-50 m-auto px-4 py-8 mt-6 border rounded-md">
@@ -390,6 +394,7 @@ const CardForm = () => {
           value={expire}
           placeholder="MM/YY"
           onChange={handleExpire}
+          onBlur={insertBar}
           className="w-full h-10 px-4 font-semibold border outline-none appearance-none"
         />
         <input
