@@ -41,7 +41,7 @@ const CheckoutPanel = ({ orders }) => {
   return (
     <div className="px-4 md:px-16 py-12">
       <div className="flex justify-center gap-6 items-start flex-col md:flex-row">
-        <div className="md:w-1/2 bg-white p-4 rounded shadow">
+        <div className="w-full md:w-1/2 bg-white p-4 rounded shadow">
           <div>
             <h1 className="text-gray-800 font-bold py-4">
               Review items and shipping
@@ -268,8 +268,8 @@ const DeliveryAddress = ({ deliveryInfo, edit }) => {
   const [email, setEmail] = useState("");
 
   return (
-    <div className="">
-      <div className="flex gap-4 justify-start items-center">
+    <div className="w-full">
+      <div className="md:flex gap-4 justify-start items-center">
         <Value
           label="First name"
           text={null}
@@ -292,7 +292,7 @@ const DeliveryAddress = ({ deliveryInfo, edit }) => {
         value={address}
         handler={({ target }) => setAddress(target.value)}
       />
-      <div className="flex gap-4 justify-start items-center">
+      <div className="md:flex gap-4 justify-start items-center">
         <Value
           label="City"
           text={deliveryInfo.city}
