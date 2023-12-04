@@ -4,8 +4,9 @@ import ViewItem from "../components/products/ViewItem";
 import { useEffect, useState } from "react";
 import { addItemToRecentViews, getDataByCategoryAndId } from "../api/apis";
 import Rating from "../components/core/Rating";
-import { addToCart, removeFromCart } from "../redux/categoriesSlice";
+import { addToCart, createOrders, removeFromCart } from "../redux/categoriesSlice";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import minus from '../assets/icons/minus-circle-icon.svg'
 import plus from "../assets/icons/plus-circle-icon.svg";
@@ -23,6 +24,7 @@ const Details = () => {
   const [addedToCart, setAddedToCart] = useState(false);
   const param = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const addItemToCart = () => {
     const item = { ...data, quantity };
@@ -33,6 +35,23 @@ const Details = () => {
       dispatch(addToCart(item));
       setAddedToCart(!addedToCart);
     }
+  }
+
+  const handleBuyNow = () => {
+    const order = {
+      orders: [
+        {
+          id: data.id,
+          title: data.title,
+          price: data.prices[0],
+          quantity,
+        }
+      ],
+      deliveryDetails: {},
+      shippingCost: 0.00
+    };
+    dispatch(createOrders(order));
+    navigate('/checkout')
   }
 
   useEffect(() => {
@@ -129,7 +148,7 @@ const Details = () => {
               only {data.quantityLeft} item(s) left
             </small>
             <div className="pt-12 pb-8 flex items-center justify-center gap-4 md:gap-6 text-xs">
-              <button className="bg-green-900 border-2 border-green-900 rounded-3xl text-white font-semibold px-8 md:px-10 lg:px-14 py-2 shadow-sm hover:bg-red-500 hover:border-red-500">
+              <button onClick={handleBuyNow} className="bg-green-900 border-2 border-green-900 rounded-3xl text-white font-semibold px-8 md:px-10 lg:px-14 py-2 shadow-sm hover:bg-red-500 hover:border-red-500">
                 Buy now
               </button>
               <button

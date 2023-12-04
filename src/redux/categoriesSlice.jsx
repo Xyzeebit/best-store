@@ -37,23 +37,23 @@ import icon from "../assets/smartphone.png";
 
  const order = {
    orders: [
-     {
-       id: "8Nsjjkla",
-       title: "iWatch",
-       price: "145.45",
-       quantity: 2,
-     },
+    //  {
+    //    id: "8Nsjjkla",
+    //    title: "iWatch",
+    //    price: "145.45",
+    //    quantity: 2,
+    //  },
    ],
    deliveryDetails: {
-     firstname: "Donald",
-     lastname: "Sunday",
-     email: "gotodonald@gmail.com",
-     phone: "+2349031372176",
-     address: "123 fake street",
-     city: "Uyo",
-     zipCode: "50021"
+    //  firstname: "Donald",
+    //  lastname: "Sunday",
+    //  email: "gotodonald@gmail.com",
+    //  phone: "+2349031372176",
+    //  address: "123 fake street",
+    //  city: "Uyo",
+    //  zipCode: "50021"
    },
-   shippingCost: 3.00,
+   shippingCost: 0.00,
  };
    
 

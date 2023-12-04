@@ -155,6 +155,16 @@ body {
     }
 }
 
+.appearance-none::-webkit-outer-spin-button,
+.appearance-none::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.appearance-none {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
 /* .top-pro::-webkit-scrollbar {
   height: 0.45rem;
 }
