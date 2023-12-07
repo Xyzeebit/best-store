@@ -10,7 +10,7 @@ register();
 
 const Carousel = ({tag, delay, classes}) => {
   const items = useSelector(state => state.carousel[tag]);
-  
+
   return (
     <div className={"carousel " +  classes}>
       <swiper-container

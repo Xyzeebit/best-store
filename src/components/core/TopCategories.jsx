@@ -9,11 +9,10 @@ import allProductsImage from '../../assets/icons/menu-icon.svg'
 
 const TopCategories = () => {
   const [noData, setNoData] = useState(true);
-  const { loading, error, data } = useSelector(state => state.topCategories);
+  const { data } = useSelector(state => state.topCategories);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    async function getData() {
+  async function getData() {
       const resp = await fetchTopCategories(true);
       dispatch(updateTopCategories(resp));
       setNoData(false);
@@ -21,18 +20,21 @@ const TopCategories = () => {
     if (noData) {
       getData();
     }
-  }, [dispatch, noData]);
 
-  if (loading) {
-    return (
-      <div>Loading...</div>
-    );
-  } else if (error) {
-    return <div>error</div>
-  } else {
+  // useEffect(() => {
+  //   async function getData() {
+  //     const resp = await fetchTopCategories(true);
+  //     dispatch(updateTopCategories(resp));
+  //     setNoData(false);
+  //   }
+  //   if (noData) {
+  //     getData();
+  //   }
+  // }, [dispatch, noData]);
+
     return (
       <TopProductsList title={"Shop Now From Our Top Collections"}>
-        {data.map((cat) => (
+        {data && data.map((cat) => (
           <Link key={cat.id} to={"/" + cat.category}>
             <CategoryItem
               text={cat.title}
@@ -58,6 +60,5 @@ const TopCategories = () => {
       </TopProductsList>
     );
   }
-}
 
 export default TopCategories;

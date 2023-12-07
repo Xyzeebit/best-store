@@ -1,6 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
 import { ErrorBoundary } from "./components/error";
-import Home from "./pages/Home";
 import Auth from "./pages/Auth";
 import Products from "./pages/Products";
 import Error404 from "./pages/error-page";
@@ -10,6 +9,7 @@ import Cart from "./pages/Cart";
 import Checkout from './pages/Checkout';
 import SignOut from './pages/SignOut'
 import NotFound from "./pages/NotFound";
+import { Home } from "./pages";
 
 const router = createBrowserRouter([
   {
