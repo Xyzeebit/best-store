@@ -49,7 +49,7 @@ const ProductSearch = () => {
                 ref={inputRef}
                 type="text"
                 value={value}
-                placeholder="Product search"
+                placeholder="Search collections"
                 onChange={handleValueChange}
                 onFocus={handleFocused}
                 onBlur={handleBlurred}
