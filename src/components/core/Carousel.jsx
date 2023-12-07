@@ -21,7 +21,7 @@ const Carousel = ({tag, delay, classes}) => {
       >
         {items.map(item => (
           <swiper-slide key={item.id}>
-            {tag === 'banners' ? <Banner to={item.to} image={item.image} /> : <HotDeal {...item} />}
+            {tag === 'banners' ? <Banner to={item.to} image={item.image} color={item.color} /> : <HotDeal {...item} />}
           </swiper-slide>
         ))}
       </swiper-container>

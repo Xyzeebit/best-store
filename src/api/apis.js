@@ -19,26 +19,31 @@ export const BANNER_ITEMS = [
     id: nanoid(8),
     to: "/books-and-stationeries",
     image: stationery,
+    color: "yellow",
   },
   {
     id: nanoid(8),
     to: "/babies",
     image: clothes,
+    color: "red",
   },
   {
     id: nanoid(8),
     to: "/footwears",
     image: footwear,
+    color: "gray",
   },
   {
     id: nanoid(8),
     to: "/makeup-and-cosmetics",
     image: makeup,
+    color: "pink",
   },
   {
     id: nanoid(8),
     to: "/home-appliances",
     image: appliances,
+    color: "gray",
   },
 ];
 

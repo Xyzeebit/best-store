@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-const Banner = ({ to, image }) => {
+const OBanner = ({ to, image }) => {
     return (
       <Link to={to}>
         <div
@@ -29,10 +29,71 @@ const Banner = ({ to, image }) => {
     );
 };
 
-
-Banner.propTypes = {
+OBanner.propTypes = {
     to: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
 }
+const colors = {
+  red: "bg-red-300",
+  blue: "bg-blue-300",
+  green: "bg-green-300",
+  gray: "bg-gray-300",
+  pink: "bg-pink-300",
+  dark: "bg-gray-900",
+  yellow: "bg-yellow-300"
+};
+const NBanner = ({ to, image, color }) => {
+  
+  return (
+    <Link
+      to={to}
+      className={`relative w-full h-52 md:h-60 lg:h-80 overflow-hidden`}
+    >
+      <div
+        className={`rounded-lg flex justify-between items-start ${colors[color]} w-full h-52 md:h-60 lg:h-80`}
+      >
+        <div className="px-8 w-3/5 flex items-start justify-around flex-col h-full">
+          <p className="font-bold text-xl md:text-3xl text-gray-900">
+            Limited Time Offer!
+            <br />
+            Upto 50% off!
+          </p>
+          <div className="border-2 border-gray-900 w-28 py-4 text-sm md:text-md text-gray-900 font-bold text-center">
+            Shop Now
+          </div>
+        </div>
+        <div className="h-52 md:h-60 lg:h-80 w-2/5 rounded-bl-3xl overflow-hidden">
+          <img
+            src={image}
+            width={300}
+            height={200}
+            className="w-full object-fill h-full"
+          />
+        </div>
+      </div>
+    </Link>
+  );
+}
+
+NBanner.propTypes = {
+    to: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    color: PropTypes.string.isRequired,
+
+}
+
+const Banner = ({to, image, color}) => (
+  <>
+    <div className="hidden md:block"><NBanner to={to} image={image} color={color} /> </div>
+    <div className="block md:hidden"><OBanner to={to} image={image} /> </div>
+  </>
+);
+
+Banner.propTypes = {
+  to: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  color: PropTypes.string.isRequired,
+};
+
 
 export default Banner;

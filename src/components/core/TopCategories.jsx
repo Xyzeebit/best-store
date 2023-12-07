@@ -31,7 +31,7 @@ const TopCategories = () => {
     return <div>error</div>
   } else {
     return (
-      <TopProductsList title={"Shop Now From Our Top Categories"}>
+      <TopProductsList title={"Shop Now From Our Top Collections"}>
         {data.map((cat) => (
           <Link key={cat.id} to={"/" + cat.category}>
             <CategoryItem
