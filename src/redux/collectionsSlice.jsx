@@ -1,39 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import icon from "../assets/smartphone.png";
-
-
- const list = [
-   {
-     id: "jainba6b9jxhbya",
-     title: "Samsung ultra s20 6gb ram 124gb rom",
-     image: icon,
-   },
-   {
-     id: "jainb6b9njxhbya",
-     title: "Samsung ultra s20 6gb ram 124gb rom",
-     image: icon,
-   },
-   {
-     id: "jainb6b9jxhbMya",
-     title: "Samsung ultra s20 6gb ram 124gb rom",
-     image: icon,
-   },
-   {
-     id: "jainb6b9jxhboya",
-     title: "Samsung ultra s20 6gb ram 124gb rom",
-     image: icon,
-   },
-   {
-     id: "jainb6b9jxhbYoya",
-     title: "Samsung ultra s20 6gb ram 124gb rom",
-     image: icon,
-   },
-   {
-     id: "jainVb6b9jxhboya",
-     title: "Samsung ultra s20 6gb ram 124gb rom",
-     image: icon,
-   },
- ];
 
  const order = {
    orders: [
@@ -68,19 +33,28 @@ const initialState = {
   orders: order,
 };
 
-export const categoriesSlice = createSlice({
-  name: 'categories',
+export const collectionsSlice = createSlice({
+  name: 'collections',
   initialState,
   reducers: {
     searchProduct: (state, action) => {
       const text = action.payload.text;
       if (text) {
+        const list = state.data.filter(item => {
+          if (item.title.toLowerCase() === text.toLowerCase() ||
+            item.title.toLowerCase().includes(text.toLowerCase())
+          ) {
+            return true;
+          } else {
+            return false;
+          }
+        })
         state.list = list;
         state.searching = true;
       } else {
         state.searching = false;
       }
-            
+      return state;
     },
       
     addToCart: (state, action) => {
@@ -122,7 +96,8 @@ export const categoriesSlice = createSlice({
       return state;
     },
 
-    fetchCategories: (state, { payload }) => {
+    fetchCollections: (state, { payload }) => {
+      console.log(payload)
       if (payload.ok) {
         state.loading = false;
         state.error = null;
@@ -142,9 +117,9 @@ export const {
   addToCart,
   removeFromCart,
   updateCartItem,
-  fetchCategories,
+  fetchCollections,
   clearOrders,
   createOrders,
-} = categoriesSlice.actions;
+} = collectionsSlice.actions;
 
-export default categoriesSlice.reducer;
+export default collectionsSlice.reducer;

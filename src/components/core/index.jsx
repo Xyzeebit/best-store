@@ -6,7 +6,7 @@ import IconButton from "./IconButton";
 import LinkIconButton from "./LinkIconButton";
 import Container from './Container';
 import Carousel from "./Carousel";
-import TopCategories from "./TopCategories";
+import FeaturedCollections from "./FeaturedCollections";
 import NewArrivals from "./NewArrivals";
 import FlashSales from "./FlashSales";
 import BestSellers from "./BestSellers";
@@ -17,7 +17,7 @@ import Footer from "./Footer";
 import Layout from "./Layout";
 
 export { Layout, Header, ProductSearch, IconButton, LinkIconButton, 
-    Container, Carousel, TopCategories, NewArrivals, BestSellers,
+    Container, Carousel, FeaturedCollections, NewArrivals, BestSellers,
     FlashSales, DealsOfTheDay, TopProducts,
     Promotion,
     Logo,

@@ -1,10 +1,18 @@
 import { nanoid } from "@reduxjs/toolkit";
-
+import phone from "../assets/phone2.webp";
+import laptop from "../assets/laptop.jpg";
+import shirt from "../assets/mens-shirt.webp";
+import makeup from "../assets/makeup.jpg";
+import toys from "../assets/toys.jpg";
+import shoes from "../assets/sneakers.webp";
+import hair from "../assets/women-hair.webp";
 import stationery from "../assets/stationery.jpg";
 import clothes from "../assets/clothes.jpg";
 import footwear from "../assets/footwear.jpg";
-import makeup from "../assets/makeup.jpg";
 import appliances from "../assets/appliances.jpg";
+import icon from "../assets/phone1.webp";
+import hair_w from '../assets/hair_women.webp';
+import mensShirt from '../assets/mens-shirt.webp';
 
 // import { createClient } from "@supabase/supabase-js";
 
@@ -62,18 +70,242 @@ export const DEALS_ITEM = [
   },
 ];
 
-export const PRODUCTS = [
+const products = [
   {
-    id: nanoid(16),
-    title: "",
-    description: "",
-    imageThumbnail: "",
-    images: [],
-    categories: [],
-    tags: [],
-    brand: "",
+    id: nanoid(14),
+    title: "Tecno Spark 4",
+    image: phone,
+    price: "150.00",
+    ratings: 3.7,
+    category: "phones",
+  },
+  {
+    id: nanoid(14),
+    title: "Laptops",
+    image: laptop,
+    category: "laptops",
+  },
+  {
+    id: nanoid(14),
+    title: "Toys",
+    image: toys,
+    category: "toys",
+  },
+  {
+    id: nanoid(14),
+    title: "Hair",
+    image: hair,
+    category: "hairs",
+  },
+  {
+    id: nanoid(14),
+    title: "Shirts",
+    image: shirt,
+    category: "clothes",
+  },
+  {
+    id: nanoid(14),
+    title: "Cosmetics",
+    image: makeup,
+    category: "makeup-and-cosmetics",
+  },
+  {
+    id: nanoid(14),
+    title: "Sneakers",
+    image: shoes,
+    category: "footwears",
   },
 ];
+
+const list = [
+  {
+    id: "jainba6b9jxhbya",
+    title: "Samsung ultra s20 6gb ram 124gb rom",
+    image: icon,
+    prices: ["890.00"],
+    rating: 5,
+    category: "phones",
+  },
+  {
+    id: "jainb6b9njxhbya",
+    title: "Samsung ultra s20 6gb ram 124gb rom",
+    image: icon,
+    prices: ["850.00", "900.50"],
+    category: "phones",
+  },
+  {
+    id: "jainb6b9jxhbMya",
+    title: "Samsung ultra s20 6gb ram 124gb rom",
+    image: makeup,
+    prices: ["500.00", "590.90"],
+    category: "phones",
+  },
+  {
+    id: "jainb6b9jxhboya",
+    title: "Samsung ultra s20 6gb ram 124gb rom",
+    image: icon,
+    prices: ["400.00"],
+    rating: 5,
+    category: "phones",
+  },
+  {
+    id: "jainb6b9jxhbYoya",
+    title: "Samsung ultra s20 6gb ram 124gb rom",
+    image: icon,
+    prices: ["120.00", "150.00"],
+    ratings: 3,
+    category: "phones",
+  },
+  {
+    id: "jainVb6b9jxhboya",
+    title: "Samsung ultra s20 6gb ram 124gb rom",
+    image: icon,
+    prices: ["50.00", "55.00"],
+    category: "phones",
+    ratings: 4,
+  },
+];
+
+const d = [
+  "Makeup kit from top brand",
+  "Get your stationeries for half the price",
+  "Mens footwear from top brand",
+  "Kiddies special",
+];
+const flashSales = [
+  {
+    id: "KJIIi9ksjo",
+    image: clothes,
+    text: "Babies wear (Clothes, shoe, cloves and hoods)",
+    price: "130.45",
+  },
+  {
+    id: "KJIIi9k0sjo",
+    image: hair_w,
+    text: "Colored attachment hair for women",
+    price: "130.45",
+  },
+  {
+    id: "KJIIi9ksjo2",
+    image: mensShirt,
+    text: "Shirt for out activities",
+    price: "130.45",
+    rating: 3.5,
+  },
+  {
+    id: "KJIIi39ksjo",
+    image: clothes,
+    text: "Babies wear",
+    price: "130.45",
+    rating: 2.5,
+  },
+  {
+    id: "KJI4Ii9ksjo",
+    image: clothes,
+    text: "Babies wear",
+    price: "130.45",
+    rating: 5,
+  },
+  {
+    id: "KJIIi59ksjo",
+    image: clothes,
+    text: "Babies wear",
+    price: "130.45",
+    rating: 2.26,
+  },
+  {
+    id: "KJ6IIi9ksjo",
+    image: clothes,
+    text: "Babies wear",
+    price: "130.45",
+    rating: 5,
+  },
+  {
+    id: "KJIIi97ksjo",
+    image: clothes,
+    text: "Babies wear",
+    price: "130.45",
+    rating: 4.5,
+  },
+  {
+    id: "KJIIi9k8sjo",
+    image: clothes,
+    text: "Babies wear",
+    price: "130.45",
+    rating: 3.5,
+  },
+];
+const list2 = [
+  {
+    id: "jainba6b9jxhbya",
+    title: "Samsung ultra s20 6gb ram 124gb rom",
+    image: icon,
+    category: "phones",
+    prices: ["890.00"],
+    rating: 5,
+  },
+  {
+    id: "jainb6b9njxhbya",
+    title: "Samsung ultra s20 6gb ram 124gb rom",
+    image: icon,
+    category: "phones",
+    prices: ["850.00", "900.50"],
+  },
+  {
+    id: "jainb6b9jxhbMya",
+    title: "Samsung ultra s20 6gb ram 124gb rom",
+    image: makeup,
+    prices: ["500.00", "590.90"],
+    category: "phones",
+  },
+  {
+    id: "jainb6b9jxhboya",
+    title: "Samsung ultra s20 6gb ram 124gb rom",
+    image: icon,
+    prices: ["400.00"],
+    category: "phones",
+    rating: 5,
+  },
+  {
+    id: "jainb6b9jxhbYoya",
+    title: "Samsung ultra s20 6gb ram 124gb rom",
+    image: icon,
+    prices: ["120.00", "150.00"],
+    ratings: 3,
+    category: "phones",
+  },
+  {
+    id: "jainVb6b9jxhboya",
+    title: "Samsung ultra s20 6gb ram 124gb rom",
+    image: icon,
+    prices: ["50.00", "55.00"],
+    ratings: 4,
+    category: "phones",
+  },
+];
+
+export const PRODUCTS = [
+  {
+    id: nanoid(12),
+    title: "Samsung s20",
+    price: "850.90",
+    discountPrice: "800.95",
+    discount: "",
+    description: "Samsung S20 ultra 6gb ram 124gb rom",
+    image: phone,
+    images: [phone, phone, phone],
+    categories: ["phones"],
+    tags: ["newest"],
+    brand: "Samsung",
+    ratings: [4, 28], // index 0: rating, index 1: rating size
+    comment: [],
+  },
+];
+
+export async function fetchAllCollections() {
+  const collections = PRODUCTS;
+  return { ok: true, data: collections };
+}
 
 export function isValidEmail(email) {
   if (typeof email !== "string")

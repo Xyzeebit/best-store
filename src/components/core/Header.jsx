@@ -12,7 +12,7 @@ import { useSelector } from 'react-redux';
 import Logo from './Logo';
 
 const Header = () => {
-  const { cartItemCounter } = useSelector(state => state.categories);
+  const { cartItemCounter } = useSelector(state => state.collections);
   const { isLoggedIn } = useSelector(state => state.user);
 
     return (

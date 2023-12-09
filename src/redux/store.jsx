@@ -1,12 +1,10 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import categoriesSlice from "./categoriesSlice";
-import topCategoriesReducer from "./topcatSlice";
+import collectionsSlice from "./collectionsSlice";
 import userReducer from "./userSlice";
 import carouselSlice from "./carouselSlice";
 
 const rootReducer = combineReducers({
-    topCategories: topCategoriesReducer,
-    categories: categoriesSlice,
+    collections: collectionsSlice,
     user: userReducer,
     carousel: carouselSlice,
 });

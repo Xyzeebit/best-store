@@ -4,7 +4,7 @@ import ViewItem from "../components/products/ViewItem";
 import { useEffect, useState } from "react";
 import { addItemToRecentViews, getDataByCategoryAndId } from "../api/apis";
 import Rating from "../components/core/Rating";
-import { addToCart, createOrders, removeFromCart } from "../redux/categoriesSlice";
+import { addToCart, createOrders, removeFromCart } from "../redux/collectionsSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
@@ -27,7 +27,7 @@ const Details = () => {
   const navigate = useNavigate();
 
   const addItemToCart = () => {
-    const item = { ...data, quantity };
+    const item = { ...data, price: (data.discountPrice > 0 ? data.discountPrice : data.price), quantity };
     if (addedToCart) {
       dispatch(removeFromCart(item));
       setAddedToCart(!addedToCart);
@@ -96,11 +96,11 @@ const Details = () => {
             </div>
             <div className="flex gap-4 justify-start items-center font-semibold ">
               <p className="text-xl text-green-900">
-                ${(data.prices[0] * quantity).toFixed(2)}
+                ${((data.discountPrice > 0 ? data.discountPrice : data.price) * quantity).toFixed(2)}
               </p>
-              {data.prices[1] && (
+              {data.discountPrices > 0 && (
                 <p className="text-red-500">
-                  <s>${data.prices[1]}</s>
+                  <s>${data.price}</s>
                 </p>
               )}
             </div>

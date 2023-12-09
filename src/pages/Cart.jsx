@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import CartList from "../components/cart/CartList";
 import cartIcon from "../assets/icons/cart-large_icon.svg";
-import { createOrders } from "../redux/categoriesSlice";
+import { createOrders } from "../redux/collectionsSlice";
 
 const Cart = () => {
   const { cart } = useSelector((state) => state.categories);
@@ -22,7 +22,7 @@ const Cart = () => {
         order.orders.push({
           id: item.id,
           title: item.title,
-          price: item.prices[0],
+          price: item.price,
           quantity: item.quantity,
         });
       });
