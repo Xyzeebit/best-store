@@ -31,7 +31,7 @@ const NewArrivals = () => {
             image={item.image}
             price={item.price}
             discountPrice={item.discountPrice}
-            category={item.category}
+            category={"newest"}
           />
         )
       })}

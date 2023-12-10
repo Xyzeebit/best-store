@@ -65,9 +65,16 @@ const FlashSales = () => {
         <div>Flash Sales {`${hh > 9 ? hh : '0' + hh}:${mm > 9 ? mm : '0' + mm}:${ss > 9 ? ss : '0' + ss}`}</div>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-        {flashSales && flashSales.map(item => (
-          <FlashSalesItem key={item.id} {...item} />
-        ))}
+        {flashSales && flashSales.map(item => {
+          
+          let rating = item.ratings.reduce((prev, curr) => {
+            return prev + curr;
+          }, 0)
+          rating /= item.ratings.length;
+          return (
+            <FlashSalesItem key={item.id} {...item} rating={rating} />
+          )
+        })}
       </div>
     </div>
   );

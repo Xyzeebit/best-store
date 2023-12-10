@@ -38,7 +38,7 @@ const ProductCard = ({ id, title, image, discountPrice, price, category, optiona
         </Link>
         <div className="flex items-center justify-start gap-4 py-2">
           <div className="font-bold text-lg text-green-900">${discountPrice > 0 ? discountPrice : price}</div>
-          {discountPrice > 0 && (
+          {discountPrice && (
             <div className="text-sm font-semibold text-red-500">
               <s>${price}</s>
             </div>
@@ -64,8 +64,8 @@ ProductCard.propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
-  price: PropTypes.array.isRequired,
-  discountPrice: PropTypes.array.isRequired,
+  price: PropTypes.string.isRequired,
+  discountPrice: PropTypes.string.isRequired,
   category: PropTypes.string.isRequired,
   optional: PropTypes.bool,
 };

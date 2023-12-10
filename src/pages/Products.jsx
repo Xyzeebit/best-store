@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { filterByCategory } from "../api/collections-api";
 
 const Products = ({ category }) => {
-  const { data } = useSelector((state) => state.categories);
+  const { data } = useSelector((state) => state.collections);
   const [filteredData, setFilteredData] = useState([]);
 
   useEffect(() => {
@@ -13,8 +13,10 @@ const Products = ({ category }) => {
   }, [category]);
 
   useEffect(() => {
-    const path = category.toLowerCase();
-    filterByCategory(data, path, setFilteredData);
+    if(data) {
+      const path = category.toLowerCase();
+      filterByCategory(data, path, setFilteredData);
+    }
   }, [category, data]);
 
   return (

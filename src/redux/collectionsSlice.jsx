@@ -97,7 +97,7 @@ export const collectionsSlice = createSlice({
     },
 
     fetchCollections: (state, { payload }) => {
-      console.log(payload)
+      
       if (payload.ok) {
         state.loading = false;
         state.error = null;

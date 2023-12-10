@@ -1,4 +1,4 @@
-import { useEffect, Suspense, useState } from "react";
+import { useEffect, Suspense } from "react";
 import {
   Container,
   Carousel,
@@ -11,28 +11,12 @@ import {
   FeaturedCollections,
 } from "../components/core";
 import { HomeLoader } from "../components/core/Loaders";
-import { useDispatch } from "react-redux";
-import { fetchAllCollections } from "../api/apis";
-import { fetchCollections } from "../redux/collectionsSlice";
 
 const HomePage = () => {
-  const [noData, setNoData] = useState(true);
-  const dispatch = useDispatch();
-
-  async function getData() {
-    const collections = await fetchAllCollections();
-    dispatch(fetchCollections(collections));
-    setNoData(false);
-  }
-  if (noData) {
-    getData();
-  }
 
   useEffect(() => {
     document.title = "Bestore | Best Shopping Experience";
   }, []);
-
-  useEffect(() => {}, []);
 
   return (
     <Suspense fallback={<HomeLoader />}>

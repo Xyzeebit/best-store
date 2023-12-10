@@ -14,7 +14,7 @@ const Item = ({ id, title, price, image, ratings, category }) => {
       setItemAdded(false);
     } else {
       const item = { id, title, price, image, ratings, category };
-      dispatch(addToCart({ item }));
+      dispatch(addToCart(item));
       setItemAdded(true);
     }
   };

@@ -29,8 +29,9 @@ const BestSellers = () => {
             id={item.id}
             title={item.title}
             image={item.image}
-            prices={item.prices}
-            category={item.category}
+            price={item.price}
+            discountPrice={item.discountPrice}
+            category={"bestseller"}
             optional={false}
           />
         );

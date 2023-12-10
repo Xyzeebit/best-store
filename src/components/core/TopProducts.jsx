@@ -34,7 +34,7 @@ const ProductLink = ({ text, url }) => (
 
 TopProducts.propTypes = {
   category: PropTypes.string.isRequired,
-  data: PropTypes.object.isRequired,
+  data: PropTypes.array.isRequired,
 };
 
 ProductLink.propTypes = {

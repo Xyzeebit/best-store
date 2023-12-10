@@ -88,7 +88,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/phones",
-    element: <Products category="phone" />,
+    element: <Products category="phones" />,
   },
   {
     path: "/laptops",

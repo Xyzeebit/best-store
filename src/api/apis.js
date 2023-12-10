@@ -117,174 +117,8 @@ const products = [
   },
 ];
 
-const list = [
-  {
-    id: "jainba6b9jxhbya",
-    title: "Samsung ultra s20 6gb ram 124gb rom",
-    image: icon,
-    prices: ["890.00"],
-    rating: 5,
-    category: "phones",
-  },
-  {
-    id: "jainb6b9njxhbya",
-    title: "Samsung ultra s20 6gb ram 124gb rom",
-    image: icon,
-    prices: ["850.00", "900.50"],
-    category: "phones",
-  },
-  {
-    id: "jainb6b9jxhbMya",
-    title: "Samsung ultra s20 6gb ram 124gb rom",
-    image: makeup,
-    prices: ["500.00", "590.90"],
-    category: "phones",
-  },
-  {
-    id: "jainb6b9jxhboya",
-    title: "Samsung ultra s20 6gb ram 124gb rom",
-    image: icon,
-    prices: ["400.00"],
-    rating: 5,
-    category: "phones",
-  },
-  {
-    id: "jainb6b9jxhbYoya",
-    title: "Samsung ultra s20 6gb ram 124gb rom",
-    image: icon,
-    prices: ["120.00", "150.00"],
-    ratings: 3,
-    category: "phones",
-  },
-  {
-    id: "jainVb6b9jxhboya",
-    title: "Samsung ultra s20 6gb ram 124gb rom",
-    image: icon,
-    prices: ["50.00", "55.00"],
-    category: "phones",
-    ratings: 4,
-  },
-];
 
-const d = [
-  "Makeup kit from top brand",
-  "Get your stationeries for half the price",
-  "Mens footwear from top brand",
-  "Kiddies special",
-];
-const flashSales = [
-  {
-    id: "KJIIi9ksjo",
-    image: clothes,
-    text: "Babies wear (Clothes, shoe, cloves and hoods)",
-    price: "130.45",
-  },
-  {
-    id: "KJIIi9k0sjo",
-    image: hair_w,
-    text: "Colored attachment hair for women",
-    price: "130.45",
-  },
-  {
-    id: "KJIIi9ksjo2",
-    image: mensShirt,
-    text: "Shirt for out activities",
-    price: "130.45",
-    rating: 3.5,
-  },
-  {
-    id: "KJIIi39ksjo",
-    image: clothes,
-    text: "Babies wear",
-    price: "130.45",
-    rating: 2.5,
-  },
-  {
-    id: "KJI4Ii9ksjo",
-    image: clothes,
-    text: "Babies wear",
-    price: "130.45",
-    rating: 5,
-  },
-  {
-    id: "KJIIi59ksjo",
-    image: clothes,
-    text: "Babies wear",
-    price: "130.45",
-    rating: 2.26,
-  },
-  {
-    id: "KJ6IIi9ksjo",
-    image: clothes,
-    text: "Babies wear",
-    price: "130.45",
-    rating: 5,
-  },
-  {
-    id: "KJIIi97ksjo",
-    image: clothes,
-    text: "Babies wear",
-    price: "130.45",
-    rating: 4.5,
-  },
-  {
-    id: "KJIIi9k8sjo",
-    image: clothes,
-    text: "Babies wear",
-    price: "130.45",
-    rating: 3.5,
-  },
-];
-const list2 = [
-  {
-    id: "jainba6b9jxhbya",
-    title: "Samsung ultra s20 6gb ram 124gb rom",
-    image: icon,
-    category: "phones",
-    prices: ["890.00"],
-    rating: 5,
-  },
-  {
-    id: "jainb6b9njxhbya",
-    title: "Samsung ultra s20 6gb ram 124gb rom",
-    image: icon,
-    category: "phones",
-    prices: ["850.00", "900.50"],
-  },
-  {
-    id: "jainb6b9jxhbMya",
-    title: "Samsung ultra s20 6gb ram 124gb rom",
-    image: makeup,
-    prices: ["500.00", "590.90"],
-    category: "phones",
-  },
-  {
-    id: "jainb6b9jxhboya",
-    title: "Samsung ultra s20 6gb ram 124gb rom",
-    image: icon,
-    prices: ["400.00"],
-    category: "phones",
-    rating: 5,
-  },
-  {
-    id: "jainb6b9jxhbYoya",
-    title: "Samsung ultra s20 6gb ram 124gb rom",
-    image: icon,
-    prices: ["120.00", "150.00"],
-    ratings: 3,
-    category: "phones",
-  },
-  {
-    id: "jainVb6b9jxhboya",
-    title: "Samsung ultra s20 6gb ram 124gb rom",
-    image: icon,
-    prices: ["50.00", "55.00"],
-    ratings: 4,
-    category: "phones",
-  },
-];
-
-export const PRODUCTS = [
+export const COLLECTIONS = [
   {
     id: nanoid(12),
     title: "Samsung s20",
@@ -297,13 +131,149 @@ export const PRODUCTS = [
     categories: ["phones"],
     tags: ["newest"],
     brand: "Samsung",
-    ratings: [4, 28], // index 0: rating, index 1: rating size
-    comment: [],
+    ratings: [1, 2, 4, 4, 2, 5, 2, 3], // index 0: rating, index 1: rating size
+    quantityLeft: 8,
+  },
+  {
+    id: nanoid(12),
+    title: "Samsung s20",
+    price: "850.90",
+    discountPrice: "800.95",
+    discount: "",
+    description: "Samsung S20 ultra 6gb ram 124gb rom",
+    image: phone,
+    images: [phone, phone, phone],
+    categories: ["phones"],
+    tags: ["newest"],
+    brand: "Samsung",
+    ratings: [1, 2, 4, 4, 2, 5, 2, 3], // index 0: rating, index 1: rating size
+    quantityLeft: 8,
+  },
+  {
+    id: nanoid(12),
+    title: "Samsung s20",
+    price: "850.90",
+    discountPrice: "800.95",
+    discount: "",
+    description: "Samsung S20 ultra 6gb ram 124gb rom",
+    image: phone,
+    images: [phone, phone, phone],
+    categories: ["random", "phones"],
+    tags: ["newest"],
+    brand: "Samsung",
+    ratings: [1, 2, 4, 4, 2, 5, 2, 3], // index 0: rating, index 1: rating size
+    quantityLeft: 8,
+  },
+  {
+    id: nanoid(12),
+    title: "Samsung s20",
+    price: "850.90",
+    discountPrice: "800.95",
+    discount: "",
+    description: "Samsung S20 ultra 6gb ram 124gb rom",
+    image: phone,
+    images: [phone, phone, phone],
+    categories: ["random", "phones"],
+    tags: ["newest"],
+    brand: "Samsung",
+    ratings: [1, 2, 4, 4, 2, 5, 2, 3], // index 0: rating, index 1: rating size
+    quantityLeft: 8,
+  },
+  {
+    id: nanoid(12),
+    title: "Babies wear",
+    price: "130.45",
+    discountPrice: "",
+    discount: "",
+    description: "",
+    image: clothes,
+    images: [clothes, clothes, clothes],
+    categories: ["clothes", "babies wear", "flash sales", "deals"],
+    tags: ["newest", "best seller"],
+    brand: "Samsung",
+    ratings: [1, 2, 4, 4, 2, 5, 2, 3], // index 0: rating, index 1: rating size
+    quantityLeft: 8,
+  },
+  {
+    id: nanoid(12),
+    title: "Babies wear",
+    price: "130.45",
+    discountPrice: "",
+    discount: "",
+    description: "",
+    image: clothes,
+    images: [clothes, clothes, clothes],
+    categories: ["random", "clothes", "babies wear", "flash sales", "deals"],
+    tags: ["newest", "best seller"],
+    brand: "Samsung",
+    ratings: [1, 2, 4, 4, 2, 5, 2, 3], // index 0: rating, index 1: rating size
+    quantityLeft: 8,
+  },
+  {
+    id: nanoid(12),
+    title: "Babies wear",
+    price: "130.45",
+    discountPrice: "",
+    discount: "",
+    description: "",
+    image: clothes,
+    images: [clothes, clothes, clothes],
+    categories: ["clothes", "babies wear", "flash sales", "deals"],
+    tags: ["newest", "best seller"],
+    brand: "Samsung",
+    ratings: [1, 2, 4, 4, 2, 5, 2, 3], // index 0: rating, index 1: rating size
+    quantityLeft: 8,
+  },
+  {
+    id: nanoid(12),
+    title: "Babies wear",
+    price: "130.45",
+    discountPrice: "",
+    discount: "",
+    description: "",
+    image: clothes,
+    images: [clothes, clothes, clothes],
+    categories: ["clothes", "babies wear", "flash sales", "deals"],
+    tags: ["newest", "best seller"],
+    brand: "Samsung",
+    ratings: [1, 2, 4, 4, 2, 5, 2, 3], // index 0: rating, index 1: rating size
+    quantityLeft: 8,
+  },
+  {
+    id: nanoid(12),
+    title: "Babies wear",
+    price: "130.45",
+    discountPrice: "",
+    discount: "",
+    description: "",
+    image: clothes,
+    images: [clothes, clothes, clothes],
+    categories: ["random", "clothes", "babies wear", "flash sales", "deals"],
+    tags: ["newest", "best seller"],
+    brand: "Samsung",
+    ratings: [1, 2, 4, 4, 2, 5, 2, 3], // index 0: rating, index 1: rating size
+    quantityLeft: 8,
+  },
+  {
+    id: nanoid(12),
+    title: "Babies wear",
+    price: "130.45",
+    discountPrice: "",
+    discount: "",
+    description: "",
+    image: clothes,
+    images: [clothes, clothes, clothes],
+    categories: ["random", "clothes", "babies wear", "flash sales", "deals"],
+    tags: ["newest", "best seller"],
+    brand: "Samsung",
+    ratings: [1, 2, 4, 4, 2, 5, 2, 3, 4], // index 0: rating, index 1: rating size
+    quantityLeft: 8,
+    quantityLeft: 8,
   },
 ];
 
 export async function fetchAllCollections() {
-  const collections = PRODUCTS;
+  const collections = COLLECTIONS;
   return { ok: true, data: collections };
 }
 
@@ -360,19 +330,7 @@ export async function createUserWithEmailAndPassword(email, password) {
 }
 
 export async function getDataByCategoryAndId(category, id) {
-  const data = {
-    category,
-    id,
-    description: "White designer sneakers, size 26",
-    details: `White shoe for men and women`,
-    prices: ["150.45", "160.45"],
-    discount: 10,
-    rating: [4.5, 27],
-    quantityLeft: 12,
-    quantity: 1,
-    title: "Sneakers",
-    images: [footwear, clothes, stationery],
-  };
+  const data = COLLECTIONS.find(it => it.id === id);
   return { ok: true, data };
 }
 
