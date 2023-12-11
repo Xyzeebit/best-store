@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { removeFromCart, updateCartItem } from "../../redux/categoriesSlice";
+import { removeFromCart, updateCartItem } from "../../redux/collectionsSlice";
 import { useDispatch } from "react-redux";
 import deleteIcon from "../../assets/icons/delete-icon.svg";
 import minus from "../../assets/icons/minus-circle-icon.svg";
@@ -7,7 +7,7 @@ import plus from "../../assets/icons/plus-circle-icon.svg";
 
 const CartItem = ({ item }) => {
   const dispatch = useDispatch();
-
+  
   const handleRemove = () => {
     dispatch(removeFromCart(item));
   }
@@ -39,11 +39,11 @@ const CartItem = ({ item }) => {
       </button>
       <div className="flex gap-4 items-center justify-start">
         <div className="rounded overflow-hidden">
-          <img src={item.images[0]} alt={item.title} width={100} height={100} />
+          <img src={item.image} alt={item.title} width={100} height={100} />
         </div>
         <div>
           <p className="text-sm text-gray-900 font-bold">{item.title}</p>
-          <p className="text-md font-semibold text-green-900">${(item.prices[0] * item.quantity).toFixed(2)}</p>
+          <p className="text-md font-semibold text-green-900">${(item.price * item.quantity).toFixed(2)}</p>
           <p className="text-xs text-gray-900">Quantity: {item.quantity}</p>
           <div className="pt-2">
             <QuantityButton
@@ -64,7 +64,7 @@ CartItem.propTypes = {
     quantityLeft: PropTypes.number.isRequired,
     quantity: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
-    prices: PropTypes.array.isRequired,
+    price: PropTypes.number.isRequired,
     images: PropTypes.array.isRequired,
   }).isRequired,
 };

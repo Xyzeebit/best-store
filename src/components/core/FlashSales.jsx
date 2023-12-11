@@ -1,78 +1,14 @@
 import flashIcon from '../../assets/icons/flash-on.svg'
-import clothes from '../../assets/clothes.jpg';
-import hair from '../../assets/hair_women.webp';
-import mensShirt from '../../assets/mens-shirt.webp';
-// import PropTypes from 'prop-types';
 import { useEffect, useState } from "react"
 import FlashSalesItem from './FlashSalesItem';
+import { useSelector } from 'react-redux';
+import { filterByCategory } from '../../api/collections-api';
 
 const timer = {
   hours: 18,
   minutes: 54
 };
-const flashSales = [
-  {
-    id: "KJIIi9ksjo",
-    image: clothes,
-    text: "Babies wear (Clothes, shoe, cloves and hoods)",
-    price: "130.45",
-  },
-  {
-    id: "KJIIi9k0sjo",
-    image: hair,
-    text: "Colored attachment hair for women",
-    price: "130.45",
-  },
-  {
-    id: "KJIIi9ksjo2",
-    image: mensShirt,
-    text: "Shirt for out activities",
-    price: "130.45",
-    rating: 3.5,
-  },
-  {
-    id: "KJIIi39ksjo",
-    image: clothes,
-    text: "Babies wear",
-    price: "130.45",
-    rating: 2.5,
-  },
-  {
-    id: "KJI4Ii9ksjo",
-    image: clothes,
-    text: "Babies wear",
-    price: "130.45",
-    rating: 5,
-  },
-  {
-    id: "KJIIi59ksjo",
-    image: clothes,
-    text: "Babies wear",
-    price: "130.45",
-    rating: 2.26,
-  },
-  {
-    id: "KJ6IIi9ksjo",
-    image: clothes,
-    text: "Babies wear",
-    price: "130.45",
-    rating: 5,
-  },
-  {
-    id: "KJIIi97ksjo",
-    image: clothes,
-    text: "Babies wear",
-    price: "130.45",
-    rating: 4.5,
-  },
-  {
-    id: "KJIIi9k8sjo",
-    image: clothes,
-    text: "Babies wear",
-    price: "130.45",
-    rating: 3.5,
-  },
-];
+
 
 
 const FlashSales = () => {
@@ -80,6 +16,14 @@ const FlashSales = () => {
   const [hh, setHH] = useState(timer.hours);
   const [mm, setMM] = useState(timer.minutes);
   const [ss, setSS] = useState(59);
+  const { data } = useSelector((state) => state.collections);
+  const [flashSales, setFlashSales] = useState([]);
+
+  useEffect(() => {
+    if (data) {
+      filterByCategory(data, "flash sales", setFlashSales);
+    }
+  }, [data]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -121,9 +65,16 @@ const FlashSales = () => {
         <div>Flash Sales {`${hh > 9 ? hh : '0' + hh}:${mm > 9 ? mm : '0' + mm}:${ss > 9 ? ss : '0' + ss}`}</div>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-        {flashSales.map(item => (
-          <FlashSalesItem key={item.id} {...item} />
-        ))}
+        {flashSales && flashSales.map(item => {
+          
+          let rating = item.ratings.reduce((prev, curr) => {
+            return prev + curr;
+          }, 0)
+          rating /= item.ratings.length;
+          return (
+            <FlashSalesItem key={item.id} {...item} rating={rating} />
+          )
+        })}
       </div>
     </div>
   );

@@ -19,6 +19,7 @@ const carouselSlice = createSlice({
       } else {
         state.bannersLoading = false;
       }
+      return state;
     },
     updateDealsCarousel: (state, { items }) => {
       if (items.ok) {
@@ -27,6 +28,7 @@ const carouselSlice = createSlice({
       } else {
         state.dealsLoading = false;
       }
+      return state;
     },
   },
 });

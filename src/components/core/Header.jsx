@@ -12,13 +12,13 @@ import { useSelector } from 'react-redux';
 import Logo from './Logo';
 
 const Header = () => {
-  const { cartItemCounter } = useSelector(state => state.categories);
+  const { cartItemCounter } = useSelector(state => state.collections);
   const { isLoggedIn } = useSelector(state => state.user);
 
     return (
       <div className='sticky top-0 z-50 '>
         <div className="bg-red-500 h-4"></div>
-        <header className="bg-white shadow-sm px-4 md:px-16 py-2 flex items-center justify-between flex-wrap gap-3 md:gap-4">
+        <header className="bg-white shadow-sm px-4 md:px-16 py-2 flex items-center justify-between flex-wrap sm:flex-nowrap md:flex-nowrap gap-3 md:gap-4">
           {/* <NavBrand brand="Bestore" /> */}
           <Logo />
           <Wrapper>

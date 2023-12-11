@@ -1,10 +1,18 @@
 import { nanoid } from "@reduxjs/toolkit";
-
+import phone from "../assets/phone2.webp";
+import laptop from "../assets/laptop.jpg";
+import shirt from "../assets/mens-shirt.webp";
+import makeup from "../assets/makeup.jpg";
+import toys from "../assets/toys.jpg";
+import shoes from "../assets/sneakers.webp";
+import hair from "../assets/women-hair.webp";
 import stationery from "../assets/stationery.jpg";
 import clothes from "../assets/clothes.jpg";
 import footwear from "../assets/footwear.jpg";
-import makeup from "../assets/makeup.jpg";
 import appliances from "../assets/appliances.jpg";
+import icon from "../assets/phone1.webp";
+import hair_w from '../assets/hair_women.webp';
+import mensShirt from '../assets/mens-shirt.webp';
 
 // import { createClient } from "@supabase/supabase-js";
 
@@ -19,26 +27,31 @@ export const BANNER_ITEMS = [
     id: nanoid(8),
     to: "/books-and-stationeries",
     image: stationery,
+    color: "yellow",
   },
   {
     id: nanoid(8),
     to: "/babies",
     image: clothes,
+    color: "red",
   },
   {
     id: nanoid(8),
     to: "/footwears",
     image: footwear,
+    color: "gray",
   },
   {
     id: nanoid(8),
     to: "/makeup-and-cosmetics",
     image: makeup,
+    color: "pink",
   },
   {
     id: nanoid(8),
     to: "/home-appliances",
     image: appliances,
+    color: "gray",
   },
 ];
 
@@ -57,18 +70,212 @@ export const DEALS_ITEM = [
   },
 ];
 
-export const PRODUCTS = [
+const products = [
   {
-    id: nanoid(16),
-    title: "",
-    description: "",
-    imageThumbnail: "",
-    images: [],
-    categories: [],
-    tags: [],
-    brand: "",
+    id: nanoid(14),
+    title: "Tecno Spark 4",
+    image: phone,
+    price: "150.00",
+    ratings: 3.7,
+    category: "phones",
+  },
+  {
+    id: nanoid(14),
+    title: "Laptops",
+    image: laptop,
+    category: "laptops",
+  },
+  {
+    id: nanoid(14),
+    title: "Toys",
+    image: toys,
+    category: "toys",
+  },
+  {
+    id: nanoid(14),
+    title: "Hair",
+    image: hair,
+    category: "hairs",
+  },
+  {
+    id: nanoid(14),
+    title: "Shirts",
+    image: shirt,
+    category: "clothes",
+  },
+  {
+    id: nanoid(14),
+    title: "Cosmetics",
+    image: makeup,
+    category: "makeup-and-cosmetics",
+  },
+  {
+    id: nanoid(14),
+    title: "Sneakers",
+    image: shoes,
+    category: "footwears",
   },
 ];
+
+
+export const COLLECTIONS = [
+  {
+    id: nanoid(12),
+    title: "Samsung s20",
+    price: "850.90",
+    discountPrice: "800.95",
+    discount: "",
+    description: "Samsung S20 ultra 6gb ram 124gb rom",
+    image: phone,
+    images: [phone, phone, phone],
+    categories: ["phones"],
+    tags: ["newest"],
+    brand: "Samsung",
+    ratings: [1, 2, 4, 4, 2, 5, 2, 3], // index 0: rating, index 1: rating size
+    quantityLeft: 8,
+  },
+  {
+    id: nanoid(12),
+    title: "Samsung s20",
+    price: "850.90",
+    discountPrice: "800.95",
+    discount: "",
+    description: "Samsung S20 ultra 6gb ram 124gb rom",
+    image: phone,
+    images: [phone, phone, phone],
+    categories: ["phones"],
+    tags: ["newest"],
+    brand: "Samsung",
+    ratings: [1, 2, 4, 4, 2, 5, 2, 3], // index 0: rating, index 1: rating size
+    quantityLeft: 8,
+  },
+  {
+    id: nanoid(12),
+    title: "Samsung s20",
+    price: "850.90",
+    discountPrice: "800.95",
+    discount: "",
+    description: "Samsung S20 ultra 6gb ram 124gb rom",
+    image: phone,
+    images: [phone, phone, phone],
+    categories: ["random", "phones"],
+    tags: ["newest"],
+    brand: "Samsung",
+    ratings: [1, 2, 4, 4, 2, 5, 2, 3], // index 0: rating, index 1: rating size
+    quantityLeft: 8,
+  },
+  {
+    id: nanoid(12),
+    title: "Samsung s20",
+    price: "850.90",
+    discountPrice: "800.95",
+    discount: "",
+    description: "Samsung S20 ultra 6gb ram 124gb rom",
+    image: phone,
+    images: [phone, phone, phone],
+    categories: ["random", "phones"],
+    tags: ["newest"],
+    brand: "Samsung",
+    ratings: [1, 2, 4, 4, 2, 5, 2, 3], // index 0: rating, index 1: rating size
+    quantityLeft: 8,
+  },
+  {
+    id: nanoid(12),
+    title: "Babies wear",
+    price: "130.45",
+    discountPrice: "",
+    discount: "",
+    description: "",
+    image: clothes,
+    images: [clothes, clothes, clothes],
+    categories: ["clothes", "babies wear", "flash sales", "deals"],
+    tags: ["newest", "best seller"],
+    brand: "Samsung",
+    ratings: [1, 2, 4, 4, 2, 5, 2, 3], // index 0: rating, index 1: rating size
+    quantityLeft: 8,
+  },
+  {
+    id: nanoid(12),
+    title: "Babies wear",
+    price: "130.45",
+    discountPrice: "",
+    discount: "",
+    description: "",
+    image: clothes,
+    images: [clothes, clothes, clothes],
+    categories: ["random", "clothes", "babies wear", "flash sales", "deals"],
+    tags: ["newest", "best seller"],
+    brand: "Samsung",
+    ratings: [1, 2, 4, 4, 2, 5, 2, 3], // index 0: rating, index 1: rating size
+    quantityLeft: 8,
+  },
+  {
+    id: nanoid(12),
+    title: "Babies wear",
+    price: "130.45",
+    discountPrice: "",
+    discount: "",
+    description: "",
+    image: clothes,
+    images: [clothes, clothes, clothes],
+    categories: ["clothes", "babies wear", "flash sales", "deals"],
+    tags: ["newest", "best seller"],
+    brand: "Samsung",
+    ratings: [1, 2, 4, 4, 2, 5, 2, 3], // index 0: rating, index 1: rating size
+    quantityLeft: 8,
+  },
+  {
+    id: nanoid(12),
+    title: "Babies wear",
+    price: "130.45",
+    discountPrice: "",
+    discount: "",
+    description: "",
+    image: clothes,
+    images: [clothes, clothes, clothes],
+    categories: ["clothes", "babies wear", "flash sales", "deals"],
+    tags: ["newest", "best seller"],
+    brand: "Samsung",
+    ratings: [1, 2, 4, 4, 2, 5, 2, 3], // index 0: rating, index 1: rating size
+    quantityLeft: 8,
+  },
+  {
+    id: nanoid(12),
+    title: "Babies wear",
+    price: "130.45",
+    discountPrice: "",
+    discount: "",
+    description: "",
+    image: clothes,
+    images: [clothes, clothes, clothes],
+    categories: ["random", "clothes", "babies wear", "flash sales", "deals"],
+    tags: ["newest", "best seller"],
+    brand: "Samsung",
+    ratings: [1, 2, 4, 4, 2, 5, 2, 3], // index 0: rating, index 1: rating size
+    quantityLeft: 8,
+  },
+  {
+    id: nanoid(12),
+    title: "Babies wear",
+    price: "130.45",
+    discountPrice: "",
+    discount: "",
+    description: "",
+    image: clothes,
+    images: [clothes, clothes, clothes],
+    categories: ["random", "clothes", "babies wear", "flash sales", "deals"],
+    tags: ["newest", "best seller"],
+    brand: "Samsung",
+    ratings: [1, 2, 4, 4, 2, 5, 2, 3, 4], // index 0: rating, index 1: rating size
+    quantityLeft: 8,
+    quantityLeft: 8,
+  },
+];
+
+export async function fetchAllCollections() {
+  const collections = COLLECTIONS;
+  return { ok: true, data: collections };
+}
 
 export function isValidEmail(email) {
   if (typeof email !== "string")
@@ -123,19 +330,7 @@ export async function createUserWithEmailAndPassword(email, password) {
 }
 
 export async function getDataByCategoryAndId(category, id) {
-  const data = {
-    category,
-    id,
-    description: "White designer sneakers, size 26",
-    details: `White shoe for men and women`,
-    prices: ["150.45", "160.45"],
-    discount: 10,
-    rating: [4.5, 27],
-    quantityLeft: 12,
-    quantity: 1,
-    title: "Sneakers",
-    images: [footwear, clothes, stationery],
-  };
+  const data = COLLECTIONS.find(it => it.id === id);
   return { ok: true, data };
 }
 
