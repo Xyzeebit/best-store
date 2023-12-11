@@ -7,7 +7,7 @@ import plus from "../../assets/icons/plus-circle-icon.svg";
 
 const CartItem = ({ item }) => {
   const dispatch = useDispatch();
-
+  
   const handleRemove = () => {
     dispatch(removeFromCart(item));
   }
@@ -39,7 +39,7 @@ const CartItem = ({ item }) => {
       </button>
       <div className="flex gap-4 items-center justify-start">
         <div className="rounded overflow-hidden">
-          <img src={item.images[0]} alt={item.title} width={100} height={100} />
+          <img src={item.image} alt={item.title} width={100} height={100} />
         </div>
         <div>
           <p className="text-sm text-gray-900 font-bold">{item.title}</p>

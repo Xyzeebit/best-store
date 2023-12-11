@@ -7,7 +7,7 @@ import cartIcon from "../assets/icons/cart-large_icon.svg";
 import { createOrders } from "../redux/collectionsSlice";
 
 const Cart = () => {
-  const { cart } = useSelector((state) => state.categories);
+  const { cart } = useSelector((state) => state.collections);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 

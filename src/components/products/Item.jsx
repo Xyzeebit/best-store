@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { addToCart, removeFromCart } from "../../redux/collectionsSlice";
 import { useState } from "react";
 
-const Item = ({ id, title, price, image, ratings, category }) => {
+const Item = ({ id, title, price, image, ratings, category, quantityLeft }) => {
   const [itemAdded, setItemAdded] = useState(false);
   const dispatch = useDispatch();
   const handleAddToCart = () => {
@@ -13,7 +13,7 @@ const Item = ({ id, title, price, image, ratings, category }) => {
       dispatch(removeFromCart({ id }));
       setItemAdded(false);
     } else {
-      const item = { id, title, price, image, ratings, category };
+      const item = { id, title, price, image, ratings, category, quantity: 1, quantityLeft };
       dispatch(addToCart(item));
       setItemAdded(true);
     }
@@ -68,6 +68,7 @@ Item.propTypes = {
   price: PropTypes.string.isRequired,
   category: PropTypes.string.isRequired,
   ratings: PropTypes.number,
+  quantityLeft: PropTypes.number,
 };
 
 export default Item;

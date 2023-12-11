@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom';
 
 const Checkout = () => {
-    const orders = useSelector((state) => state.categories.orders);
+    const orders = useSelector((state) => state.collections.orders);
     const navigate = useNavigate();
 
     useEffect(() => {
