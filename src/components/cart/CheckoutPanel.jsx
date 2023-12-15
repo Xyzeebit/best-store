@@ -232,7 +232,7 @@ Order.propTypes = {
 const Value = ({ label, text, showForm, value, handler }) => {
   return (
     <div className="w-full mb-2">
-      <div className="rounded-tr-md bg-gray-200 w-40 text-xs text-gray-500 p-1 font-semibold">
+      <div className="rounded-tr-md bg-gray-200 w-32 text-xs text-gray-500 p-1 font-semibold">
         {label}
       </div>
       {!showForm && <div className={`bg-gray-50 text-gray-900 ${text ? 'p-1' : ''}`}>{text}</div>}
