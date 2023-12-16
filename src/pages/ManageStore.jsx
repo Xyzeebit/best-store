@@ -1,8 +1,12 @@
-import { useEffect, useId, useState, useRef } from "react";
+import { useEffect, useId, useState } from "react";
 import { Layout } from "../components/core"
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import PropTypes from 'prop-types';
+
+import uploadIcon from '../assets/icons/upload-icon-alt.svg'
+import closeIcon from '../assets/icons/close-icon.svg'
+
 
 
 const tags = ["newest", "best seller"];
@@ -10,7 +14,20 @@ const categories = ["random", "clothes", "babies wear", "flash sales", "deals"];
 
 const ManageStore = () => {
     const user = useSelector((state) => state.user);
-    const navigate = useNavigate();
+  const navigate = useNavigate();
+  const [images, setImages] = useState(null);
+  
+  const handleFiles = (evt) => {
+    const files = Object.values(evt.target.files);
+    setImages(files);
+    console.log(images);
+  };
+
+  const removeImage = (index) => {
+    const imgs = [...images];
+    imgs.splice(index);
+    setImages(imgs);
+  };
 
     useEffect(() => {
       if (!user.isLoggedIn) {
@@ -30,7 +47,7 @@ const ManageStore = () => {
           <h2 className="font-bold text-xl text-gray-800 py-4 text-center pt-8">
             Create and Update Product
           </h2>
-          <Form>
+          <Form images={images}>
             <Input
               label="Title"
               name="title"
@@ -67,14 +84,14 @@ const ManageStore = () => {
             />
             <RadioButtons options={categories} label="categories" />
             <RadioButtons options={tags} label="tags" />
+            <ImageInput images={images} onChange={handleFiles} removeImage={removeImage} />
           </Form>
         </div>
       </Layout>
     );
 }
 
-const Form = ({ children }) => {
-  const formRef = useRef(null);
+const Form = ({ images, children }) => {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -86,25 +103,70 @@ const Form = ({ children }) => {
     form.discount = evt.target.percent.value;
     form.categories = evt.target.categories.value?.split(":");
     form.tags = evt.target.tags.value?.split(":");
+    // form.images = evt.target.images.files;
+    form.images = images;
+
     console.log(form)
     
   }
   return (
     <form
+      encType="mutipart/form-data"
       className="lg:w-3/5 lg:m-auto lg:border-2 lg:p-4 lg:rounded-sm"
-      ref={formRef}
       onSubmit={handleSubmit}
     >
       {children}
+      <hr />
       <div className="py-4 flex items-center justify-center">
-        <button className="px-4 py-2 text-sm bg-green-900 hover:bg-red-500 font-semibold rounded-3xl text-white">Upload Item</button>
+        <button className="px-6 py-2 mt-4 text-xl bg-green-900 hover:bg-red-500 font-semibold rounded-3xl text-white">Create Item</button>
       </div>
     </form>
   )
 }
 
 Form.propTypes = {
+  images: PropTypes.array,
   children: PropTypes.node.isRequired
+};
+
+const ImageInput = ({ images, onChange, removeImage }) => {
+  
+  return (
+    <div className="p-4 bg-gray-50">
+      <div>
+        <label htmlFor="images" className="flex gap-3 items-center justify-center bg-gray-300 px-4 py-2 shadow w-36 m-auto rounded-3xl">
+          <img src={uploadIcon} alt="choose file to upload" width={25} height={25} />
+          <span className="text-xs font-semibold text-gray-800">Choose file</span>
+        </label>
+        <input
+          type="file"
+          accept=".jpeg, .jpg, .png, .webp"
+          id="images"
+          name="images"
+          multiple
+          onChange={onChange}
+          className="hidden"
+        />
+      </div>
+      <div className="flex items-center justify-center gap-4 pt-6">
+        {images && images.map((image, i) => (
+          <div key={image.name} className="relative w-32 h-32 overflow-hidden rounded-sm border-2">
+            <img src={URL.createObjectURL(image)} alt={image.name} width={150} height={150} />
+            <img src={closeIcon} width={25} height={25}
+              onClick={() => removeImage(i)}
+              className="absolute top-0 right-0 bg-white rounded-full"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+ImageInput.propTypes = {
+  images: PropTypes.array,
+  onChange: PropTypes.func.isRequired,
+  removeImage: PropTypes.func.isRequired,
 };
 
 const Textarea = ({ label, name, placeholder}) => {
@@ -171,7 +233,7 @@ const RadioButtons = ({ options, label }) => {
   }
   return (
     <div className="pb-4">
-      <p className="font-semibold text-md text-gray-800">Choose all that apply</p>
+      <p className="font-semibold text-md text-gray-800">Choose all that apply ({label})</p>
       <div className="flex items-center justify-start gap-4 flex-wrap">
         {options.map((item, i) => (
           <RadioInput value={item} key={item + "-" + i} onChange={handleChoice} />
