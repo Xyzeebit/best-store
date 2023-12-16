@@ -268,7 +268,6 @@ export const COLLECTIONS = [
     brand: "Samsung",
     ratings: [1, 2, 4, 4, 2, 5, 2, 3, 4], // index 0: rating, index 1: rating size
     quantityLeft: 8,
-    quantityLeft: 8,
   },
 ];
 

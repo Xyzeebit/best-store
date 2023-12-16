@@ -10,6 +10,7 @@ import Checkout from './pages/Checkout';
 import SignOut from './pages/SignOut'
 import NotFound from "./pages/NotFound";
 import { Home } from "./pages";
+import ManageStore from "./pages/ManageStore";
 
 const router = createBrowserRouter([
   {
@@ -75,6 +76,16 @@ const router = createBrowserRouter([
   {
     path: "/cart",
     element: <Cart />,
+    errorElement: (
+      <ErrorBoundary
+        message="Oops!!! an error occurred while loading this page"
+        path="/"
+      />
+    ),
+  },
+  {
+    path: "/manage-store",
+    element: <ManageStore />,
     errorElement: (
       <ErrorBoundary
         message="Oops!!! an error occurred while loading this page"
@@ -283,7 +294,8 @@ const router = createBrowserRouter([
   {
     path: "/checkout",
     element: <Checkout />,
-    errorElement: <ErrorBoundary path="/" message="Page Not Found" />,  },
+    errorElement: <ErrorBoundary path="/" message="Page Not Found" />,
+  },
   {
     path: "*",
     element: <Error404 />,
