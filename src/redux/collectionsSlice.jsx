@@ -39,6 +39,7 @@ export const collectionsSlice = createSlice({
   reducers: {
     searchProduct: (state, action) => {
       const text = action.payload.text;
+      console.log(text)
       if (text) {
         const list = state.data.filter(item => {
           if (item.title.toLowerCase() === text.toLowerCase() ||

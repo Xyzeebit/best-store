@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 const AuthForm = ({ signIn }) => {
   const { isLoggedIn } = useSelector((state) => state.user);
+  const [authError, setAuthError] = useState("");
   const [firstname, setFirstname] = useState("");
   const [firstnameErr, setFirstnameErr] = useState(false);
   const [lastname, setLastname] = useState("");
@@ -59,9 +60,16 @@ const AuthForm = ({ signIn }) => {
   const handleSubmit = async () => {
     if (signIn) {
       if (!emailErr[0] && isValidPassword(pwd)) {
-        const user = await signInWithEmailAndPassword(email, pwd);
-        setPwdErr(false);
-        dispatch(updateUser(user));
+        const { error, data } = await signInWithEmailAndPassword(email, pwd);
+        if (error) {
+          setAuthError("Invalid email or password");
+        } else {
+          const user = data.data;
+          setPwdErr(false);
+          setAuthError("");
+          dispatch(updateUser(user));
+        }
+        
       } else {
         setPwdErr(true);
       }
@@ -70,11 +78,16 @@ const AuthForm = ({ signIn }) => {
         if (cpwd === pwd) {
           if (firstname.length >= 2) {
             if (lastname.length >= 2) {
-              const user = await createUserWithEmailAndPassword(email, pwd);
-              user.name = firstname + " " + lastname;
-              setPwdErr(false);
-              setCPwdErr(false);
-              dispatch(updateUser(user));
+              const userInfo = { email, pwd, firstname, lastname };
+              const { error, data } = await createUserWithEmailAndPassword(userInfo);
+              if (error) {
+                setAuthError("Unable to create account at the moment")
+              } else {
+                const user = data.data;
+                setPwdErr(false);
+                setCPwdErr(false);
+                dispatch(updateUser(user));
+              }
             } else {
               setLastnameErr(true);
             }

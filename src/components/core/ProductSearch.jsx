@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import searchIcon from "../../assets/icon-search.svg";
 import { useDispatch } from "react-redux";
 import { searchProduct } from "../../redux/collectionsSlice";
@@ -14,11 +14,6 @@ const ProductSearch = () => {
 
   const handleValueChange = ({ target }) => {
     setValue(target.value);
-    if (value.length > 1) {
-      dispatch(searchProduct({ text: value }));
-    } else {
-      dispatch(searchProduct({ text: "" }));
-    }
   };
   const handleExpandInput = () => {
     setExpandInput(true);
@@ -40,6 +35,13 @@ const ProductSearch = () => {
     evt.preventDefault();
     dispatch(searchProduct({ text: value }));
   };
+
+  useEffect(() => {
+    if (value.length > 2) {
+      dispatch(searchProduct({ text: value }));
+    }
+  }, [dispatch, value]);
+
   return (
     <form
       onSubmit={handleProductSearch}

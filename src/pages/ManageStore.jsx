@@ -6,11 +6,18 @@ import PropTypes from 'prop-types';
 
 import uploadIcon from '../assets/icons/upload-icon-alt.svg'
 import closeIcon from '../assets/icons/close-icon.svg'
+import { createNewProduct } from "../api/apis";
 
 
 
 const tags = ["newest", "best seller"];
-const categories = ["random", "clothes", "babies wear", "flash sales", "deals"];
+const categories = [
+  "random", "home and living", "clothes", "babies wear",
+  "flash sales", "deals", "electronics", "phones", "cosmetics and makeup",
+  "books", "stationeries", "toys", "outdoors", "sports", "games", "beauty and personal care", 
+  "accessories", "bags", "travel", "shoes", "sneakers", "shirts", "hairs", "instruments", 
+  "computers", "tv", "dress", "softwares", "babies", "women", "men", "bed"
+];
 
 const ManageStore = () => {
     const user = useSelector((state) => state.user);
@@ -48,6 +55,7 @@ const ManageStore = () => {
             Create and Update Product
           </h2>
           <Form images={images}>
+            <ImageInput images={images} onChange={handleFiles} removeImage={removeImage} />
             <Input
               label="Title"
               name="title"
@@ -84,7 +92,6 @@ const ManageStore = () => {
             />
             <RadioButtons options={categories} label="categories" />
             <RadioButtons options={tags} label="tags" />
-            <ImageInput images={images} onChange={handleFiles} removeImage={removeImage} />
           </Form>
         </div>
       </Layout>
@@ -101,12 +108,19 @@ const Form = ({ images, children }) => {
     form.price = evt.target.price.value;
     form.discountedPrice = evt.target.discount.value;
     form.discount = evt.target.percent.value;
+    form.stock = evt.target.stock.value;
     form.categories = evt.target.categories.value?.split(":");
     form.tags = evt.target.tags.value?.split(":");
     // form.images = evt.target.images.files;
     form.images = images;
 
     console.log(form)
+    if (form.title && (form.price || form.discountedPrice) &&
+      form.description && form.stock && form.images && form.images.length > 0) {
+      createNewProduct(form)
+    } else {
+      alert("some important fields are empty")
+    }
     
   }
   return (
@@ -133,10 +147,10 @@ const ImageInput = ({ images, onChange, removeImage }) => {
   
   return (
     <div className="p-4 bg-gray-50">
-      <div>
-        <label htmlFor="images" className="flex gap-3 items-center justify-center bg-gray-300 px-4 py-2 shadow w-36 m-auto rounded-3xl">
+      <div className="flex items-center justify-center">
+        <label htmlFor="images" className="flex gap-3 items-center justify-center bg-gray-300 px-4 py-2 shadow rounded-3xl">
           <img src={uploadIcon} alt="choose file to upload" width={25} height={25} />
-          <span className="text-xs font-semibold text-gray-800">Choose file</span>
+          <span className="text-xs font-semibold text-gray-800">Choose images</span>
         </label>
         <input
           type="file"
@@ -148,10 +162,10 @@ const ImageInput = ({ images, onChange, removeImage }) => {
           className="hidden"
         />
       </div>
-      <div className="flex items-center justify-center gap-4 pt-6">
+      <div className="flex items-center justify-center flex-wrap gap-4 pt-6">
         {images && images.map((image, i) => (
           <div key={image.name} className="relative w-32 h-32 overflow-hidden rounded-sm border-2">
-            <img src={URL.createObjectURL(image)} alt={image.name} width={150} height={150} />
+            <img src={URL.createObjectURL(image)} alt={image.name} width={150} height={150} className="w-32 h-32 object-fill" />
             <img src={closeIcon} width={25} height={25}
               onClick={() => removeImage(i)}
               className="absolute top-0 right-0 bg-white rounded-full"
@@ -184,7 +198,7 @@ const Textarea = ({ label, name, placeholder}) => {
         name={name}
         placeholder={placeholder}
         onChange={({ target }) => setDescription(target.value)}
-        className="resize-y min-h-[150px] text-sm font-semibold px-4 py-2 border bg-gray-100 rounded-sm focus:bg-gray-50 focus:outline-green-900"
+        className="resize-y min-h-[150px] font-thin px-4 py-2 border bg-gray-100 rounded-sm focus:bg-gray-50 focus:outline-green-900"
       />
     </div>
   );
@@ -201,6 +215,13 @@ const RadioInput = ({ value, onChange }) => {
 
   useEffect(() => {
     if (selected) {
+      onChange(value);
+    }
+  }, [selected]);
+
+  useEffect(() => {
+    if (value === "random") {
+      setSelected(true);
       onChange(value);
     }
   }, [selected]);

@@ -11,16 +11,15 @@ import clothes from "../assets/clothes.jpg";
 import footwear from "../assets/footwear.jpg";
 import appliances from "../assets/appliances.jpg";
 import icon from "../assets/phone1.webp";
-import hair_w from '../assets/hair_women.webp';
-import mensShirt from '../assets/mens-shirt.webp';
+import hair_w from "../assets/hair_women.webp";
+import mensShirt from "../assets/mens-shirt.webp";
 
-// import { createClient } from "@supabase/supabase-js";
+import { createClient } from "@supabase/supabase-js";
 
-// // Create a single supabase client for interacting with your database
-// const supabase = createClient(
-//   "https://xyzcompany.supabase.co",
-//   "public-anon-key"
-// );
+// Create a single supabase client for interacting with your database
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
+const SUPABASE_KEY = import.meta.env.VITE_SUPABASE_KEY;
+const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
 export const BANNER_ITEMS = [
   {
@@ -70,54 +69,6 @@ export const DEALS_ITEM = [
   },
 ];
 
-const products = [
-  {
-    id: nanoid(14),
-    title: "Tecno Spark 4",
-    image: phone,
-    price: "150.00",
-    ratings: 3.7,
-    category: "phones",
-  },
-  {
-    id: nanoid(14),
-    title: "Laptops",
-    image: laptop,
-    category: "laptops",
-  },
-  {
-    id: nanoid(14),
-    title: "Toys",
-    image: toys,
-    category: "toys",
-  },
-  {
-    id: nanoid(14),
-    title: "Hair",
-    image: hair,
-    category: "hairs",
-  },
-  {
-    id: nanoid(14),
-    title: "Shirts",
-    image: shirt,
-    category: "clothes",
-  },
-  {
-    id: nanoid(14),
-    title: "Cosmetics",
-    image: makeup,
-    category: "makeup-and-cosmetics",
-  },
-  {
-    id: nanoid(14),
-    title: "Sneakers",
-    image: shoes,
-    category: "footwears",
-  },
-];
-
-
 export const COLLECTIONS = [
   {
     id: nanoid(12),
@@ -131,7 +82,7 @@ export const COLLECTIONS = [
     categories: ["phones"],
     tags: ["newest"],
     brand: "Samsung",
-    ratings: [1, 2, 4, 4, 2, 5, 2, 3], // index 0: rating, index 1: rating size
+    ratings: [1, 2, 4, 4, 2, 5, 2, 3],
     quantityLeft: 8,
   },
   {
@@ -146,7 +97,7 @@ export const COLLECTIONS = [
     categories: ["phones"],
     tags: ["newest"],
     brand: "Samsung",
-    ratings: [1, 2, 4, 4, 2, 5, 2, 3], // index 0: rating, index 1: rating size
+    ratings: [1, 2, 4, 4, 2, 5, 2, 3],
     quantityLeft: 8,
   },
   {
@@ -161,7 +112,7 @@ export const COLLECTIONS = [
     categories: ["random", "phones"],
     tags: ["newest"],
     brand: "Samsung",
-    ratings: [1, 2, 4, 4, 2, 5, 2, 3], // index 0: rating, index 1: rating size
+    ratings: [1, 2, 4, 4, 2, 5, 2, 3],
     quantityLeft: 8,
   },
   {
@@ -176,7 +127,7 @@ export const COLLECTIONS = [
     categories: ["random", "phones"],
     tags: ["newest"],
     brand: "Samsung",
-    ratings: [1, 2, 4, 4, 2, 5, 2, 3], // index 0: rating, index 1: rating size
+    ratings: [1, 2, 4, 4, 2, 5, 2, 3],
     quantityLeft: 8,
   },
   {
@@ -191,7 +142,7 @@ export const COLLECTIONS = [
     categories: ["clothes", "babies wear", "flash sales", "deals"],
     tags: ["newest", "best seller"],
     brand: "Samsung",
-    ratings: [1, 2, 4, 4, 2, 5, 2, 3], // index 0: rating, index 1: rating size
+    ratings: [1, 2, 4, 4, 2, 5, 2, 3],
     quantityLeft: 8,
   },
   {
@@ -206,7 +157,7 @@ export const COLLECTIONS = [
     categories: ["random", "clothes", "babies wear", "flash sales", "deals"],
     tags: ["newest", "best seller"],
     brand: "Samsung",
-    ratings: [1, 2, 4, 4, 2, 5, 2, 3], // index 0: rating, index 1: rating size
+    ratings: [1, 2, 4, 4, 2, 5, 2, 3],
     quantityLeft: 8,
   },
   {
@@ -221,7 +172,7 @@ export const COLLECTIONS = [
     categories: ["clothes", "babies wear", "flash sales", "deals"],
     tags: ["newest", "best seller"],
     brand: "Samsung",
-    ratings: [1, 2, 4, 4, 2, 5, 2, 3], // index 0: rating, index 1: rating size
+    ratings: [1, 2, 4, 4, 2, 5, 2, 3],
     quantityLeft: 8,
   },
   {
@@ -236,7 +187,7 @@ export const COLLECTIONS = [
     categories: ["clothes", "babies wear", "flash sales", "deals"],
     tags: ["newest", "best seller"],
     brand: "Samsung",
-    ratings: [1, 2, 4, 4, 2, 5, 2, 3], // index 0: rating, index 1: rating size
+    ratings: [1, 2, 4, 4, 2, 5, 2, 3],
     quantityLeft: 8,
   },
   {
@@ -251,7 +202,7 @@ export const COLLECTIONS = [
     categories: ["random", "clothes", "babies wear", "flash sales", "deals"],
     tags: ["newest", "best seller"],
     brand: "Samsung",
-    ratings: [1, 2, 4, 4, 2, 5, 2, 3], // index 0: rating, index 1: rating size
+    ratings: [1, 2, 4, 4, 2, 5, 2, 3],
     quantityLeft: 8,
   },
   {
@@ -266,7 +217,7 @@ export const COLLECTIONS = [
     categories: ["random", "clothes", "babies wear", "flash sales", "deals"],
     tags: ["newest", "best seller"],
     brand: "Samsung",
-    ratings: [1, 2, 4, 4, 2, 5, 2, 3, 4], // index 0: rating, index 1: rating size
+    ratings: [1, 2, 4, 4, 2, 5, 2, 3, 4],
     quantityLeft: 8,
   },
 ];
@@ -306,31 +257,56 @@ export function isValidPassword(pwd) {
 }
 
 export async function signInWithEmailAndPassword(email, password) {
-  const user = {
-    id: nanoid(12),
-    email,
-    name: "John Doe",
-    orders: [],
-    isLoggedIn: true,
-  };
+  const { error } = await signInWithEmail(email, password);
+  if (error) {
+    return { error };
+  }
+  {
+    const { data, error } = await findUserByEmail(email);
+    if (error) {
+      return { error };
+    }
+    // ...query orders by users id
 
-  return user;
+    return { data, error: null };
+  }
 }
 
-export async function createUserWithEmailAndPassword(email, password) {
+export async function createUserWithEmailAndPassword({
+  email,
+  pwd,
+  firstname,
+  lastname,
+}) {
   const user = {
-    id: nanoid(12),
     email,
-    name: "John Doe",
-    orders: [],
-    isLoggedIn: true,
+    firstname,
+    lastname,
   };
-  return user;
+  
+  {
+    const redirectURL = "/";
+    const { error } = signUpNewUser(email, pwd, redirectURL);
+    if (error) {
+      return error;
+    }
+  }
+  const { error, data } = await createUser(user);
+  if (error) {
+    return error;
+  }
+  user.id = data.data.id
+
+  return { error: null, data: user };
 }
 
 export async function getDataByCategoryAndId(category, id) {
-  const data = COLLECTIONS.find(it => it.id === id);
+  const data = COLLECTIONS.find((it) => it.id === id);
   return { ok: true, data };
+}
+
+export async function createNewProduct(product) {
+  COLLECTIONS.push(product);
 }
 
 export function getRecentViews() {
@@ -391,32 +367,36 @@ export function addItemToRecentViews(item) {
 }
 
 export async function signout() {
-  // clear record
+  const { error } = await signOut();
+  if (error) {
+    return false;
+  }
   return true;
 }
 
+async function signUpNewUser(email, password, redirect) {
+  const { data, error } = await supabase.auth.signUp({
+    email,
+    password,
+    options: {
+      emailRedirectTo: redirect, // 'https//example.com/welcome'
+    },
+  });
+  return { data, error };
+}
 
+async function signOut() {
+  const { error } = await supabase.auth.signOut();
+  return { error };
+}
 
-// async function signUpNewUser() {
-//   const { data, error } = await supabase.auth.signUp({
-//     email: 'example@email.com',
-//     password: 'example-password',
-//     options: {
-//       emailRedirectTo: 'https//example.com/welcome'
-//     }
-//   })
-// }
-
-// async function signOut() {
-//   const { error } = await supabase.auth.signOut()
-// }
-
-// async function signInWithEmail() {
-//   const { data, error } = await supabase.auth.signInWithPassword({
-//     email: 'example@email.com',
-//     password: 'example-password'
-//   })
-// }
+async function signInWithEmail(email, password) {
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email,
+    password,
+  });
+  return { data, error };
+}
 
 // async function uploadImage(file) {
 //   // const avatarFile = event.target.files[0];
@@ -440,12 +420,8 @@ export async function signout() {
 //     });
 // }
 
-// async function create(data) {
-
-// }
-
 // async function read(option) {
-  
+
 // const { data, error } = await supabase.from("countries").select(`
 //     name,
 //     cities (
@@ -453,16 +429,79 @@ export async function signout() {
 //     )
 //   `);
 
-  
 // const { count, error } = await supabase
 //   .from("countries")
 //   .select("*", { count: "exact", head: true });
 // }
 
-// async function update(data) {
+/**
+ * Performs a database search for a user with email that matches the passed in email
+ * @param {string} email
+ * @returns
+ */
+async function findUserByEmail(email) {
+  const { data, error } = await supabase
+    .from("users")
+    .select()
+    .eq("email", email);
+  return { data, error };
+}
 
-// }
+/**
+ * Performs an insertion operation on the database
+ * @param {object} user an object to be inserted into the database
+ * @returns 
+ */
+async function createUser(user){
+  const { data, error } = await supabase.from("users").insert(user).select();
+  return { data, error };
+}
 
-// async function remove(option) {
+/**
+ * Performs an insertion operation on the database collections
+ * @param {object} item an object to be inserted into the database collections
+ * @returns
+ */
+async function createCollectionItem(item) {
+  const { data, error } = await supabase.from("collections").insert(item).select();
 
-// }
+  return { error, data };
+}
+
+/**
+ * Performs an update on the table column
+ * @param {string} id column id
+ * @param {object} updates object to be used for updates
+ */
+async function updateCollectionsItem(id, updates) {
+  const { data, error } = await supabase
+    .from("collections")
+    .update(updates)
+    .eq("id", id)
+    .select();
+
+  return { error, data };
+}
+
+/**
+ * Performs an operation to get all the data in the collection filtered by an array of strings
+ * @param {string} column is the column name to be filtered
+ * @param {string[]} filters is an array of strings that will be use for filtering the collections
+ */
+async function selectFromCollectionsWithFilter(column, filters) {
+  const { data, error } = await supabase
+    .from("collections")
+    .select()
+    .overlaps(column, filters);
+  return { error, data };
+}
+
+/**
+ * Deletes the record in the database with id
+ * @param {string} id deletes an item from the collections that matches id
+ * @returns
+ */
+async function deleteCollectionsItem(id) {
+  const { error } = await supabase.from("collections").delete().eq("id", id);
+  return { error };
+}
