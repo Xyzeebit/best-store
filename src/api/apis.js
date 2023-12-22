@@ -488,7 +488,7 @@ async function updateCollectionsItem(id, updates) {
  * @param {string} column is the column name to be filtered
  * @param {string[]} filters is an array of strings that will be use for filtering the collections
  */
-async function selectFromCollectionsWithFilter(column, filters) {
+async function selectWithFilterFromCollections(column, filters) {
   const { data, error } = await supabase
     .from("collections")
     .select()
