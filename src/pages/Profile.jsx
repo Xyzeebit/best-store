@@ -34,7 +34,7 @@ const Profile = () => {
             </p>
             <hr />
             <div className="p-4">
-              {user.isMerchant && (
+              {user.is_merchant && (
                 <Link
                   to="/manage-product"
                   className="shadow-sm px-4 py-2 text-sm bg-green-50 font-semibold rounded-3xl hover:bg-red-50"
@@ -43,7 +43,7 @@ const Profile = () => {
                 </Link>
               )}
             </div>
-            {user.isMerchant && <hr />}
+            {user.is_merchant && <hr />}
             <div className="p-4">
               <Link
                 className="font-semibold border-2 border-gray-300 bg-white rounded-3xl px-8 py-2 text-gray-500 text-sm hover:bg-gray-300"

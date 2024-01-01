@@ -257,18 +257,23 @@ export function isValidPassword(pwd) {
 }
 
 export async function signInWithEmailAndPassword(email, password) {
-  const { error } = await signInWithEmail(email, password);
-  if (error) {
-    return { error };
-  }
-  {
-    const { data, error } = await findUserByEmail(email);
+  try {
+    const { error } = await signInWithEmail(email, password);
     if (error) {
       return { error };
     }
-    // ...query orders by users id
+  console.log(error)
+    {
+      const { data, error } = await findUserByEmail(email);
+      if (error) {
+        return { error };
+      }
+      // ...query orders by users id
 
-    return { data, error: null };
+      return { data, error: null };
+  }
+  } catch(error) {
+    return { error };
   }
 }
 
@@ -282,22 +287,24 @@ export async function createUserWithEmailAndPassword({
     email,
     firstname,
     lastname,
+    is_merchant: false,
   };
   
   {
-    const redirectURL = "/";
-    const { error } = signUpNewUser(email, pwd, redirectURL);
+    
+    const { error, data } = await signUpNewUser(email, pwd);
     if (error) {
       return error;
     }
+    user.user_id = data.user.id;
   }
+  
   const { error, data } = await createUser(user);
   if (error) {
     return error;
   }
-  user.id = data.data.id
-
-  return { error: null, data: user };
+  console.log("user db", data)
+  return { error: null, data };
 }
 
 export async function getDataByCategoryAndId(category, id) {
@@ -306,7 +313,23 @@ export async function getDataByCategoryAndId(category, id) {
 }
 
 export async function createNewProduct(product) {
-  COLLECTIONS.push(product);
+  
+  const item = {
+    images: [],
+  };
+  await Promise.all(product.images.map(async (image) => {
+    const { error, data } = await uploadImage("best-store", image);
+    if (error) {
+      return error;
+    }
+    item.images.push(data.publicURL); // image url
+  }));
+  const { error, data } = await createCollectionsItem(item);
+  if (error) {
+    return { ok: false };
+  } else {
+    return { ok: true, data };
+  }
 }
 
 export function getRecentViews() {
@@ -378,61 +401,97 @@ async function signUpNewUser(email, password, redirect) {
   const { data, error } = await supabase.auth.signUp({
     email,
     password,
-    options: {
-      emailRedirectTo: redirect, // 'https//example.com/welcome'
-    },
+    // options: {
+    //   emailRedirectTo: redirect, // 'https//example.com/welcome'
+    // },
   });
   return { data, error };
 }
 
 async function signOut() {
-  const { error } = await supabase.auth.signOut();
-  return { error };
+ try {
+   const { error } = await supabase.auth.signOut();
+   return { error };
+ } catch (error) {
+   console.log("caught:", error);
+   return { error };
+ }
 }
 
 async function signInWithEmail(email, password) {
-  const { data, error } = await supabase.auth.signInWithPassword({
+  try {
+    const { data, error } = await supabase.auth.signInWithPassword({
     email,
     password,
   });
   return { data, error };
+  } catch (error) {
+    console.log("caught:", error);
+    return {error};
+  }
 }
 
-// async function uploadImage(file) {
-//   // const avatarFile = event.target.files[0];
-//   const { data, error } = await supabase.storage
-//     .from("avatars")
-//     .upload("best-store/images/file.name.png", file, {
-//       cacheControl: "3600",
-//       upsert: false,
-//     });
-//   if (error) {
-//   } else {
-//     console.log(data.Key);
-//   }
-// }
+export async function signInWithGoogle() {
+  
+  try {
+    const { error, data } = await supabase.auth.signInWithOAuth({ provider: 'google' });
+    return { data, error };
+  } catch (error) {
+    console.log("caught:", error);
+    return { error };
+  }
+}
 
-// async function downloadImage() {
-//   const { data, error } = await supabase.storage
-//     .from("bucket-name")
-//     .download("path/to/image.jpg", {
-//       transform: { width: 640, height: 480, fit: "clip" },
-//     });
-// }
+export async function getCurrentUser() {
+  try {
+    const user = await supabase.auth.getUser();
+    return { user, error: null };
+  } catch (error) {
+    return { error };
+  }
+}
+export async function getSession() {
+  try {
+    const session = await supabase.auth.getSession();
+    return { session, error: null };
+  } catch (error) {
+    return { error };
+  }
+}
 
-// async function read(option) {
+export function authChange(cb) {
+  try {
+    const { data } = supabase.auth.onAuthStateChange((evt, session) => {
+      if (session) {
+        cb({ user: session.user.user_metadata, id: session.user.id }, data);
+      }
+  });
+  } catch(error) {
+    console.log("auth change error");
+  }
+}
 
-// const { data, error } = await supabase.from("countries").select(`
-//     name,
-//     cities (
-//       name
-//     )
-//   `);
+/**
+ * Performs a file uploading operations
+ * @param {string} bucket the bucket name to operate on
+ * @param {object} file the file object to be uploaded
+ * @returns 
+ */
+async function uploadImage(bucket, file) {
+  try {
+    const { data, error } = await supabase.storage
+    .from(bucket) // bucket => images
+    .upload(`images/${file.name}`, file, {
+      cacheControl: "3600",
+      upsert: false,
+    });
+    return { error, data };
+  } catch (error) {
+    console.log("caught:", error);
+    return { error };
+  }
+}
 
-// const { count, error } = await supabase
-//   .from("countries")
-//   .select("*", { count: "exact", head: true });
-// }
 
 /**
  * Performs a database search for a user with email that matches the passed in email
@@ -440,11 +499,16 @@ async function signInWithEmail(email, password) {
  * @returns
  */
 async function findUserByEmail(email) {
-  const { data, error } = await supabase
-    .from("users")
-    .select()
-    .eq("email", email);
-  return { data, error };
+  try {
+    const { data, error } = await supabase
+      .from("users")
+      .select("*")
+      .eq("email", email);
+    return { data, error };
+  } catch (error) {
+    console.log("caught:", error);
+    return { error };
+  }
 }
 
 /**
@@ -452,9 +516,28 @@ async function findUserByEmail(email) {
  * @param {object} user an object to be inserted into the database
  * @returns 
  */
-async function createUser(user){
-  const { data, error } = await supabase.from("users").insert(user).select();
-  return { data, error };
+async function createUser(user) {
+ try {
+   const { data, error } = await supabase.from("users").insert(user).select();
+   return { data, error };
+ } catch (error) {
+   console.log("caught:", error);
+   return { error };
+ }
+}
+
+
+export async function getCollections(lastIndex, limit) {
+  try {
+    const {error, data} = await supabase.from("collections")
+      .select("*")
+      .range(lastIndex, lastIndex + limit)
+    
+    return { error, data };
+  } catch (error) {
+    console.log("caught:", error);
+    return { error };
+  }
 }
 
 /**
@@ -462,10 +545,14 @@ async function createUser(user){
  * @param {object} item an object to be inserted into the database collections
  * @returns
  */
-async function createCollectionItem(item) {
-  const { data, error } = await supabase.from("collections").insert(item).select();
-
-  return { error, data };
+async function createCollectionsItem(item) {
+  try {
+    const { data, error } = await supabase.from("collections").insert(item).select();
+    return { error, data };
+  } catch (error) {
+    console.log("caught:", error);
+    return { error };
+  }
 }
 
 /**
@@ -474,13 +561,18 @@ async function createCollectionItem(item) {
  * @param {object} updates object to be used for updates
  */
 async function updateCollectionsItem(id, updates) {
-  const { data, error } = await supabase
-    .from("collections")
-    .update(updates)
-    .eq("id", id)
-    .select();
+  try {
+    const { data, error } = await supabase
+      .from("collections")
+      .update(updates)
+      .eq("id", id)
+      .select();
 
-  return { error, data };
+    return { error, data };
+  } catch (error) {
+    console.log("caught:", error);
+    return { error };
+  }
 }
 
 /**
@@ -489,11 +581,18 @@ async function updateCollectionsItem(id, updates) {
  * @param {string[]} filters is an array of strings that will be use for filtering the collections
  */
 async function selectWithFilterFromCollections(column, filters) {
-  const { data, error } = await supabase
-    .from("collections")
-    .select()
-    .overlaps(column, filters);
-  return { error, data };
+  try {
+    const { data, error } = await supabase
+      .from("collections")
+      .select()
+      .contains(column, filters);
+    
+    return { error, data };
+
+  } catch (error) {
+    console.log("caught:", error);
+    return {error};
+  }
 }
 
 /**
@@ -501,7 +600,11 @@ async function selectWithFilterFromCollections(column, filters) {
  * @param {string} id deletes an item from the collections that matches id
  * @returns
  */
-async function deleteCollectionsItem(id) {
-  const { error } = await supabase.from("collections").delete().eq("id", id);
-  return { error };
+export async function deleteCollectionsItem(id) {
+  try {
+    const { error } = await supabase.from("collections").delete().eq("id", id);
+    return { error };
+  } catch(error) {
+    return { error };
+  }
 }

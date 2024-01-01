@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
-    isLoggedIn: true,
+    isLoggedIn: false,
     firstname: "Donald",
     lastname: "Sunday",
     orders: [],
@@ -9,12 +9,14 @@ const initialState = {
     avatar: '',
     id: 'mskj908yUjmsmnGbn',
     email: 'gotodonald@gmail.com',
-    isMerchant: true,
+    is_merchant: true,
     merchant: {
         store: "",
         productIds: [],
     }
 }
+
+// https://prhddrarcwikrdknpljf.supabase.co/auth/v1/callback
 
 export const userReducer = createSlice({
     name: 'user',

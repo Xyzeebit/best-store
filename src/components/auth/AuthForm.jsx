@@ -7,6 +7,7 @@ import {
   isValidEmail,
   isValidPassword,
   signInWithEmailAndPassword,
+  signInWithGoogle,
 } from "../../api/apis";
 import { useNavigate } from "react-router-dom";
 import { updateUser } from "../../redux/userSlice";
@@ -31,6 +32,13 @@ const AuthForm = ({ signIn }) => {
   const [shouldContinue, setShouldContinue] = useState([false, false]);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const handleGoogleAuth = async () => {
+    const { error } = await signInWithGoogle();
+    if (error) {
+      // do something
+    }
+  }
 
   const handleContinueToPwd = () => {
     if (email.trim()) {
@@ -62,9 +70,9 @@ const AuthForm = ({ signIn }) => {
       if (!emailErr[0] && isValidPassword(pwd)) {
         const { error, data } = await signInWithEmailAndPassword(email, pwd);
         if (error) {
-          setAuthError("Invalid email or password");
+          setAuthError("Invalid email address or password");
         } else {
-          const user = data.data;
+          const [user] = data;
           setPwdErr(false);
           setAuthError("");
           dispatch(updateUser(user));
@@ -83,7 +91,7 @@ const AuthForm = ({ signIn }) => {
               if (error) {
                 setAuthError("Unable to create account at the moment")
               } else {
-                const user = data.data;
+                const [user] = data;
                 setPwdErr(false);
                 setCPwdErr(false);
                 dispatch(updateUser(user));
@@ -118,7 +126,9 @@ const AuthForm = ({ signIn }) => {
       <h1 className="font-semibold text-xl text-center">
         {signIn ? "Sign in to your account" : "Create an account"}
       </h1>
-      <button className="m-auto flex items-center justify-center gap-3 px-6 py-2 mt-6 mb-6 bg-green-900 rounded-3xl hover:bg-red-500">
+      <button 
+      onClick={handleGoogleAuth}
+      className="m-auto flex items-center justify-center gap-3 px-6 py-2 mt-6 mb-6 bg-green-900 rounded-3xl hover:bg-red-500">
         <img
           src={googleIcon}
           alt="sign in with google"
@@ -129,6 +139,7 @@ const AuthForm = ({ signIn }) => {
       </button>
       <hr />
       <p className="py-4 font-semibold">Continue with email</p>
+      {authError && <p className="text-center pt-4 pb-4 text-sm text-red-500">{authError}</p>}
       <div className="flex flex-col">
         <div>
           <small
