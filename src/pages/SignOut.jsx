@@ -10,8 +10,8 @@ const SignOut = () => {
 
     useEffect(() => {
         (async () => {
-            const ok = await signout();
-            if (ok) {
+            const { error } = await signout();
+            if (!error) {
                 dispatch(updateUser({ isLoggedIn: false }));
                 navigate('/')
             }

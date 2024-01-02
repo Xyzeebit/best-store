@@ -8,7 +8,7 @@ const Error = ({ message, path }) => (
     <div>
       <img
         src={errorImage}
-        alt={() => console.log(message)}
+        alt={message}
         width={150}
         height={100}
         className="m-auto"

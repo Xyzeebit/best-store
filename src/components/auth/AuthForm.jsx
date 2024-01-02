@@ -7,6 +7,7 @@ import {
   isValidEmail,
   isValidPassword,
   signInWithEmailAndPassword,
+  signInWithGoogle,
 } from "../../api/apis";
 import { useNavigate } from "react-router-dom";
 import { updateUser } from "../../redux/userSlice";
@@ -14,6 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 const AuthForm = ({ signIn }) => {
   const { isLoggedIn } = useSelector((state) => state.user);
+  const [authError, setAuthError] = useState("");
   const [firstname, setFirstname] = useState("");
   const [firstnameErr, setFirstnameErr] = useState(false);
   const [lastname, setLastname] = useState("");
@@ -30,6 +32,13 @@ const AuthForm = ({ signIn }) => {
   const [shouldContinue, setShouldContinue] = useState([false, false]);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const handleGoogleAuth = async () => {
+    const { error } = await signInWithGoogle();
+    if (error) {
+      // do something
+    }
+  }
 
   const handleContinueToPwd = () => {
     if (email.trim()) {
@@ -59,9 +68,15 @@ const AuthForm = ({ signIn }) => {
   const handleSubmit = async () => {
     if (signIn) {
       if (!emailErr[0] && isValidPassword(pwd)) {
-        const user = await signInWithEmailAndPassword(email, pwd);
-        setPwdErr(false);
-        dispatch(updateUser(user));
+        const { error, data } = await signInWithEmailAndPassword(email, pwd);
+        if (error) {
+          setAuthError("Invalid email address or password");
+        } else {
+          setPwdErr(false);
+          setAuthError("");
+          dispatch(updateUser(data));
+        }
+        
       } else {
         setPwdErr(true);
       }
@@ -70,11 +85,15 @@ const AuthForm = ({ signIn }) => {
         if (cpwd === pwd) {
           if (firstname.length >= 2) {
             if (lastname.length >= 2) {
-              const user = await createUserWithEmailAndPassword(email, pwd);
-              user.name = firstname + " " + lastname;
-              setPwdErr(false);
-              setCPwdErr(false);
-              dispatch(updateUser(user));
+              const userInfo = { email, pwd, firstname, lastname };
+              const { error, data } = await createUserWithEmailAndPassword(userInfo);
+              if (error) {
+                setAuthError("Unable to create account at the moment")
+              } else {
+                setPwdErr(false);
+                setCPwdErr(false);
+                dispatch(updateUser(data));
+              }
             } else {
               setLastnameErr(true);
             }
@@ -105,7 +124,9 @@ const AuthForm = ({ signIn }) => {
       <h1 className="font-semibold text-xl text-center">
         {signIn ? "Sign in to your account" : "Create an account"}
       </h1>
-      <button className="m-auto flex items-center justify-center gap-3 px-6 py-2 mt-6 mb-6 bg-green-900 rounded-3xl hover:bg-red-500">
+      <button 
+      onClick={handleGoogleAuth}
+      className="m-auto flex items-center justify-center gap-3 px-6 py-2 mt-6 mb-6 bg-green-900 rounded-3xl hover:bg-red-500">
         <img
           src={googleIcon}
           alt="sign in with google"
@@ -116,6 +137,7 @@ const AuthForm = ({ signIn }) => {
       </button>
       <hr />
       <p className="py-4 font-semibold">Continue with email</p>
+      {authError && <p className="text-center pt-4 pb-4 text-sm text-red-500">{authError}</p>}
       <div className="flex flex-col">
         <div>
           <small

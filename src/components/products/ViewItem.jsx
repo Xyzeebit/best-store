@@ -37,8 +37,8 @@ const ViewItem = ({ images }) => {
             <swiper-container ref={swiperEl}>
                 {images.map((image, i) => (
                     <swiper-slide key={i}>
-                        <div className="bg-grey-100 overflow-hidden rounded-sm">
-                            <img src={image} alt="" width={200} height={150} className="p-4 w-full rounded" />
+                        <div className="bg-grey-100 overflow-hidden rounded-sm md:h-96">
+                            <img src={image} alt="" width={200} height={150} className="p-4 w-full h-full rounded" />
                         </div>
                     </swiper-slide>
                 ))}

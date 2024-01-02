@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { addItemToRecentViews, getDataByCategoryAndId } from "../api/apis";
 import Rating from "../components/core/Rating";
 import { addToCart, createOrders, removeFromCart } from "../redux/collectionsSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import minus from '../assets/icons/minus-circle-icon.svg'
@@ -18,6 +18,7 @@ import RecentViews from "../components/products/RecentViews";
 
 
 const Details = () => {
+  const collections = useSelector((state) => state.collections.data);
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
@@ -35,7 +36,7 @@ const Details = () => {
   }
 
   const addItemToCart = () => {
-    const item = { ...data, price: (data.discountPrice > 0 ? data.discountPrice : data.price), quantity };
+    const item = { ...data, price: (data.discount_price > 0 ? data.discount_price : data.price), quantity };
     if (addedToCart) {
       dispatch(removeFromCart(item));
       setAddedToCart(!addedToCart);
@@ -70,14 +71,14 @@ const Details = () => {
     const { category, itemId } = param;
     
       async function getData() {
-        const resp = await getDataByCategoryAndId(category, itemId);
-          if (resp.ok) {
+        const resp = await getDataByCategoryAndId(collections, category, itemId);
+          if (resp && resp.ok) {
               setData(resp.data);
               setLoading(false);
           }
       }
       getData();
-  }, [param]);
+  }, [param, collections]);
 
   useEffect(() => {
     if (data && data.id) {
@@ -105,7 +106,7 @@ const Details = () => {
             </div>
             <div className="flex gap-4 justify-start items-center font-semibold ">
               <p className="text-xl text-green-900">
-                ${((data.discountPrice > 0 ? data.discountPrice : data.price) * quantity).toFixed(2)}
+                ${((data.discount_Price > 0 ? data.discount_price : data.price) * quantity).toFixed(2)}
               </p>
               {data.discountPrices > 0 && (
                 <p className="text-red-500">
@@ -141,7 +142,7 @@ const Details = () => {
                 className="shadow-sm rounded-full p-1"
                 onClick={() =>
                   setQuantity(
-                    quantity < data.quantityLeft ? quantity + 1 : quantity
+                    quantity < data.stock_quantity ? quantity + 1 : quantity
                   )
                 }
               >
@@ -154,7 +155,7 @@ const Details = () => {
               </button>
             </div>
             <small className="text-center block text-xs text-green-900 p-2">
-              only {data.quantityLeft} item(s) left
+              only {data.stock_quantity} item(s) left
             </small>
             <div className="pt-12 pb-8 flex items-center justify-center gap-4 md:gap-6 text-xs">
               <button onClick={handleBuyNow} className="bg-green-900 border-2 border-green-900 rounded-3xl text-white font-semibold px-4 md:px-6 lg:px-14 py-2 shadow-sm hover:bg-red-500 hover:border-red-500">

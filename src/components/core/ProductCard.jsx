@@ -15,7 +15,7 @@ const ProductCard = ({ id, title, image, discountPrice, price, category, optiona
     if (favorite) {
       dispatch(removeFromCart({ id: item.id }));
     } else {
-      dispatch(addToCart({ item }));
+      dispatch(addToCart(item));
     }
   };
   return (
@@ -52,7 +52,7 @@ const ProductCard = ({ id, title, image, discountPrice, price, category, optiona
             width={25}
             height={25}
             alt="Add to cart"
-            onClick={() => handleAddToCart({ id, title, price: (discountPrice > 0 ? discountPrice : price) })}
+            onClick={() => handleAddToCart({ id, title, image, price: (discountPrice > 0 ? discountPrice : price), quantity: 1, quantityLeft: 10 })}
           />
         </div>
       )}
