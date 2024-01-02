@@ -14,6 +14,8 @@ const NewArrivals = () => {
   const { data } = useSelector((state) => state.collections);
   const [newest, setNewest] = useState([]);
 
+	console.log(newest, data)
+
   useEffect(() => {
     if (data) {
       setNewest(getCollectionsWithTag(data, "newest"));
@@ -28,9 +30,9 @@ const NewArrivals = () => {
             key={item.id}
             id={item.id}
             title={item.title}
-            image={item.image}
+            image={item.images[0]}
             price={item.price}
-            discountPrice={item.discountPrice}
+            discountPrice={item.discount_price}
             category={"newest"}
           />
         )

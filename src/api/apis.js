@@ -262,16 +262,15 @@ export async function signInWithEmailAndPassword(email, password) {
     if (error) {
       return { error };
     }
-  console.log(error)
     {
       const { data, error } = await findUserByEmail(email);
       if (error) {
         return { error };
       }
-      // ...query orders by users id
+	  saveUser(data[0]);
 
-      return { data, error: null };
-  }
+      return { data: data[0], error: null };
+	}
   } catch(error) {
     return { error };
   }
@@ -297,14 +296,27 @@ export async function createUserWithEmailAndPassword({
       return error;
     }
     user.user_id = data.user.id;
+    user.id = data.user.id;
+    user.is_merchant = false;
   }
   
   const { error, data } = await createUser(user);
   if (error) {
     return error;
   }
-  console.log("user db", data)
-  return { error: null, data };
+  saveUser(data[0]);
+  return { error: null, data: user };
+}
+
+export function saveUser(user) {
+	try {
+		const store = localStorage.getItem("bestore");
+		const data = JSON.parse(store);
+		data.user = user;
+		localStorage.setItem("bestore", JSON.stringify(data));
+	} catch(error) {
+		console.log("Unable to store data");
+	}
 }
 
 export async function getDataByCategoryAndId(category, id) {
@@ -315,20 +327,25 @@ export async function getDataByCategoryAndId(category, id) {
 export async function createNewProduct(product) {
   
   const item = {
+	  ...product,
     images: [],
   };
   await Promise.all(product.images.map(async (image) => {
     const { error, data } = await uploadImage("best-store", image);
     if (error) {
+	  console.log('upload error', error)
       return error;
     }
-    item.images.push(data.publicURL); // image url
+	
+    item.images.push(data.publicUrl); // image url
   }));
   const { error, data } = await createCollectionsItem(item);
   if (error) {
+	  console.log('create collection error', error)
     return { ok: false };
   } else {
-    return { ok: true, data };
+	console.log("Product", data);
+    return { ok: true };
   }
 }
 
@@ -411,6 +428,10 @@ async function signUpNewUser(email, password, redirect) {
 async function signOut() {
  try {
    const { error } = await supabase.auth.signOut();
+   const store = localStorage.getItem("bestore");
+   const data = JSON.parse(store);
+   data.user = null;
+   localStorage.setItem("bestore", JSON.stringify(data));
    return { error };
  } catch (error) {
    console.log("caught:", error);
@@ -463,7 +484,22 @@ export function authChange(cb) {
   try {
     const { data } = supabase.auth.onAuthStateChange((evt, session) => {
       if (session) {
-        cb({ user: session.user.user_metadata, id: session.user.id }, data);
+        //console.log("auth", session.user)
+        let user = {};
+        user.id = session.user.id;
+        user.email = session.user.email;
+        if (session.user.app_metadata?.provider === "google") {
+          const [firstname, lastname] =
+            session.user.user_metadata.full_name.split(" ");
+          user.firstname = firstname;
+          user.lastname = lastname;
+          user.is_merchant = false;
+        } else {
+			const store = localStorage.getItem("bestore");
+			const usr = JSON.parse(store);
+			user = { ...user, ...usr.user };
+		}
+        cb({ user, provider: session.user.app_metadata?.provider }, data);
       }
   });
   } catch(error) {
@@ -478,13 +514,22 @@ export function authChange(cb) {
  * @returns 
  */
 async function uploadImage(bucket, file) {
+  const parts = file.name.split(".");
+  const filename = nanoid(16) + parts[parts.length - 1];
   try {
-    const { data, error } = await supabase.storage
+    const { error } = await supabase.storage
     .from(bucket) // bucket => images
-    .upload(`images/${file.name}`, file, {
+    .upload(`images/${filename}`, file, {
       cacheControl: "3600",
       upsert: false,
     });
+	
+	const { data } = supabase
+	  .storage
+	  .from(bucket)
+	  .getPublicUrl(`images/${filename}`)
+
+	
     return { error, data };
   } catch (error) {
     console.log("caught:", error);

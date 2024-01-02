@@ -2,21 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 
  const order = {
    orders: [
-    //  {
-    //    id: "8Nsjjkla",
-    //    title: "iWatch",
-    //    price: "145.45",
-    //    quantity: 2,
-    //  },
+    
    ],
    deliveryDetails: {
-    //  firstname: "Donald",
-    //  lastname: "Sunday",
-    //  email: "gotodonald@gmail.com",
-    //  phone: "+2349031372176",
-    //  address: "123 fake street",
-    //  city: "Uyo",
-    //  zipCode: "50021"
+    
    },
    shippingCost: 0.00,
  };
@@ -99,13 +88,13 @@ export const collectionsSlice = createSlice({
 
     fetchCollections: (state, { payload }) => {
       
-      if (payload.ok) {
+      if (payload) {
         state.loading = false;
         state.error = null;
-        state.data = payload.data;
+        state.data = payload;
       } else {
         state.loading = false;
-        state.error = payload.error;
+        state.error = "Fetch error";
         state.data = null;
       }
       return state;

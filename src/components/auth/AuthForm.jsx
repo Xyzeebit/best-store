@@ -72,10 +72,9 @@ const AuthForm = ({ signIn }) => {
         if (error) {
           setAuthError("Invalid email address or password");
         } else {
-          const [user] = data;
           setPwdErr(false);
           setAuthError("");
-          dispatch(updateUser(user));
+          dispatch(updateUser(data));
         }
         
       } else {
@@ -91,10 +90,9 @@ const AuthForm = ({ signIn }) => {
               if (error) {
                 setAuthError("Unable to create account at the moment")
               } else {
-                const [user] = data;
                 setPwdErr(false);
                 setCPwdErr(false);
-                dispatch(updateUser(user));
+                dispatch(updateUser(data));
               }
             } else {
               setLastnameErr(true);

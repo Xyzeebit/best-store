@@ -13,14 +13,14 @@ import { createNewProduct } from "../api/apis";
 const tags = ["newest", "best seller"];
 const categories = [
   "random", "home and living", "clothes", "babies wear",
-  "flash sales", "deals", "electronics", "phones", "cosmetics and makeup",
+  "flash sales", "deals", "electronics", "phones", "laptops", "computers", "cosmetics and makeup",
   "books", "stationeries", "toys", "outdoors", "sports", "games", "beauty and personal care", 
   "accessories", "bags", "travel", "shoes", "sneakers", "shirts", "hairs", "instruments", 
-  "computers", "tv", "dress", "softwares", "babies", "women", "men", "bed"
+  , "tv", "dress", "softwares", "babies", "women", "men", "bed"
 ];
 
 const ManageStore = () => {
-    const user = useSelector((state) => state.user);
+  const user = useSelector((state) => state.user);
   const navigate = useNavigate();
   const [images, setImages] = useState(null);
   
@@ -54,7 +54,7 @@ const ManageStore = () => {
           <h2 className="font-bold text-xl text-gray-800 py-4 text-center pt-8">
             Create and Update Product
           </h2>
-          <Form images={images}>
+          <Form id={user.id} images={images}>
             <ImageInput images={images} onChange={handleFiles} removeImage={removeImage} />
             <Input
               label="Title"
@@ -98,26 +98,27 @@ const ManageStore = () => {
     );
 }
 
-const Form = ({ images, children }) => {
+const Form = ({ id, images, children }) => {
 
-  const handleSubmit = (evt) => {
+  const handleSubmit = async (evt) => {
     evt.preventDefault();
     const form = {};
     form.title = evt.target.title.value;
     form.description = evt.target.description.value;
-    form.price = evt.target.price.value;
-    form.discountedPrice = evt.target.discount.value;
-    form.discount = evt.target.percent.value;
-    form.stock = evt.target.stock.value;
+    form.price = parseFloat(evt.target.price.value ?? 0.00);
+    form.discount_price = parseFloat(evt.target.discount.value ?? 0.00);
+    form.discount = parseFloat(evt.target.percent.value ?? 0);
+    form.stock_quantity = parseInt(evt.target.stock.value);
     form.categories = evt.target.categories.value?.split(":");
     form.tags = evt.target.tags.value?.split(":");
     // form.images = evt.target.images.files;
     form.images = images;
+	form.created_by = id;
 
     console.log(form)
-    if (form.title && (form.price || form.discountedPrice) &&
-      form.description && form.stock && form.images && form.images.length > 0) {
-      createNewProduct(form)
+    if (form.title && (form.price || form.discount_price) &&
+      form.description && form.stock_quantity && form.images && form.images.length > 0) {
+      const { ok, data } = createNewProduct(form)
     } else {
       alert("some important fields are empty")
     }
@@ -140,6 +141,7 @@ const Form = ({ images, children }) => {
 
 Form.propTypes = {
   images: PropTypes.array,
+  id: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired
 };
 
@@ -198,7 +200,7 @@ const Textarea = ({ label, name, placeholder}) => {
         name={name}
         placeholder={placeholder}
         onChange={({ target }) => setDescription(target.value)}
-        className="resize-y min-h-[150px] font-thin px-4 py-2 border bg-gray-100 rounded-sm focus:bg-gray-50 focus:outline-green-900"
+        className="font-semibold resize-y min-h-[150px] text-sm px-4 py-2 border bg-gray-100 rounded-sm focus:bg-gray-50 focus:outline-green-900"
       />
     </div>
   );

@@ -36,7 +36,7 @@ const Profile = () => {
             <div className="p-4">
               {user.is_merchant && (
                 <Link
-                  to="/manage-product"
+                  to="/manage-store"
                   className="shadow-sm px-4 py-2 text-sm bg-green-50 font-semibold rounded-3xl hover:bg-red-50"
                 >
                   Create and update product

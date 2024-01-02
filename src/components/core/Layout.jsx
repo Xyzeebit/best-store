@@ -14,23 +14,12 @@ const Layout = ({ renderHeader, children }) => {
 
   const user = useMemo(() => {
     if (session) {
-      const [firstname, lastname] = session.user.full_name.split(" ");
-      const user = {};
-      user.id = session.id;
-      user.email = session.user.email;
-      user.firstname = firstname;
-      user.lastname = lastname;
-      user.isLoggedIn = true;
-      user.is_merchant = false;
-      user.user_id = session.id;
-      user.isLoggedIn = true;
-
+      const user = { isLoggedIn: true, ...session.user };
       return user;
     }
   }, [session]);
 
   useEffect(() => {
-    console.log(user)
     if (user) {
       dispatch(updateUser(user));
     }
@@ -48,7 +37,7 @@ const Layout = ({ renderHeader, children }) => {
         dispatch(fetchCollections([]));
       } else {
         const collections = data;
-        console.log(collections)
+        console.log("collections", collections)
         dispatch(fetchCollections(collections));
       }
       setNoData(false);
