@@ -29,7 +29,7 @@ const DealsOfTheDay = () => {
                     key={deal.id}
                     id={deal.id}
                     text={deal.title}
-                    image={deal.image}
+                    image={deal.images[0]}
                     price={deal.price}
                     styles={"col-span-2 h-36 bg-white rounded-lg shadow-md"}
                   />

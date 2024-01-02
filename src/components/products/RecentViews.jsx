@@ -27,7 +27,7 @@ const RecentViews = ({ id }) => {
                             title={item.title}
                             image={item.images[0]}
                             price={item.price}
-                            discountPrice={item.discountPrice}
+                            discountPrice={item.discount_price}
                             category={"collections"}
                         />
                     </div>

@@ -27,9 +27,9 @@ const HomePage = () => {
         />
         <FeaturedCollections />
         <NewArrivals />
-        {/*<DealsOfTheDay />
+        <DealsOfTheDay />
         <FlashSales />
-        <BestSellers />*/}
+        <BestSellers />
         <Promotion />
       </Container>
     </Suspense>

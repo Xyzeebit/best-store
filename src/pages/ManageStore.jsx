@@ -92,6 +92,11 @@ const ManageStore = () => {
             />
             <RadioButtons options={categories} label="categories" />
             <RadioButtons options={tags} label="tags" />
+			<RatingsInput
+				label="Ratings"
+				name="ratings"
+				placeholder="Separate each rating with a space"
+			/>
           </Form>
         </div>
       </Layout>
@@ -114,6 +119,17 @@ const Form = ({ id, images, children }) => {
     // form.images = evt.target.images.files;
     form.images = images;
 	form.created_by = id;
+	form.ratings = evt.target.ratings.value.trim().split(" ").map(rating => {
+		try {
+			const value = parseInt(rating);
+			if(value > 5) {
+				return 5;
+			}
+			return value;
+		} catch(error) {
+			return 0;
+		}
+	});
 
     console.log(form)
     if (form.title && (form.price || form.discount_price) &&
@@ -144,6 +160,35 @@ Form.propTypes = {
   id: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired
 };
+
+const RatingsInput = ({ label, type, name, placeholder }) => {
+  const [value, setValue] = useState('');
+  const id = useId();
+
+  return (
+    <div className="flex flex-col py-2">
+      <label htmlFor={id} className="text-gray-800 font-semibold text-md ">
+        {label}
+      </label>
+      <input
+        type={type ? type : "text"}
+        id={id}
+        name={name}
+        value={value}
+        onChange={({target}) => setValue(target.value)}
+        placeholder={placeholder}
+        className="text-sm font-semibold px-4 py-2 border bg-gray-100 rounded-sm focus:bg-gray-50 focus:outline-green-900"
+      />
+    </div>
+  );
+}
+
+RatingsInput.propTypes = {
+  label: PropTypes.string.isRequired,
+  placeholder: PropTypes.string.isRequired,
+  type: PropTypes.string,
+  name: PropTypes.string.isRequired,
+}
 
 const ImageInput = ({ images, onChange, removeImage }) => {
   

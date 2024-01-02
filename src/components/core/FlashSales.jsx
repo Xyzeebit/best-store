@@ -72,7 +72,7 @@ const FlashSales = () => {
           }, 0)
           rating /= item.ratings.length;
           return (
-            <FlashSalesItem key={item.id} {...item} rating={rating} />
+            <FlashSalesItem key={item.id} id={item.id} title={item.title} price={item.price} image={item.images[0]} rating={rating} />
           )
         })}
       </div>

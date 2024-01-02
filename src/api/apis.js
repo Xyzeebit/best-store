@@ -59,7 +59,7 @@ export const DEALS_ITEM = [
     id: nanoid(8),
     to: "/footwears",
     image: footwear,
-    text: "Gucci sneaker for outdoors",
+    text: "Sneaker for outdoors activities",
   },
   {
     id: nanoid(8),
@@ -319,9 +319,11 @@ export function saveUser(user) {
 	}
 }
 
-export async function getDataByCategoryAndId(category, id) {
-  const data = COLLECTIONS.find((it) => it.id === id);
-  return { ok: true, data };
+export async function getDataByCategoryAndId(collections, category, id) {
+  if(collections) {
+	const data = collections.find((it) => it.id === id);
+    return { ok: true, data };
+  }
 }
 
 export async function createNewProduct(product) {
@@ -404,7 +406,7 @@ export function addItemToRecentViews(item) {
       console.log(error);
     }
   }
-}
+} 
 
 export async function signout() {
   const { error } = await signOut();

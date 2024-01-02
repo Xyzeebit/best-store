@@ -14,8 +14,6 @@ const NewArrivals = () => {
   const { data } = useSelector((state) => state.collections);
   const [newest, setNewest] = useState([]);
 
-	console.log(newest, data)
-
   useEffect(() => {
     if (data) {
       setNewest(getCollectionsWithTag(data, "newest"));
