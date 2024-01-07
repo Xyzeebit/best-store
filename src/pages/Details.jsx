@@ -97,7 +97,7 @@ const Details = () => {
           <div className="w-full md:w-1/2 p-4 rounded-xl border-2 border-gray-500 bg-white">
             <h1 className="font-bold text-2xl pb-4">{data.title}</h1>
             <details className="p-4 bg-gray-200 text-sm text-gray-900 rounded">
-              <summary>Description</summary>
+              <summary>Product description</summary>
               <p className="pt-2">{data.description}</p>
             </details>
             <div className="pt-4 pb-4 flex gap-4 justify-start items-center">

@@ -356,7 +356,12 @@ export function getRecentViews() {
   let recentViews = [];
   try {
     data = JSON.parse(data);
-    recentViews = [...data.recentViews];
+    
+	if(data && data.recentViewsTimer > Date.now()) {
+	  recentViews = [...data.recentViews];
+	} else {
+		recentViews = [];
+	}
   } catch (error) {
     console.log(error);
   }
@@ -365,6 +370,7 @@ export function getRecentViews() {
 
 export function addItemToRecentViews(item) {
   let storage = localStorage.getItem("bestore");
+  const date = new Date();
   if (!storage) {
     const obj = {
       user: {
@@ -372,6 +378,7 @@ export function addItemToRecentViews(item) {
         isLoggedIn: false,
       },
       recentViews: [],
+	  recentViewsTimer: date.getTime(),
     };
     try {
       localStorage.setItem("bestore", JSON.stringify(obj));
@@ -398,6 +405,15 @@ export function addItemToRecentViews(item) {
     if (storage.recentViews.length > 15) {
       storage.recentViews.splice(0, 1, ...[item]);
     } else {
+	  if(storage.recentViewsTimer) {
+		const date = new Date();
+		if(storage.recentViewsTimer < date.getTime()) {
+		  storage.recentViews = [];
+		  const timer = new Date();
+          timer.setDate( timer.getDate() + 1);
+		  storage.recentViewsTimer = timer.getTime();
+	    }
+      }
       storage.recentViews.push(item);
     }
     try {
