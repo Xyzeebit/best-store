@@ -10,7 +10,7 @@ import {
   Layout,
   FeaturedCollections,
 } from "../components/core";
-import { HomeLoader } from "../components/core/Loaders";
+//import { HomeLoader } from "../components/core/Loaders";
 
 const HomePage = () => {
 
@@ -19,7 +19,7 @@ const HomePage = () => {
   }, []);
 
   return (
-    <Suspense fallback={<HomeLoader />}>
+    <>
       <Container>
         <Carousel
           tag="banners"
@@ -32,7 +32,7 @@ const HomePage = () => {
         <BestSellers />
         <Promotion />
       </Container>
-    </Suspense>
+    </>
   );
 };
 

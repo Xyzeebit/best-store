@@ -18,9 +18,10 @@ const Footer = () => {
             </div> */}
             <Logo />
             <div className="py-4 text-sm text-gray-600">
-              The E-Commerce Website project is designed to provide users with a
-              user-friendly platform for online shopping. It allows users to
-              browse products, add them to the cart, and proceed to checkout.
+              Welcome to your ultimate shopping destination, where luxury meets convenience! Dive into 
+			  a world of curated collections and seamless browsing, where every click brings you closer to your 
+			  perfect find. Elevate your shopping experience with us - because here, it's not just about 
+			  products, it's about a lifestyle tailored just for you.
             </div>
             <div className="mt-2">
               <div className="font-bold">Accepted Payment Methods</div>

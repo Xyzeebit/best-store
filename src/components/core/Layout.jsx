@@ -31,13 +31,11 @@ const Layout = ({ renderHeader, children }) => {
 
   useEffect(() => {
     async function getData() {
-      // const collections = await fetchAllCollections();
       const { error, data } = await getCollections(0, 20);
       if (error) {
         dispatch(fetchCollections([]));
       } else {
         const collections = data;
-        console.log("collections", collections)
         dispatch(fetchCollections(collections));
       }
       setNoData(false);
@@ -48,13 +46,13 @@ const Layout = ({ renderHeader, children }) => {
   }, [dispatch, noData]);
 
     return (
-      <Suspense fallback={<p>Loading...</p>}>
+      <>
         <div className="md:bg-gray-50">
           {renderHeader && <Header />}
           {children}
           <Footer />
         </div>
-      </Suspense>
+      </>
     );
 }
 
