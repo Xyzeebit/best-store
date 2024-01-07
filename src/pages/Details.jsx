@@ -36,7 +36,7 @@ const Details = () => {
   }
 
   const addItemToCart = () => {
-    const item = { ...data, price: (data.discount_price > 0 ? data.discount_price : data.price), quantity };
+    const item = { ...data, image: data.images[0], price: (data.discount_price > 0 ? data.discount_price : data.price), quantity };
     if (addedToCart) {
       dispatch(removeFromCart(item));
       setAddedToCart(!addedToCart);
@@ -165,7 +165,7 @@ const Details = () => {
                 className="bg-gray-100 rounded-3xl text-grey-900 font-semibold px-4 md:px-6 lg:px-14 py-2 border-2 border-grey-500 shadow-sm hover:bg-red-500 hover:border-red-500 hover:text-white"
                 onClick={addItemToCart}
               >
-                {addedToCart ? "Remove from Cart" : "Add to Cart"}
+                {addedToCart ? "Remove" : "Add to Cart"}
               </button>
             </div>
             <hr />
