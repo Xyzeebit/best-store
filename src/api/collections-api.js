@@ -130,14 +130,18 @@ export const getCollectionsWithTag = (collections, tag) => {
 };
 
 export function findItemsWithText(collections, text) {
-  const list = collections.filter(item => {
-    if (item.title.toLowerCase().indexOf(text) !== -1 ||
-      (item.description.toLowerCase().indexOf(text) !== -1)
-    ) {
-      return true
-    } else {
-      return false;
-    }
-  });
+  let list = [];
+  if (collections) {
+	list = collections.filter(item => {
+		if (item.title.toLowerCase().indexOf(text) !== -1 ||
+		  (item.description.toLowerCase().indexOf(text) !== -1)
+		) {
+		  return true
+		} else {
+		  return false;
+		}
+	});
+  }
+  
   return list;
 }

@@ -21,9 +21,9 @@ const SearchList = () => {
           <div
             className={` h-56 max-h-64 w-full md:w-2/4 bg-white px-1 py-1 shadow-lg rounded overflow-auto`}
           >
-            {list.map(({ id, title, image }) => {
+            {list && list.map(({ id, title, images }) => {
               return (
-                <SearchItem key={id} id={id} title={title} image={image} />
+                <SearchItem key={id} id={id} title={title} image={images[0]} />
               );
             })}
           </div>

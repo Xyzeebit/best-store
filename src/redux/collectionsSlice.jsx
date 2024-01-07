@@ -27,25 +27,19 @@ export const collectionsSlice = createSlice({
   initialState,
   reducers: {
     searchProduct: (state, action) => {
-      const text = action.payload.text;
-      console.log(text)
+      let text = action.payload.text;
       if (text) {
-        const list = state.data.filter(item => {
-          if (item.title.toLowerCase() === text.toLowerCase() ||
-            item.title.toLowerCase().includes(text.toLowerCase())
-          ) {
-            return true;
-          } else {
-            return false;
-          }
-        })
-        state.list = list;
         state.searching = true;
       } else {
         state.searching = false;
       }
       return state;
     },
+	
+	updateSearchList: (state, action) => {
+		state.list = action.payload;
+		return state;
+	},
       
     addToCart: (state, action) => {
       const item = action.payload;
@@ -104,6 +98,7 @@ export const collectionsSlice = createSlice({
 
 export const {
   searchProduct,
+  updateSearchList,
   addToCart,
   removeFromCart,
   updateCartItem,

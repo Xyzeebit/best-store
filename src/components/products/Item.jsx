@@ -53,7 +53,7 @@ const Item = ({ id, title, price, image, ratings, category, quantityLeft }) => {
             onClick={handleAddToCart}
             className="font-semibold text-xsm text-gray-500 px-4 py-1 rounded-3xl bg-white border-2 border-gray-400 hover:bg-red-500 hover:border-red-500 hover:text-white"
           >
-            {itemAdded ? "Remove from Cart" : "Add to Cart"}
+            {itemAdded ? "Remove" : "Add to Cart"}
           </button>
         </div>
       </div>

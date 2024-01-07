@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import searchIcon from "../../assets/icon-search.svg";
-import { useDispatch } from "react-redux";
-import { searchProduct } from "../../redux/collectionsSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { searchProduct, updateSearchList } from "../../redux/collectionsSlice";
+import { findItemsWithText } from '../../api/collections-api';
 
 const ProductSearch = () => {
+  const { data } = useSelector(state => state.collections);
   const dispatch = useDispatch();
   const [value, setValue] = useState("");
   const [wh, setWh] = useState("wh-18");
@@ -39,7 +41,13 @@ const ProductSearch = () => {
   useEffect(() => {
     if (value.length > 2) {
       dispatch(searchProduct({ text: value }));
+	  const list = findItemsWithText(data, value.toLowerCase().trim());
+	  dispatch(updateSearchList(list));
     }
+	if (value.trim().length < 1) {
+      dispatch(searchProduct({ text: "" }));
+    }
+    
   }, [dispatch, value]);
 
   return (
