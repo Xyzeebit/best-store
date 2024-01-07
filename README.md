@@ -1,7 +1,7 @@
 # best store
 # A Multi-Product E-Commerce Website
 
-![Best Store](./images/app-screenshot.png)
+![Best Store](./app-screenshot.png)
 
 Welcome to the best store (multi-product e-commerce website) project! This documentation will guide you through the setup, features, and usage of the e-commerce platform.
 
