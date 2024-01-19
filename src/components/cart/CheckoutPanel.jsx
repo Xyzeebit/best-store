@@ -80,7 +80,7 @@ const CheckoutPanel = ({ orders }) => {
               placeholder="Enter coupon code"
               onChange={({ target }) => setCoupon(target.value)}
             />
-            <button
+            {coupon && coupon.length > 5 && <button
               role="button"
               type="button"
               onClick={() => setApplyCoupon(!applyCoupon)}
@@ -89,7 +89,7 @@ const CheckoutPanel = ({ orders }) => {
               } py-2 shadow-lg`}
             >
               {applyCoupon ? "Coupon applied" : "Apply coupon"}
-            </button>
+            </button>}
           </div>
           <p className="text-gray-800 font-bold pt-8 pb-4">Payment Methods</p>
           <div>

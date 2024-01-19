@@ -14,7 +14,7 @@ const DealsItem = ({id, text, price, image, styles}) => (
 DealsItem.propTypes = {
     id: PropTypes.string,
     text: PropTypes.string,
-    price: PropTypes.string,
+    price: PropTypes.number,
     image: PropTypes.string,
     styles: PropTypes.string,
 }

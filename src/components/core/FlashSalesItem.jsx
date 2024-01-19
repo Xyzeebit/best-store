@@ -30,7 +30,7 @@ const FlashSalesItem = ({ id, title, price, image, rating }) => (
 FlashSalesItem.propTypes = {
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
-    price: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
     image: PropTypes.string.isRequired,
     rating: PropTypes.number
 }

@@ -31,7 +31,10 @@ const ProductSearch = () => {
     if (value.trim().length < 1) {
       setExpandInput(false);
     }
-    dispatch(searchProduct({ text: "" }));
+    
+	setTimeout(() => {
+		dispatch(searchProduct({ text: "" }));
+	}, 300);
   };
   const handleProductSearch = (evt) => {
     evt.preventDefault();

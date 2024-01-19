@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import CartItem from './CartItem';
 
 const CartList = ({ items }) => {
-	console.log(items)
+	
     return (
         <div className='flex justify-center md:justify-start items-center gap-4 md:gap-6 flex-wrap'>
             {items.map((item) => (

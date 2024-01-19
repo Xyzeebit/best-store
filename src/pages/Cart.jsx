@@ -34,6 +34,12 @@ const Cart = () => {
   useEffect(() => {
     document.title = "Bestore | Cart";
   }, []);
+  
+  useEffect(() => {
+	setTimeout(() => {
+		window.scrollTo({ top: 0, behavior: 'smooth' });
+	}, 100);
+  }, []);
 
   return (
     <Layout renderHeader={true}>

@@ -459,7 +459,7 @@ async function signOut() {
 
 async function signInWithEmail(email, password) {
   try {
-    const { data, error } = await supabase.auth.signInWithPassword({
+	const { data, error } = await supabase.auth.signInWithPassword({
     email,
     password,
   });
