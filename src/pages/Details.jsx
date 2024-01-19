@@ -85,6 +85,12 @@ const Details = () => {
       addItemToRecentViews(data);
     }
   }, [data]);
+  
+  useEffect(() => {
+	  setTimeout(() => {
+		  window.scrollTo({ top: 0, behavior: 'smooth' });
+	  }, 100);
+  }, []);
 
   return (
     <Layout renderHeader={true}>
