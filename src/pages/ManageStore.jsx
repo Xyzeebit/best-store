@@ -16,13 +16,15 @@ const categories = [
   "flash sales", "deals", "electronics", "phones", "laptops", "computers", "cosmetics and makeup",
   "books", "stationeries", "toys", "outdoors", "sports", "games", "beauty and personal care", 
   "accessories", "bags", "travel", "shoes", "sneakers", "shirts", "hairs", "instruments", 
-  , "tv", "dress", "softwares", "babies", "women", "men", "bed"
+  , "tv", "dress", "softwares", "babies", "women", "men", "bed", "gadgets", "funiture", "beauty"
 ];
 
 const ManageStore = () => {
   const user = useSelector((state) => state.user);
   const navigate = useNavigate();
   const [images, setImages] = useState(null);
+  const [moreCategories, setMoreCategories] = useState(false);
+  const [moreTags, setMoreTags] = useState(false);
   
   const handleFiles = (evt) => {
     const files = Object.values(evt.target.files);
@@ -91,7 +93,25 @@ const ManageStore = () => {
               placeholder="Quantity available for sale"
             />
             <RadioButtons options={categories} label="categories" />
+			{!moreCategories && <p className="text-blue-500 underline pb-4" onClick={() => setMoreCategories(true)}>Add more categories... </p>}
+			{ moreCategories && 
+				<Input
+				  type={"text"}
+				  label="Add more categories"
+				  name="morecats"
+				  placeholder="Enter more categories, separated by commas"
+				/>
+			}
             <RadioButtons options={tags} label="tags" />
+			{!moreTags && <p className="text-blue-500 underline pb-4" onClick={() => setMoreTags(true)}>Add more tags... </p>}
+			{ moreTags &&
+		       <Input
+				  type={"text"}
+				  label="Add more tags"
+				  name="moretags"
+				  placeholder="Enter more tags, separated by commas"
+				/>
+			}
 			<RatingsInput
 				label="Ratings"
 				name="ratings"
@@ -115,7 +135,11 @@ const Form = ({ id, images, children }) => {
     form.discount = parseFloat(evt.target.percent.value ?? 0);
     form.stock_quantity = parseInt(evt.target.stock.value);
     form.categories = evt.target.categories.value?.split(":");
-    form.tags = evt.target.tags.value?.split(":");
+    form.tags = evt.target.tags.value?.split(":") || [];
+	const moreCats = evt.target.morecats.values?.split(',') || [];
+	const moreTags = evt.target.moretags.values?.split(',') || [];
+	form.categories.concat(moreCats);
+	form.tags.concat(moreTags);
     // form.images = evt.target.images.files;
     form.images = images;
 	form.created_by = id;
@@ -131,10 +155,12 @@ const Form = ({ id, images, children }) => {
 		}
 	});
 
-    console.log(form)
     if (form.title && (form.price || form.discount_price) &&
       form.description && form.stock_quantity && form.images && form.images.length > 0) {
-      const { ok, data } = createNewProduct(form)
+      const { ok, data } = createNewProduct(form);
+	  if(ok) {
+		  navigate("/account");
+	  }
     } else {
       alert("some important fields are empty")
     }
@@ -358,7 +384,7 @@ const LoadById = () => {
           className="text-sm font-semibold px-4 py-2 border bg-gray-100 rounded-sm focus:bg-gray-50 focus:outline-green-900"
         />
         <button 
-          className="text-sm text-white font-semibold px-4 py-2 rounded-3xl bg-green-900 hover:bg-red-500">
+          className="text-xs text-white font-semibold px-4 py-2 rounded-3xl bg-green-900 hover:bg-red-500">
           Load product
         </button>
       </div>

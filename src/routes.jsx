@@ -147,7 +147,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/makeup-and-cosmetics",
-    element: <Products category="makeup" />,
+    element: <Products category="cosmetics and makeup" />,
   },
   {
     path: "/clothings",
@@ -201,7 +201,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/home-and-living",
-    element: <Products category="home" />,
+    element: <Products category="home and living" />,
   },
   {
     path: "/care-products",

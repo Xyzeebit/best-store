@@ -23,7 +23,7 @@ export const LINKS = [
   },
   {
     text: "Furniture",
-    url: "/home-and-living",
+    url: "/funiture",
   },
   {
     text: "Gadgets",
